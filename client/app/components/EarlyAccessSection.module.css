@@ -1,0 +1,166 @@
+/* Frame 31 - Why Big Vision / Early Access */
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Changed to center to align content */
+    padding: 80px;
+    gap: 64px;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    background: #0F0F0F;
+    z-index: 7;
+    order: 7;
+}
+
+/* Header */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Center align header items */
+    padding: 0;
+    gap: 28px;
+    width: 100%;
+    max-width: 1141px;
+}
+
+.heading {
+    width: 100%;
+    font-family: 'Bebas Neue', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 88px;
+    line-height: 88%;
+    text-align: left;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.subHeading {
+    width: 100%;
+    max-width: 674px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: left;
+    /* Center align subheading */
+    color: #FFFFFF;
+    margin: 0;
+}
+
+/* Content Wrapper */
+.contentWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0;
+    gap: 64px;
+    width: 100%;
+    max-width: 1280px;
+}
+
+/* Benefits Container */
+.benefitsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px;
+    gap: 56px;
+    width: 100%;
+    background: #191919;
+}
+
+/* Benefits List */
+.benefitsList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 32px;
+    width: 100%;
+}
+
+.benefitItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    gap: 15px;
+    width: 100%;
+}
+
+.iconWrapper {
+    width: 32px;
+    height: 32px;
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.benefitText {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    color: #FFFFFF;
+    margin: 0;
+    flex: 1;
+}
+
+/* Footer Text */
+.footerText {
+    width: 100%;
+    max-width: 924px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: left;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .section {
+        padding: 60px 40px;
+    }
+
+    .heading {
+        font-size: 64px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 40px 20px;
+        gap: 40px;
+    }
+
+    .heading {
+        font-size: 48px;
+    }
+
+    .subHeading,
+    .footerText {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    .benefitsContainer {
+        padding: 24px;
+    }
+
+    .benefitText {
+        font-size: 18px;
+        line-height: 1.4;
+    }
+}

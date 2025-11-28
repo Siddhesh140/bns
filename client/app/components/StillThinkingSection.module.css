@@ -1,0 +1,130 @@
+/* Frame 31 - Why Big Vision / Still Thinking */
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px;
+    gap: 64px;
+    width: 100%;
+    max-width: 1440px;
+    height: 270px;
+    margin: 0 auto;
+    background: #0F0F0F;
+    z-index: 9;
+    order: 9;
+}
+
+/* Content Wrapper (Frame 42) */
+.contentWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* Changed to center for better vertical alignment if needed, but keeping flex-start per spec */
+    padding: 0;
+    gap: 28px;
+    width: 100%;
+    max-width: 1280px;
+}
+
+/* Text Container (Frame 44) */
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 28px;
+    width: 100%;
+    max-width: 674px;
+}
+
+.heading {
+    width: 100%;
+    font-family: 'Bebas Neue', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 88px;
+    line-height: 88%;
+    text-align: left;
+    /* Spec says center but layout implies left aligned in container */
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.subHeading {
+    width: 100%;
+    max-width: 674px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: left;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+/* Book Button (Frame 9) */
+.bookButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 28px;
+    gap: 8px;
+    width: 180px;
+    height: 44px;
+    background: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bookButton:hover {
+    transform: scale(1.05);
+    background: #F0F0F0;
+}
+
+.bookButtonText {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0F0F0F;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .section {
+        padding: 60px 40px;
+        height: auto;
+    }
+
+    .contentWrapper {
+        flex-direction: column;
+        gap: 40px;
+        align-items: flex-start;
+    }
+
+    .heading {
+        font-size: 64px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 40px 20px;
+    }
+
+    .heading {
+        font-size: 48px;
+    }
+
+    .subHeading {
+        font-size: 20px;
+    }
+}

@@ -1,0 +1,209 @@
+/* Frame 82 - Footer */
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 80px;
+    gap: 179px;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    background: #191919;
+    z-index: 11;
+    order: 11;
+}
+
+/* Left Column - Branding */
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 40px;
+    width: 417px;
+}
+
+.logoSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 24px;
+    width: 100%;
+}
+
+.logoPlaceholder {
+    width: 76px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #333;
+    /* Placeholder background */
+}
+
+.logoText {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+
+.brandTextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.brandName {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 34px;
+    color: #FFFFFF;
+    margin: 0;
+    transform: rotate(0.45deg);
+}
+
+.brandDescription {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #ADADAD;
+    margin: 0;
+    transform: rotate(0.45deg);
+}
+
+/* Right Column - Links & Contact */
+.rightColumn {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0;
+    gap: 64px;
+    width: 399px;
+}
+
+.socialColumn,
+.contactColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 24px;
+    width: 138px;
+}
+
+.contactColumn {
+    width: 197px;
+}
+
+.columnHeader {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.linksList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    gap: 12px;
+    width: 100%;
+}
+
+.linkItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    gap: 4px;
+    /* Default gap for social */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: #ADADAD;
+    /* Default color for icon and text */
+}
+
+.contactColumn .linkItem {
+    gap: 9px;
+    /* Larger gap for contact items */
+}
+
+.linkItem:hover {
+    opacity: 1;
+    /* Override default opacity change */
+}
+
+/* Hover effect for social links */
+.socialColumn .linkItem:hover {
+    color: #2F80ED;
+    /* Blue color on hover */
+}
+
+.iconWrapper {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contactColumn .iconWrapper {
+    width: 24px;
+    height: 24px;
+}
+
+.linkText {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: -0.04em;
+    color: inherit;
+    /* Inherit from linkItem */
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .footer {
+        padding: 60px 40px;
+        flex-direction: column;
+        gap: 60px;
+        height: auto;
+    }
+
+    .rightColumn {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 40px 20px;
+    }
+
+    .rightColumn {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .leftColumn,
+    .socialColumn,
+    .contactColumn {
+        width: 100%;
+    }
+}
