@@ -5,18 +5,22 @@ import { useState } from 'react';
 interface FAQItemProps {
     question: string;
     answer: string;
+    isOpen: boolean;
+    onClick: () => void;
 }
 
-const FAQItem = ({ question, answer }: FAQItemProps) => {
-    const [isOpen, setIsOpen] = useState(false);
-
+const FAQItem = ({ question, answer, isOpen, onClick }: FAQItemProps) => {
     return (
         <div
             className="flex flex-col items-start w-full bg-[#191919] transition-all duration-300 p-5 md:p-9 gap-7 md:gap-7"
+            style={{
+                boxShadow: isOpen ? '0 0 30px rgba(255, 255, 255, 0.15)' : 'none',
+                border: isOpen ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid transparent',
+            }}
         >
             <div
                 className="flex flex-row justify-between items-center w-full cursor-pointer"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={onClick}
                 style={{ gap: '20px' }}
             >
                 <div className="flex flex-row items-center" style={{ gap: '12px' }}>
@@ -82,6 +86,12 @@ const FAQItem = ({ question, answer }: FAQItemProps) => {
 };
 
 export default function Why() {
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+    const handleToggle = (index: number) => {
+        setOpenIndex(openIndex === index ? null : index);
+    };
+
     const faqs = [
         {
             question: "What kind of leads will I get?",
@@ -123,7 +133,13 @@ export default function Why() {
 
             <div className="flex flex-col items-start gap-6 md:gap-6 w-full">
                 {faqs.map((faq, index) => (
-                    <FAQItem key={index} question={faq.question} answer={faq.answer} />
+                    <FAQItem
+                        key={index}
+                        question={faq.question}
+                        answer={faq.answer}
+                        isOpen={openIndex === index}
+                        onClick={() => handleToggle(index)}
+                    />
                 ))}
             </div>
         </section>

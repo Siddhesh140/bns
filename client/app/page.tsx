@@ -7,7 +7,7 @@ import Footer from './sections/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black flex flex-col gap-20 md:gap-0">
+    <main className="min-h-screen bg-[#0F0F0F] flex flex-col gap-0">
       <HeroSection />
       <What />
       <How />

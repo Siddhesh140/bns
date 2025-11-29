@@ -6,7 +6,7 @@ export default function What() {
     return (
         <div id="what">
             {/* Features Section */}
-            <section className="w-full flex flex-col md:flex-row md:justify-between md:items-center p-5 md:p-20 gap-5 md:gap-5 max-w-[400px] md:max-w-[1440px] mx-auto min-h-[962px] md:min-h-[720px]">
+            <section className="w-full flex flex-col md:flex-row md:justify-between md:items-center px-5 py-10 md:px-20 md:py-20 gap-5 md:gap-5 max-w-[400px] md:max-w-[1440px] mx-auto min-h-[962px] md:min-h-[720px]">
                 {/* Mobile: Image First, Desktop: Content First */}
                 <div className="md:hidden relative w-full max-w-[360px] h-[300px] border border-white/20">
                     <Image
@@ -185,7 +185,7 @@ export default function What() {
                                     src="/images/problem-02.jpg"
                                     alt="Online Leads"
                                     fill
-                                    style={{ objectFit: 'cover', filter: 'grayscale(100%)' }}
+                                    style={{ objectFit: 'cover', objectPosition: 'right', filter: 'grayscale(100%)' }}
                                 />
                                 <div className="relative z-10 flex flex-col items-start p-5 gap-6 w-full bg-[#1A1A1A]">
                                     <h3 className="text-white uppercase text-xl leading-6 tracking-[0.08em]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}>
@@ -263,7 +263,7 @@ export default function What() {
                                     src="/images/problem-02.jpg"
                                     alt="Online Leads"
                                     fill
-                                    style={{ objectFit: 'cover', filter: 'grayscale(100%)' }}
+                                    style={{ objectFit: 'cover', objectPosition: 'right', filter: 'grayscale(100%)' }}
                                 />
                                 <div className="relative z-10 flex flex-col items-start p-9 gap-6 w-full bg-[#1A1A1A]">
                                     <h3 className="text-white uppercase text-2xl leading-[29px] tracking-[0.08em]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}>

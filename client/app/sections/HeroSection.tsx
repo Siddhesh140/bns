@@ -217,6 +217,9 @@ export default function HeroSection() {
             {/* Subtle dark overlay for text readability */}
             <div className="absolute inset-0 w-full h-full bg-black/20" />
 
+            {/* Bottom Gradient for Seamless Transition */}
+            <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-b from-transparent to-[#0F0F0F] z-10" />
+
             {/* Content Container */}
             <div className="relative z-10 flex flex-col items-center gap-5 md:gap-8 px-4">
                 {/* Main Heading */}
