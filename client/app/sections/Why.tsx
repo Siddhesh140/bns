@@ -12,12 +12,7 @@ const FAQItem = ({ question, answer }: FAQItemProps) => {
 
     return (
         <div
-            className="flex flex-col items-start w-full bg-[#191919] transition-all duration-300"
-            style={{
-                padding: '36px',
-                gap: '28px',
-                width: '1280px',
-            }}
+            className="flex flex-col items-start w-full bg-[#191919] transition-all duration-300 p-5 md:p-9 gap-7 md:gap-7"
         >
             <div
                 className="flex flex-row justify-between items-center w-full cursor-pointer"
@@ -33,12 +28,10 @@ const FAQItem = ({ question, answer }: FAQItemProps) => {
                             <path d="M12 17H12.01" stroke={isOpen ? "white" : "#C3C3C3"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </div>
-                    <h3
+                    <h3 className="text-xl md:text-[28px] leading-6 md:leading-[34px]"
                         style={{
                             fontFamily: 'var(--font-inter)',
                             fontWeight: 500,
-                            fontSize: '28px',
-                            lineHeight: '34px',
                             color: isOpen ? '#FFFFFF' : '#C3C3C3',
                             transition: 'color 0.3s ease',
                         }}
@@ -72,13 +65,11 @@ const FAQItem = ({ question, answer }: FAQItemProps) => {
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}
                 style={{ width: '100%' }}
             >
-                <div className="flex flex-row items-start" style={{ paddingLeft: '44px' }}>
-                    <p
+                <div className="flex flex-row items-start pl-0 md:pl-11">
+                    <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]"
                         style={{
                             fontFamily: 'var(--font-inter)',
                             fontWeight: 400,
-                            fontSize: '24px',
-                            lineHeight: '29px',
                             color: '#C3C3C3',
                         }}
                     >
@@ -116,41 +107,21 @@ export default function Why() {
 
     return (
         <section id="why"
-            className="flex flex-col items-center"
-            style={{
-                padding: '80px',
-                gap: '64px',
-                width: '1440px',
-                background: '#0F0F0F',
-            }}
+            className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-[#0F0F0F]"
         >
-            <div
-                className="flex flex-col items-center"
-                style={{
-                    gap: '28px',
-                    width: '1280px',
-                }}
-            >
+            <div className="flex flex-col items-start gap-7 md:gap-7 w-full">
                 <h2
-                    className="text-white uppercase text-center"
+                    className="text-white uppercase text-left w-full text-[52px] md:text-[88px] leading-[88%]"
                     style={{
                         fontFamily: 'var(--font-bebas-neue)',
                         fontWeight: 400,
-                        fontSize: '88px',
-                        lineHeight: '88%',
                     }}
                 >
                     Quick Questions
                 </h2>
             </div>
 
-            <div
-                className="flex flex-col items-start"
-                style={{
-                    gap: '24px',
-                    width: '1280px',
-                }}
-            >
+            <div className="flex flex-col items-start gap-6 md:gap-6 w-full">
                 {faqs.map((faq, index) => (
                     <FAQItem key={index} question={faq.question} answer={faq.answer} />
                 ))}
