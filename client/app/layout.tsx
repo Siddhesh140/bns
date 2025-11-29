@@ -14,7 +14,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "BNS Landing Page",
+  title: "BNS",
   description: "Stop Chasing Leads. Let Them Come to You.",
 };
 
