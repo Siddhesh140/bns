@@ -45,8 +45,8 @@ export default function Navbar() {
                             style={{
                                 fontFamily: 'var(--font-inter)',
                                 fontWeight: 600,
-                                fontSize: '16px',
-                                lineHeight: '19px',
+                                fontSize: '1rem',
+                                lineHeight: '1.1875rem',
                                 letterSpacing: '0.08em',
                             }}
                             onClick={() => handleNavClick('what')}

@@ -12,9 +12,9 @@ export default function How() {
                         {/* Step 1 */}
                         <div className="flex flex-row items-start gap-[15px] w-full">
                             <div className="flex justify-center items-center bg-white rounded-full flex-shrink-0" style={{ width: '36px', height: '36px' }}>
-                                <span className="text-[#0F0F0F]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 700, fontSize: '14.4px' }}>1</span>
+                                <span className="text-[#0F0F0F]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 700, fontSize: '0.9rem' }}>1</span>
                             </div>
-                            <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}>
+                            <p className="text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}>
                                 Join – Costs less than a team dinner or a client lunch.
                             </p>
                         </div>
@@ -84,7 +84,7 @@ export default function How() {
                                         <path d="M20 6L9 17L4 12" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
                                 </div>
-                                <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#0F0F0F' }}>
+                                <p className="text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#0F0F0F' }}>
                                     Manufacture industrial products (machines, components, OEM parts, tools)
                                 </p>
                             </div>
@@ -141,7 +141,7 @@ export default function How() {
                                         <path d="M18 6L6 18M6 6L18 18" stroke="#0F0F0F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
                                 </div>
-                                <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#FFFFFF' }}>
+                                <p className="text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#FFFFFF' }}>
                                     Expect automated sales while you sleep
                                 </p>
                             </div>
@@ -194,7 +194,7 @@ export default function How() {
                     <h2 className="text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
                         Plus: Early Access to Something Bigger
                     </h2>
-                    <p className="text-white text-xl md:text-[28px] leading-6 md:leading-[34px] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                    <p className="text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                         WhatsApp community members get first access to our upcoming platform where you can:
                     </p>
                 </div>
@@ -208,7 +208,7 @@ export default function How() {
                                     <path d="M20 6L9 17L4 12" stroke="#0F0F0F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </div>
-                            <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                            <p className="text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                                 List and sell products to thousands of verified buyers
                             </p>
                         </div>
@@ -239,7 +239,7 @@ export default function How() {
                     </div>
                 </div>
 
-                <p className="text-white text-xl md:text-[28px] leading-6 md:leading-[34px] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                <p className="text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                     You&apos;re not just joining a group. You&apos;re getting ground-floor access.
                 </p>
             </section>

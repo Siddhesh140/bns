@@ -20,7 +20,7 @@ export default function What() {
                 {/* Content */}
                 <div className="flex flex-col items-start gap-[30px] w-full max-w-[360px] md:max-w-[687px]">
                     {/* Description */}
-                    <p className="text-white w-full text-base md:text-2xl leading-[19px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                    <p className="text-white w-full text-base md:text-2xl leading-[1.1875rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                         India&apos;s first WhatsApp community built exclusively for manufacturers. Get 20 qualified leads delivered monthly—plus live market intel, competitor insights, and daily industry updates.
                     </p>
 
@@ -32,7 +32,7 @@ export default function What() {
                                 <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2" />
                                 <path d="M8 12L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
-                            <span className="text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                            <span className="text-white text-base md:text-2xl leading-[1.1875rem] md:leading-[1.8125rem] flex-1" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                                 20 qualified leads land in your WhatsApp every month
                             </span>
                         </div>
@@ -177,7 +177,7 @@ export default function What() {
 
                     {/* Closing Text */}
                     <div className="flex flex-col items-start gap-10 w-full">
-                        <p className="text-white text-xl md:text-2xl leading-6 md:leading-[29px] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                        <p className="text-white text-xl md:text-2xl leading-6 md:leading-[1.8125rem] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                             You don&apos;t have a production problem. You have a consistent lead-flow problem.
                         </p>
                         <p className="text-white text-xl md:text-2xl leading-6 md:leading-[29px] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>

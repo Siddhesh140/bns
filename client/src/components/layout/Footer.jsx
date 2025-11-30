@@ -40,13 +40,13 @@ export default function Footer() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-white text-[28px] leading-[34px] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>
+                    <h3 className="text-white text-[1.75rem] leading-[2.125rem] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>
                         Manufacturing Community
                     </h3>
                 </div>
 
                 {/* Subtitle */}
-                <p className="text-[#ADADAD] text-base leading-[19px] font-normal w-full md:w-[417px]" style={{ fontFamily: 'var(--font-inter)' }}>
+                <p className="text-[#ADADAD] text-base leading-[1.1875rem] font-normal w-full md:w-[417px]" style={{ fontFamily: 'var(--font-inter)' }}>
                     India&apos;s first WhatsApp community built exclusively for manufacturers.
                 </p>
             </div>
@@ -55,7 +55,7 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row items-start gap-16 md:gap-16 w-full md:w-auto">
                 {/* Social Media Column (Frame 78) */}
                 <div className="flex flex-col items-start gap-6 md:gap-6 w-full md:w-[130px]">
-                    <h4 className="text-white text-base leading-[19px] font-semibold uppercase tracking-[0.08em]" style={{ fontFamily: 'var(--font-inter)' }}>
+                    <h4 className="text-white text-base leading-[1.1875rem] font-semibold uppercase tracking-[0.08em]" style={{ fontFamily: 'var(--font-inter)' }}>
                         Social Media
                     </h4>
 
@@ -70,7 +70,7 @@ export default function Footer() {
                                     <path d="M17.5 6.5H17.51" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </div>
-                            <span className="text-[#ADADAD] group-hover:text-[#3B82F6] transition-colors duration-300 text-base leading-[19px] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>@BnS</span>
+                            <span className="text-[#ADADAD] group-hover:text-[#3B82F6] transition-colors duration-300 text-base leading-[1.1875rem] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>@BnS</span>
                         </a>
 
                         {/* LinkedIn */}
@@ -123,7 +123,7 @@ export default function Footer() {
                                     <path d="M22 6L12 13L2 6" stroke="#ADADAD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </div>
-                            <span className="text-[#ADADAD] text-base leading-[19px] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>contact@BnS.com</span>
+                            <span className="text-[#ADADAD] text-base leading-[1.1875rem] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>contact@BnS.com</span>
                         </div>
 
                         {/* Phone */}

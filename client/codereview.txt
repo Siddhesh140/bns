@@ -1,0 +1,123 @@
+# 📘 Technical Code Review & Explanation
+
+This document provides a detailed technical breakdown of each section in your React application. Use this to understand how your code works, how components interact, and the logic behind specific features.
+
+---
+
+## 🏗️ Project Structure Overview
+
+Your project is built with **Vite + React**, using a component-based architecture.
+
+- **`src/main.jsx`**: The entry point. It finds the `#root` element in your HTML and renders the `App` component into it.
+- **`src/App.jsx`**: The main container. It handles routing (currently just the Home page) and wraps everything in an `ErrorBoundary` for safety.
+- **`src/pages/Home.jsx`**: The Homepage. It acts as a "conductor," importing and stacking all the section components (`Hero`, `What`, `How`, etc.) in the correct order. It uses **Lazy Loading** (`React.lazy` and `Suspense`) to load sections only when needed, making the initial page load much faster.
+
+---
+
+## 🧩 Section-by-Section Breakdown
+
+### 1. HeroSection (`src/components/home/HeroSection.jsx`)
+**Purpose:** The first thing users see. Creates a strong first impression.
+
+*   **Structure:**
+    *   It's a `<section>` with a fixed height (`h-[600px]` mobile, `h-[800px]` desktop).
+    *   **Background:** Uses a stacked approach:
+        1.  Base image (`hero-bg.png`).
+        2.  Dark overlay (`bg-black/20`) to make text readable.
+        3.  Gradient at the bottom (`bg-gradient-to-b`) to blend seamlessly into the next section.
+*   **Key Code:**
+    *   `<Navbar />`: The navbar is imported and placed here so it sits *on top* of the hero background.
+    *   **Responsive Text:** You'll see `<style>` tags inside the component. This is a technique to force specific font sizes for mobile vs. desktop using CSS media queries (`@media (min-width: 768px)`).
+
+### 2. Navbar (`src/components/layout/Navbar.jsx`)
+**Purpose:** Navigation and branding.
+
+*   **State Management:**
+    *   `const [mobileMenuOpen, setMobileMenuOpen] = useState(false);`
+    *   This state variable tracks whether the mobile hamburger menu is open or closed.
+*   **Scroll Logic:**
+    *   `scrollToSection(sectionId)`: A utility function (imported from `utils/scroll.js`) that smoothly scrolls the page to the specific ID (e.g., `#what`, `#how`).
+*   **Responsive Design:**
+    *   **Desktop:** Shows links (What, How, Who, Why) and a "Join" button.
+    *   **Mobile:** Shows a "Hamburger" icon. When clicked, it toggles `mobileMenuOpen`, revealing a dropdown menu with the same links.
+
+### 3. WhatSection (`src/components/home/WhatSection.jsx`)
+**Purpose:** Explains the problem and the solution.
+
+*   **Components Used:**
+    *   `<Card variant="problem" />`: Reusable component for the "Problem" cards (Exhibitions, Cold calling, etc.).
+    *   `<SolutionCard />`: Reusable component for the "Solution" blocks (20 Qualified Leads, etc.).
+*   **The "Alignment Fix":**
+    *   In `Card.jsx`, we added `min-h-[210px]` to the problem cards. This ensures that even if one card has a short description and another has a long one, they all stand exactly the same height, keeping the grid perfectly aligned.
+*   **Layout:**
+    *   Uses `flex-col` (vertical) for mobile and `flex-row` (horizontal) for desktop to create the 2x2 grid layout for problem cards.
+
+### 4. HowSection (`src/components/home/HowSection.jsx`)
+**Purpose:** Explains the process and who it's for.
+
+*   **Structure:**
+    *   **Steps:** A simple list of 5 steps using flexbox to align the number circle next to the text.
+    *   **Comparison ("Is This For You?"):**
+        *   Uses two distinct blocks: A light one (`bg-[#F5F5F5]`) for "Perfect If You" and a dark one (`bg-[#191919]`) for "Not For You".
+        *   This visual contrast helps users immediately self-qualify.
+
+### 5. WhoSection (`src/components/home/WhoSection.jsx`)
+**Purpose:** The main "Call to Action" (CTA) area.
+
+*   **Visual Effects:**
+    *   **Background:** Uses `join-bg.jpg` with a `mix-blend-mode: saturation` overlay to desaturate it, giving it a stylish, premium look.
+    *   **Blurry Blobs:** You'll see several `<div>` elements with `filter: blur(...)`. These create the glowing, atmospheric lighting effects in the background.
+*   **Content:**
+    *   Displays a list of benefits using the `<CheckIcon />` component for consistency.
+
+### 6. WhySection (`src/components/home/WhySection.jsx`)
+**Purpose:** Frequently Asked Questions (FAQ).
+
+*   **Interactive Logic:**
+    *   **State:** `const [openIndex, setOpenIndex] = useState(null);`
+    *   This tracks *which* FAQ item is currently open. If `null`, all are closed.
+    *   **Toggle Function:** `handleToggle(index)` checks:
+        *   If I click the *already open* item -> Close it (set to `null`).
+        *   If I click a *different* item -> Open that one (set to `index`).
+*   **Animation:**
+    *   The answer div uses `max-h-[200px] opacity-100` when open and `max-h-0 opacity-0` when closed. This creates the smooth sliding animation.
+
+### 7. Footer (`src/components/layout/Footer.jsx`)
+**Purpose:** Site map, social links, and contact info.
+
+*   **Layout:**
+    *   Organized into columns: Brand info, Social Links, and Contact Info.
+*   **Icons:**
+    *   Uses SVG icons for Instagram, LinkedIn, etc.
+    *   **Hover Effects:** The `group` and `group-hover:text-[#3B82F6]` classes make the icon and text turn blue simultaneously when you hover over either of them.
+
+---
+
+## 🔑 Key React Concepts Used
+
+1.  **Components**: Breaking the UI into small, reusable pieces (e.g., `Button`, `Card`). This makes code cleaner and easier to maintain.
+2.  **Props**: Passing data *down* to components.
+    *   *Example:* `<Card title="Exhibitions?" />` passes the string "Exhibitions?" to the Card component, which receives it as `props.title`.
+3.  **State (`useState`)**: Handling data that changes over time.
+    *   *Example:* Is the mobile menu open? Is the FAQ answer visible?
+4.  **Lazy Loading (`React.lazy`)**:
+    *   Instead of loading the *entire* website code at once, we split it. The browser loads the `HeroSection` first (so it appears instantly), and then loads the other sections (`What`, `How`, etc.) in the background. This improves performance significantly.
+5.  **Map (`.map()`)**:
+    *   Used in `WhySection` to loop through the list of FAQs and create a component for each one, instead of writing the code 5 times manually.
+
+---
+
+## 🛠️ Reusable UI Components (`src/components/ui/`)
+
+*   **`Button.jsx`**: A consistent button style used everywhere. Changing it here changes *every* button on the site.
+*   **`Card.jsx`**: Handles the "Problem" cards.
+*   **`SolutionCard.jsx`**: Handles the alternating text/image blocks in the "What" section.
+*   **`CheckIcon.jsx`**: The checkmark circle used in lists.
+
+---
+
+This codebase is structured to be **scalable**. If you want to add a "Pricing" section later, you simply:
+1.  Create `src/components/home/PricingSection.jsx`.
+2.  Import it in `Home.jsx`.
+3.  Add it to the list of sections.
+Done! No need to rewrite existing code.

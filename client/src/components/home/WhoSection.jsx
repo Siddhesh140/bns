@@ -44,7 +44,7 @@ export default function Who() {
                         <h2 className="text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
                             Join Now. Start Growing.
                         </h2>
-                        <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px] w-full md:w-[402px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                        <p className="text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem] w-full md:w-[402px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                             No annual lock-in. No contracts. Stay as long as it&apos;s valuable.
                         </p>
 
@@ -59,7 +59,7 @@ export default function Who() {
                         {/* Item 1 */}
                         <div className="flex flex-row items-start gap-[15px]">
                             <CheckIcon size="md" color="#0F0F0F" bgColor="#FFFFFF" />
-                            <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                            <p className="text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                                 20 qualified leads monthly
                             </p>
                         </div>
@@ -117,7 +117,7 @@ export default function Who() {
                         <h2 className="text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
                             Still thinking?
                         </h2>
-                        <p className="text-white text-xl md:text-[28px] leading-6 md:leading-[34px] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                        <p className="text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                             Book a 10-Minute Call
                         </p>
                     </div>

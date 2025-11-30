@@ -29,7 +29,7 @@ export default function HeroSection() {
                     className="text-white text-center uppercase max-w-[372px] md:max-w-[1046.34px]"
                     style={{
                         fontFamily: 'var(--font-bebas-neue)',
-                        fontSize: '64px',
+                        fontSize: '4rem',
                         lineHeight: '84%',
                         fontWeight: 400,
                     }}
@@ -37,7 +37,7 @@ export default function HeroSection() {
                     <style>{`
                         @media (min-width: 768px) {
                             h1 {
-                                font-size: 136px !important;
+                                font-size: 8.5rem !important;
                             }
                         }
                     `}</style>
@@ -49,16 +49,16 @@ export default function HeroSection() {
                     className="text-white text-center max-w-[294px] md:max-w-[708.44px]"
                     style={{
                         fontFamily: 'var(--font-inter)',
-                        fontSize: '16px',
-                        lineHeight: '19px',
+                        fontSize: '1rem',
+                        lineHeight: '1.1875rem',
                         fontWeight: 400,
                     }}
                 >
                     <style>{`
                         @media (min-width: 768px) {
                             p {
-                                font-size: 24px !important;
-                                line-height: 29px !important;
+                                font-size: 1.5rem !important;
+                                line-height: 1.8125rem !important;
                             }
                         }
                     `}</style>

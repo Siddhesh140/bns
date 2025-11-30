@@ -23,7 +23,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
                             <path d="M12 17H12.01" stroke={isOpen ? "white" : "#C3C3C3"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </div>
-                    <h3 className="text-xl md:text-[28px] leading-6 md:leading-[34px]"
+                    <h3 className="text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem]"
                         style={{
                             fontFamily: 'var(--font-inter)',
                             fontWeight: 500,
@@ -61,7 +61,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
                 style={{ width: '100%' }}
             >
                 <div className="flex flex-row items-start pl-0 md:pl-11">
-                    <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]"
+                    <p className="text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]"
                         style={{
                             fontFamily: 'var(--font-inter)',
                             fontWeight: 400,
