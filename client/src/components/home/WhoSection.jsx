@@ -68,7 +68,7 @@ export default function Who() {
 
                         {/* Item 2 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <CheckIcon size="md" color="#0F0F0F" bgColor="#FFFFFF" />
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"><CheckCircleIcon size={20} color="#0F0F0F" /></div>
                             <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                                 Manufacturing-only WhatsApp group
                             </p>
@@ -76,7 +76,7 @@ export default function Who() {
 
                         {/* Item 3 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <CheckIcon size="md" color="#0F0F0F" bgColor="#FFFFFF" />
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"><CheckCircleIcon size={20} color="#0F0F0F" /></div>
                             <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                                 Competitor & market data
                             </p>
@@ -84,7 +84,7 @@ export default function Who() {
 
                         {/* Item 4 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <CheckIcon size="md" color="#0F0F0F" bgColor="#FFFFFF" />
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"><CheckCircleIcon size={20} color="#0F0F0F" /></div>
                             <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                                 Daily opportunity alerts
                             </p>
@@ -92,7 +92,7 @@ export default function Who() {
 
                         {/* Item 5 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <CheckIcon size="md" color="#0F0F0F" bgColor="#FFFFFF" />
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"><CheckCircleIcon size={20} color="#0F0F0F" /></div>
                             <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                                 Webinars for your team
                             </p>
@@ -100,7 +100,7 @@ export default function Who() {
 
                         {/* Item 6 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <CheckIcon size="md" color="#0F0F0F" bgColor="#FFFFFF" />
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"><CheckCircleIcon size={20} color="#0F0F0F" /></div>
                             <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                                 Priority platform access
                             </p>
