@@ -55,7 +55,7 @@ export default function Who() {
                     </div>
 
                     {/* Benefits List - With dark background box */}
-                    <div className="flex flex-col items-start p-5 md:p-10 gap-4 md:gap-4 w-full md:w-auto bg-[#191919]">
+                    <div className="flex flex-col items-start p-5 md:p-10 gap-4 md:gap-4 w-full md:w-auto bg-dark-secondary">
                         {/* Item 1 */}
                         <div className="flex flex-row items-start gap-[15px]">
                             <CheckIcon size="md" color="#0F0F0F" bgColor="#FFFFFF" />
@@ -110,7 +110,7 @@ export default function Who() {
 
 
             {/* Still Thinking Section */}
-            <section className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-[#0F0F0F]">
+            <section className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark">
                 <div className="flex flex-col md:flex-row justify-between items-start gap-7 md:gap-7 w-full">
                     {/* Left Content */}
                     <div className="flex flex-col items-start gap-7 md:gap-7 w-full md:w-auto">

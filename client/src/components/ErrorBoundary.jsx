@@ -48,7 +48,7 @@ class ErrorBoundary extends Component {
         if (this.state.hasError) {
             // Fallback UI when error occurs
             return (
-                <div className="min-h-screen flex items-center justify-center bg-[#0F0F0F] p-5">
+                <div className="min-h-screen flex items-center justify-center bg-dark p-5">
                     <div className="max-w-md w-full text-center">
                         {/* Error Icon */}
                         <div className="mb-6">
@@ -76,7 +76,7 @@ class ErrorBoundary extends Component {
                         </h1>
 
                         <p
-                            className="text-[#ADADAD] text-base md:text-lg mb-8"
+                            className="text-light-gray text-base md:text-lg mb-8"
                             style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}
                         >
                             We encountered an unexpected error. Don't worry, your data is safe.
@@ -86,7 +86,7 @@ class ErrorBoundary extends Component {
                         {/* Reload Button */}
                         <button
                             onClick={this.handleReload}
-                            className="bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold px-8 py-4 rounded transition-colors duration-300"
+                            className="bg-brand-blue hover:bg-blue-600 text-white font-semibold px-8 py-4 rounded transition-colors duration-300"
                             style={{ fontFamily: 'var(--font-inter)' }}
                         >
                             Reload Page
@@ -95,10 +95,10 @@ class ErrorBoundary extends Component {
                         {/* Error Details (only in development) */}
                         {process.env.NODE_ENV === 'development' && this.state.error && (
                             <details className="mt-8 text-left">
-                                <summary className="text-[#ADADAD] cursor-pointer hover:text-white transition-colors">
+                                <summary className="text-light-gray cursor-pointer hover:text-white transition-colors">
                                     Error Details (Development Only)
                                 </summary>
-                                <div className="mt-4 p-4 bg-[#1A1A1A] rounded text-red-400 text-sm overflow-auto">
+                                <div className="mt-4 p-4 bg-dark-gray rounded text-red-400 text-sm overflow-auto">
                                     <p className="font-bold mb-2">{this.state.error.toString()}</p>
                                     <pre className="text-xs whitespace-pre-wrap">
                                         {this.state.errorInfo?.componentStack}

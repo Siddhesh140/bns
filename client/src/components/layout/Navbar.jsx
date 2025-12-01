@@ -114,7 +114,7 @@ export default function Navbar() {
 
             {/* Mobile Menu Dropdown */}
             {mobileMenuOpen && (
-                <div className="md:hidden absolute top-[64px] left-0 w-full bg-[#0F0F0F] z-20 border-b border-white/20">
+                <div className="md:hidden absolute top-[64px] left-0 w-full bg-dark z-20 border-b border-white/20">
                     <div className="flex flex-col items-center py-6 gap-6">
                         <span
                             className="text-white uppercase cursor-pointer"

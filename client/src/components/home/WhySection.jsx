@@ -3,7 +3,7 @@ import { useState } from 'react';
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
     return (
         <div
-            className="flex flex-col items-start w-full bg-[#191919] transition-all duration-300 p-5 md:p-9 gap-7 md:gap-7"
+            className="flex flex-col items-start w-full bg-dark-secondary transition-all duration-300 p-5 md:p-9 gap-7 md:gap-7"
             style={{
                 boxShadow: isOpen ? '0 0 30px rgba(255, 255, 255, 0.15)' : 'none',
                 border: isOpen ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid transparent',
@@ -108,7 +108,7 @@ export default function Why() {
 
     return (
         <section id="why"
-            className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-[#0F0F0F]"
+            className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
         >
             <div className="flex flex-col items-start gap-7 md:gap-7 w-full">
                 <h2

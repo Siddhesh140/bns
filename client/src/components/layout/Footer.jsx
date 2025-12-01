@@ -6,7 +6,7 @@ export default function Footer() {
     return (
 
         <footer
-            className="flex flex-col md:flex-row justify-between items-start w-full max-w-[400px] md:max-w-[1440px] mx-auto bg-[#191919] relative z-10"
+            className="flex flex-col md:flex-row justify-between items-start w-full max-w-[400px] md:max-w-[1440px] mx-auto bg-dark-secondary relative z-10"
             style={{
                 padding: '80px 20px', // Mobile padding
             }}
@@ -46,7 +46,7 @@ export default function Footer() {
                 </div>
 
                 {/* Subtitle */}
-                <p className="text-[#ADADAD] text-base leading-[1.1875rem] font-normal w-full md:w-[417px]" style={{ fontFamily: 'var(--font-inter)' }}>
+                <p className="text-light-gray text-base leading-[1.1875rem] font-normal w-full md:w-[417px]" style={{ fontFamily: 'var(--font-inter)' }}>
                     India&apos;s first WhatsApp community built exclusively for manufacturers.
                 </p>
             </div>
@@ -70,7 +70,7 @@ export default function Footer() {
                                     <path d="M17.5 6.5H17.51" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </div>
-                            <span className="text-[#ADADAD] group-hover:text-[#3B82F6] transition-colors duration-300 text-base leading-[1.1875rem] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>@BnS</span>
+                            <span className="text-light-gray group-hover:text-brand-blue transition-colors duration-300 text-base leading-[1.1875rem] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>@BnS</span>
                         </a>
 
                         {/* LinkedIn */}
@@ -123,7 +123,7 @@ export default function Footer() {
                                     <path d="M22 6L12 13L2 6" stroke="#ADADAD" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                             </div>
-                            <span className="text-[#ADADAD] text-base leading-[1.1875rem] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>contact@BnS.com</span>
+                            <span className="text-light-gray text-base leading-[1.1875rem] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>contact@BnS.com</span>
                         </div>
 
                         {/* Phone */}

@@ -18,7 +18,7 @@ export default function SolutionCard({
     const isImageLeft = imagePosition === 'left';
 
     return (
-        <div className="flex flex-col md:flex-row items-center p-5 md:p-6 gap-10 md:gap-[60px] w-full bg-[#1A1A1A]">
+        <div className="flex flex-col md:flex-row items-center p-5 md:p-6 gap-10 md:gap-[60px] w-full bg-dark-gray">
             {/* Image Container - Mobile First (always on top) */}
             <div className={`md:hidden relative flex justify-center items-center w-full h-[312px] bg-[#242424]`}>
                 <div className="relative w-[80%] h-[80%]">

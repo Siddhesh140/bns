@@ -10,14 +10,14 @@ const Footer = lazy(() => import('../components/layout/Footer'));
 
 // Loading component
 const SectionLoader = () => (
-    <div className="w-full h-32 flex items-center justify-center bg-[#0F0F0F]">
+    <div className="w-full h-32 flex items-center justify-center bg-dark">
         <div className="text-white" style={{ fontFamily: 'var(--font-inter)' }}>Loading...</div>
     </div>
 );
 
 export default function Home() {
     return (
-        <main className="min-h-screen bg-[#0F0F0F] flex flex-col gap-0">
+        <main className="min-h-screen bg-dark flex flex-col gap-0">
             <HeroSection />
             <Suspense fallback={<SectionLoader />}>
                 <WhatSection />

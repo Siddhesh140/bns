@@ -2,17 +2,17 @@ export default function How() {
     return (
         <div id="how">
             {/* HowItWorks Section */}
-            <section className="w-full flex flex-col items-center p-5 md:p-20 gap-12 md:gap-12 max-w-[400px] md:max-w-[1440px] mx-auto bg-[#0F0F0F]">
+            <section className="w-full flex flex-col items-center p-5 md:p-20 gap-12 md:gap-12 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark">
                 <h2 className="text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
                     How this works
                 </h2>
 
-                <div className="flex flex-col items-start p-5 md:p-10 gap-8 md:gap-14 w-full bg-[#191919]">
+                <div className="flex flex-col items-start p-5 md:p-10 gap-8 md:gap-14 w-full bg-dark-secondary">
                     <div className="flex flex-col items-start gap-6 md:gap-8 w-full">
                         {/* Step 1 */}
                         <div className="flex flex-row items-start gap-[15px] w-full">
                             <div className="flex justify-center items-center bg-white rounded-full flex-shrink-0" style={{ width: '36px', height: '36px' }}>
-                                <span className="text-[#0F0F0F]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 700, fontSize: '0.9rem' }}>1</span>
+                                <span className="text-dark" style={{ fontFamily: 'var(--font-inter)', fontWeight: 700, fontSize: '0.9rem' }}>1</span>
                             </div>
                             <p className="text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}>
                                 Join – Costs less than a team dinner or a client lunch.
@@ -64,7 +64,7 @@ export default function How() {
 
 
             {/* IsThisForYou Section */}
-            <section className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-[#0F0F0F]">
+            <section className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark">
                 <h2 className="text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
                     Is This For You?
                 </h2>
@@ -128,7 +128,7 @@ export default function How() {
                     </div>
 
                     {/* Not For You If You - Dark Card */}
-                    <div className="flex flex-col items-start p-5 md:p-10 gap-10 md:gap-14 w-full md:w-1/2 bg-[#191919]">
+                    <div className="flex flex-col items-start p-5 md:p-10 gap-10 md:gap-14 w-full md:w-1/2 bg-dark-secondary">
                         <h3 className="text-2xl md:text-[40px] leading-[100%]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600, color: '#FFFFFF' }}>
                             Not For You If You
                         </h3>
@@ -189,7 +189,7 @@ export default function How() {
 
 
             {/* WhyBigVision Section */}
-            <section className="w-full flex flex-col items-start p-5 md:p-20 gap-10 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-[#0F0F0F]">
+            <section className="w-full flex flex-col items-start p-5 md:p-20 gap-10 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark">
                 <div className="flex flex-col items-start gap-7 md:gap-7 w-full">
                     <h2 className="text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
                         Plus: Early Access to Something Bigger
@@ -199,7 +199,7 @@ export default function How() {
                     </p>
                 </div>
 
-                <div className="flex flex-col items-start p-5 md:p-10 gap-8 md:gap-14 w-full bg-[#191919]">
+                <div className="flex flex-col items-start p-5 md:p-10 gap-8 md:gap-14 w-full bg-dark-secondary">
                     <div className="flex flex-col items-start gap-6 md:gap-8 w-full">
                         {/* Benefit 1 */}
                         <div className="flex flex-row items-start gap-[15px]">
