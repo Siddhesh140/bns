@@ -85,23 +85,39 @@ export const SolutionCard = ({
             )}
 
             {/* Content */}
-            <div className={`flex flex-col items-start gap-6 md:gap-8 w-full ${isImageLeft ? 'md:order-2' : 'md:order-1'}`}>
-                <div className="flex flex-col items-start gap-5 md:gap-5 w-full">
-                    <h3 className="text-white uppercase text-2xl md:text-[40px] leading-[100%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
+            <div className={`flex flex-col justify-center items-start flex-1 gap-10 md:gap-12 py-0 md:py-10 px-0 md:px-10 ${isImageLeft ? 'order-2' : 'order-1'}`}>
+                <div className="flex flex-col items-start gap-8 w-full">
+                    <h3
+                        className="text-white text-2xl md:text-4xl leading-[29px] md:leading-[44px]"
+                        style={{ fontFamily: 'var(--font-inter)', fontWeight: 500 }}
+                    >
                         {title}
                     </h3>
-                    <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}>
-                        {subtitle}
-                    </p>
+                    {subtitle && (
+                        <p
+                            className="text-white text-xl md:text-2xl leading-6 md:leading-[29px]"
+                            style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}
+                        >
+                            {subtitle}
+                        </p>
+                    )}
+                    {content && (
+                        <div
+                            className="text-white text-lg md:text-xl leading-6"
+                            style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}
+                        >
+                            {content}
+                        </div>
+                    )}
                 </div>
-
-                <p className="text-white text-base md:text-xl leading-[19px] md:leading-6" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
-                    {content}
-                </p>
-
-                <p className="text-white text-base md:text-xl leading-[19px] md:leading-6" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, fontStyle: 'italic' }}>
-                    {footer}
-                </p>
+                {footer && (
+                    <p
+                        className="text-white text-lg md:text-xl leading-6"
+                        style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}
+                    >
+                        {footer}
+                    </p>
+                )}
             </div>
 
             {/* Desktop: Image Right */}
