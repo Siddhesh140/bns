@@ -204,10 +204,10 @@ export default function What() {
                     subtitle="Real decision-makers who need what you make:"
                     content={
                         <>
-                            Buyers actively searching for suppliers<br />
-                            Companies seeking OEM partners<br />
-                            Distributors scouting products<br />
-                            Projects with actual budgets
+                            • Buyers actively searching for suppliers<br />
+                            • Companies seeking OEM partners<br />
+                            • Distributors scouting products<br />
+                            • Projects with actual budgets
                         </>
                     }
                     footer="Convert just ONE lead, you've made all of your money back which you invested. Everything after? Pure profit."
@@ -221,10 +221,10 @@ export default function What() {
                     subtitle="We track performance across manufacturing categories:"
                     content={
                         <>
-                            Which products are getting bombarded with inquiries<br />
-                            Which regions are buying like crazy<br />
-                            What's trending up vs. dying down<br />
-                            Where demand is exploding
+                            • Which products are getting bombarded with inquiries<br />
+                            • Which regions are buying like crazy<br />
+                            • What's trending up vs. dying down<br />
+                            • Where demand is exploding
                         </>
                     }
                     footer='Example: "This month, automotive component suppliers got 40% more inquiries, mostly from Pune and Coimbatore."'
@@ -238,10 +238,10 @@ export default function What() {
                     subtitle="Every morning, get:"
                     content={
                         <>
-                            Policy changes that affect your bottom line<br />
-                            New export opportunities<br />
-                            Raw material price alerts<br />
-                            Industry shifts you need to know
+                            • Policy changes that affect your bottom line<br />
+                            • New export opportunities<br />
+                            • Raw material price alerts<br />
+                            • Industry shifts you need to know
                         </>
                     }
                     footer="No fluff. No generic news. Just the intel that helps you make better decisions."
@@ -255,10 +255,10 @@ export default function What() {
                     subtitle="Verified community of:"
                     content={
                         <>
-                            Manufacturing company owners<br />
-                            Production managers<br />
-                            Serious buyers and distributors<br />
-                            Industry veterans
+                            • Manufacturing company owners<br />
+                            • Production managers<br />
+                            • Serious buyers and distributors<br />
+                            • Industry veterans
                         </>
                     }
                     footer='No spam. No "Good morning" GIFs. Just real business connections.'
