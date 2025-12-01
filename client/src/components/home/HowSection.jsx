@@ -69,7 +69,7 @@ export default function How() {
                     Is This For You?
                 </h2>
 
-                <div className="flex flex-col md:flex-row items-start gap-10 md:gap-16 w-full">
+                <div className="flex flex-col md:flex-row items-stretch gap-10 md:gap-16 w-full">
                     {/* Perfect If You - Light Card */}
                     <div className="flex flex-col items-start p-5 md:p-10 gap-10 md:gap-14 w-full md:w-1/2 bg-[#F5F5F5]">
                         <h3 className="text-2xl md:text-[40px] leading-[100%]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600, color: '#151515' }}>
