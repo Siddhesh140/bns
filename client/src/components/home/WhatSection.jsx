@@ -1,6 +1,5 @@
 import Button from '../ui/Button';
-import Card from '../ui/Card';
-import SolutionCard from '../ui/SolutionCard';
+import { ProblemCard, SolutionCard } from '../ui/Cards';
 import { scrollToSection } from '../../utils/scroll';
 
 export default function What() {
@@ -111,26 +110,26 @@ export default function What() {
                     <div className="flex flex-col items-start gap-7 w-full">
                         {/* Mobile Only: All 4 cards stacked */}
                         <div className="md:hidden flex flex-col items-start gap-7 w-full">
-                            <Card
-                                variant="problem"
+                            <ProblemCard
+
                                 image="/images/problem-01.jpg"
                                 title="Exhibitions?"
                                 description="₹2 lakhs spent. 500 handshakes. 3 serious buyers. Maybe."
                             />
-                            <Card
-                                variant="problem"
+                            <ProblemCard
+
                                 image="/images/problem-04.jpg"
                                 title="Your website?"
                                 description='Last inquiry: 6 weeks ago. Subject: "Can you make plastic toys?" (You manufacture industrial pumps.)'
                             />
-                            <Card
-                                variant="problem"
+                            <ProblemCard
+
                                 image="/images/problem-03.jpg"
                                 title="Cold calling?"
                                 description="100 calls. 80 don't answer. 15 ghost you. 5 waste your time."
                             />
-                            <Card
-                                variant="problem"
+                            <ProblemCard
+
                                 image="/images/problem-02.jpg"
                                 title="Online leads?"
                                 description='Half spam. Half "students doing project work."'
@@ -140,15 +139,15 @@ export default function What() {
 
                         {/* Desktop: Row 1 with 2 cards side by side */}
                         <div className="hidden md:flex flex-row items-center gap-7 w-full">
-                            <Card
-                                variant="problem"
+                            <ProblemCard
+
                                 image="/images/problem-01.jpg"
                                 title="Exhibitions?"
                                 description="₹2 lakhs spent. 500 handshakes. 3 serious buyers. Maybe."
                                 className="flex-1"
                             />
-                            <Card
-                                variant="problem"
+                            <ProblemCard
+
                                 image="/images/problem-04.jpg"
                                 title="Your website?"
                                 description='Last inquiry: 6 weeks ago. Subject: "Can you make plastic toys?" (You manufacture industrial pumps.)'
@@ -158,15 +157,15 @@ export default function What() {
 
                         {/* Desktop: Row 2 with 2 cards side by side */}
                         <div className="hidden md:flex flex-row items-center gap-7 w-full">
-                            <Card
-                                variant="problem"
+                            <ProblemCard
+
                                 image="/images/problem-03.jpg"
                                 title="Cold calling?"
                                 description="100 calls. 80 don't answer. 15 ghost you. 5 waste your time."
                                 className="flex-1"
                             />
-                            <Card
-                                variant="problem"
+                            <ProblemCard
+
                                 image="/images/problem-02.jpg"
                                 title="Online leads?"
                                 description='Half spam. Half "students doing project work."'

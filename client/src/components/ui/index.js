@@ -1,7 +1,6 @@
 // Export all UI components from a single file for easy imports
 export { default as Button } from './Button';
-export { default as Card } from './Card';
-export { default as SolutionCard } from './SolutionCard';
+export { default as Card, ProblemCard, SolutionCard, DefaultCard } from './Cards';
 
 // Export all icons
 export {
