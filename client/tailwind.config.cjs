@@ -5,7 +5,12 @@ module.exports = {
         "./src/**/*.{js,jsx}",
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                'bebas': ['Bebas Neue', 'sans-serif'],
+                'inter': ['Inter', 'sans-serif'],
+            },
+        },
     },
     plugins: [],
 }
