@@ -1,6 +1,24 @@
 import { useState } from 'react';
 import Button from '../ui/Button';
+import { MenuIcon } from '../ui/Icons';
 import { scrollToSection } from '../../utils/scroll';
+
+// Navigation links configuration - single source of truth
+const NAV_LINKS = [
+    { id: 'what', label: 'What' },
+    { id: 'how', label: 'How' },
+    { id: 'who', label: 'Who' },
+    { id: 'why', label: 'Why' }
+];
+
+// Shared styles for navigation links
+const navLinkStyles = {
+    fontFamily: 'var(--font-inter)',
+    fontWeight: 600,
+    fontSize: '16px',
+    lineHeight: '19px',
+    letterSpacing: '0.08em',
+};
 
 export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -40,58 +58,16 @@ export default function Navbar() {
 
                     {/* Desktop Navigation Links */}
                     <div className="hidden md:flex flex-row items-center gap-[60px] h-11">
-                        <span
-                            className="text-white uppercase cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
-                            style={{
-                                fontFamily: 'var(--font-inter)',
-                                fontWeight: 600,
-                                fontSize: '1rem',
-                                lineHeight: '1.1875rem',
-                                letterSpacing: '0.08em',
-                            }}
-                            onClick={() => handleNavClick('what')}
-                        >
-                            What
-                        </span>
-                        <span
-                            className="text-white uppercase cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
-                            style={{
-                                fontFamily: 'var(--font-inter)',
-                                fontWeight: 600,
-                                fontSize: '16px',
-                                lineHeight: '19px',
-                                letterSpacing: '0.08em',
-                            }}
-                            onClick={() => handleNavClick('how')}
-                        >
-                            How
-                        </span>
-                        <span
-                            className="text-white uppercase cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
-                            style={{
-                                fontFamily: 'var(--font-inter)',
-                                fontWeight: 600,
-                                fontSize: '16px',
-                                lineHeight: '19px',
-                                letterSpacing: '0.08em',
-                            }}
-                            onClick={() => handleNavClick('who')}
-                        >
-                            Who
-                        </span>
-                        <span
-                            className="text-white uppercase cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
-                            style={{
-                                fontFamily: 'var(--font-inter)',
-                                fontWeight: 600,
-                                fontSize: '16px',
-                                lineHeight: '19px',
-                                letterSpacing: '0.08em',
-                            }}
-                            onClick={() => handleNavClick('why')}
-                        >
-                            Why
-                        </span>
+                        {NAV_LINKS.map((link) => (
+                            <span
+                                key={link.id}
+                                className="text-white uppercase cursor-pointer transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                                style={navLinkStyles}
+                                onClick={() => handleNavClick(link.id)}
+                            >
+                                {link.label}
+                            </span>
+                        ))}
 
                         {/* Join Button */}
                         <Button variant="primary" className="px-7 py-4 h-11">
@@ -105,9 +81,7 @@ export default function Navbar() {
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         aria-label="Toggle menu"
                     >
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 12H21M3 6H21M3 18H21" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <MenuIcon size={24} color="white" />
                     </button>
                 </div>
             </nav>
@@ -116,58 +90,16 @@ export default function Navbar() {
             {mobileMenuOpen && (
                 <div className="md:hidden absolute top-[64px] left-0 w-full bg-dark z-20 border-b border-white/20">
                     <div className="flex flex-col items-center py-6 gap-6">
-                        <span
-                            className="text-white uppercase cursor-pointer"
-                            style={{
-                                fontFamily: 'var(--font-inter)',
-                                fontWeight: 600,
-                                fontSize: '16px',
-                                lineHeight: '19px',
-                                letterSpacing: '0.08em',
-                            }}
-                            onClick={() => handleNavClick('what')}
-                        >
-                            What
-                        </span>
-                        <span
-                            className="text-white uppercase cursor-pointer"
-                            style={{
-                                fontFamily: 'var(--font-inter)',
-                                fontWeight: 600,
-                                fontSize: '16px',
-                                lineHeight: '19px',
-                                letterSpacing: '0.08em',
-                            }}
-                            onClick={() => handleNavClick('how')}
-                        >
-                            How
-                        </span>
-                        <span
-                            className="text-white uppercase cursor-pointer"
-                            style={{
-                                fontFamily: 'var(--font-inter)',
-                                fontWeight: 600,
-                                fontSize: '16px',
-                                lineHeight: '19px',
-                                letterSpacing: '0.08em',
-                            }}
-                            onClick={() => handleNavClick('who')}
-                        >
-                            Who
-                        </span>
-                        <span
-                            className="text-white uppercase cursor-pointer"
-                            style={{
-                                fontFamily: 'var(--font-inter)',
-                                fontWeight: 600,
-                                fontSize: '16px',
-                                lineHeight: '19px',
-                                letterSpacing: '0.08em',
-                            }}
-                            onClick={() => handleNavClick('why')}
-                        >
-                            Why
-                        </span>
+                        {NAV_LINKS.map((link) => (
+                            <span
+                                key={link.id}
+                                className="text-white uppercase cursor-pointer"
+                                style={navLinkStyles}
+                                onClick={() => handleNavClick(link.id)}
+                            >
+                                {link.label}
+                            </span>
+                        ))}
 
                         {/* Mobile Join Button */}
                         <Button variant="primary" className="px-7 py-4 h-11">

@@ -1,3 +1,4 @@
+import { QuestionIcon, PlusIcon } from '../ui/Icons';
 import { useState } from 'react';
 
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
@@ -17,11 +18,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
                 <div className="flex flex-row items-center" style={{ gap: '12px' }}>
                     {/* Question Mark Icon */}
                     <div style={{ width: '32px', height: '32px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="10" stroke={isOpen ? "white" : "#C3C3C3"} strokeWidth="2" />
-                            <path d="M9.09 9C9.3251 8.33167 9.78915 7.76811 10.4 7.40913C11.0108 7.05016 11.7289 6.91894 12.4272 7.03871C13.1255 7.15849 13.7588 7.52152 14.2151 8.06353C14.6713 8.60553 14.9211 9.29152 14.92 10C14.92 12 11.92 13 11.92 13" stroke={isOpen ? "white" : "#C3C3C3"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M12 17H12.01" stroke={isOpen ? "white" : "#C3C3C3"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <QuestionIcon size={24} color="white" />
                     </div>
                     <h3 className="text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem]"
                         style={{
@@ -48,11 +45,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
                         transition: 'transform 0.3s ease'
                     }}
                 >
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="16" cy="16" r="16" fill="white" />
-                        <path d="M16 10V22" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        <path d="M10 16H22" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                    <PlusIcon size={32} color="black" bgColor="white" />
                 </div>
             </div>
 

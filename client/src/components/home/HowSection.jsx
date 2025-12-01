@@ -1,3 +1,5 @@
+import { CheckIcon, CrossIcon } from '../ui/Icons';
+
 export default function How() {
     return (
         <div id="how">
@@ -79,10 +81,8 @@ export default function How() {
                         <div className="flex flex-col items-start gap-6 md:gap-8 w-full">
                             {/* Item 1 */}
                             <div className="flex flex-row items-start gap-[15px]">
-                                <div style={{ width: '32px', height: '32px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0F0F0F', borderRadius: '50%' }}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20 6L9 17L4 12" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
+                                <div className="w-8 h-8 flex items-center justify-center bg-dark rounded-full flex-shrink-0">
+                                    <CheckIcon size={20} color="white" />
                                 </div>
                                 <p className="text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#0F0F0F' }}>
                                     Manufacture industrial products (machines, components, OEM parts, tools)
@@ -91,10 +91,8 @@ export default function How() {
 
                             {/* Item 2 */}
                             <div className="flex flex-row items-start gap-[15px]">
-                                <div style={{ width: '32px', height: '32px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0F0F0F', borderRadius: '50%' }}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20 6L9 17L4 12" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
+                                <div className="w-8 h-8 flex items-center justify-center bg-dark rounded-full flex-shrink-0">
+                                    <CheckIcon size={20} color="white" />
                                 </div>
                                 <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#0F0F0F' }}>
                                     Want leads you can actually call, not just website traffic
@@ -136,10 +134,8 @@ export default function How() {
                         <div className="flex flex-col items-start gap-6 md:gap-8 w-full">
                             {/* Item 1 */}
                             <div className="flex flex-row items-start gap-[15px]">
-                                <div style={{ width: '32px', height: '32px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FFFFFF', borderRadius: '50%' }}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18 6L6 18M6 6L18 18" stroke="#0F0F0F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
+                                <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                    <CrossIcon size={20} color="#0F0F0F" />
                                 </div>
                                 <p className="text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#FFFFFF' }}>
                                     Expect automated sales while you sleep
@@ -148,10 +144,8 @@ export default function How() {
 
                             {/* Item 2 */}
                             <div className="flex flex-row items-start gap-[15px]">
-                                <div style={{ width: '32px', height: '32px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FFFFFF', borderRadius: '50%' }}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18 6L6 18M6 6L18 18" stroke="#0F0F0F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
+                                <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                    <CrossIcon size={20} color="#0F0F0F" />
                                 </div>
                                 <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#FFFFFF' }}>
                                     Won&apos;t talk to buyers because you&apos;re &quot;too busy&quot;
@@ -160,10 +154,8 @@ export default function How() {
 
                             {/* Item 3 */}
                             <div className="flex flex-row items-start gap-[15px]">
-                                <div style={{ width: '32px', height: '32px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FFFFFF', borderRadius: '50%' }}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18 6L6 18M6 6L18 18" stroke="#0F0F0F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
+                                <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                    <CrossIcon size={20} color="#0F0F0F" />
                                 </div>
                                 <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#FFFFFF' }}>
                                     Think our subscription is &quot;too expensive&quot; for 20 qualified leads
@@ -172,10 +164,8 @@ export default function How() {
 
                             {/* Item 4 */}
                             <div className="flex flex-row items-start gap-[15px]">
-                                <div style={{ width: '32px', height: '32px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FFFFFF', borderRadius: '50%' }}>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18 6L6 18M6 6L18 18" stroke="#0F0F0F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
+                                <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                    <CrossIcon size={20} color="#0F0F0F" />
                                 </div>
                                 <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#FFFFFF' }}>
                                     Plan to spam the group (we&apos;ll kick you out)
@@ -203,10 +193,8 @@ export default function How() {
                     <div className="flex flex-col items-start gap-6 md:gap-8 w-full">
                         {/* Benefit 1 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div style={{ width: '32px', height: '32px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FFFFFF', borderRadius: '50%' }}>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17L4 12" stroke="#0F0F0F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                <CheckIcon size={20} color="#0F0F0F" />
                             </div>
                             <p className="text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                                 List and sell products to thousands of verified buyers
@@ -215,10 +203,8 @@ export default function How() {
 
                         {/* Benefit 2 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div style={{ width: '32px', height: '32px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FFFFFF', borderRadius: '50%' }}>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17L4 12" stroke="#0F0F0F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                <CheckIcon size={20} color="#0F0F0F" />
                             </div>
                             <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                                 See live demand dashboards for your category
@@ -227,10 +213,8 @@ export default function How() {
 
                         {/* Benefit 3 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div style={{ width: '32px', height: '32px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FFFFFF', borderRadius: '50%' }}>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17L4 12" stroke="#0F0F0F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                <CheckIcon size={20} color="#0F0F0F" />
                             </div>
                             <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                                 Connect with suppliers and partners at scale

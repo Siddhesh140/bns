@@ -1,5 +1,6 @@
 import Button from '../ui/Button';
 import { ProblemCard, SolutionCard } from '../ui/Cards';
+import { CheckIcon } from '../ui/Icons';
 import { scrollToSection } from '../../utils/scroll';
 
 export default function What() {
