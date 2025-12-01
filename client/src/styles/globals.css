@@ -3,15 +3,30 @@
 @tailwind utilities;
 
 @layer base {
+
+    /* CSS Variables for backward compatibility */
     :root {
         --font-bebas-neue: 'Bebas Neue', sans-serif;
         --font-inter: 'Inter', sans-serif;
     }
-}
 
-body {
-    background: #0F0F0F;
-    color: #FFFFFF;
-    margin: 0;
-    padding: 0;
+    /* Smooth scrolling for better UX */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Global body styles */
+    body {
+        @apply bg-dark text-white m-0 p-0 font-inter;
+    }
+
+    /* Accessibility: Focus styles for keyboard navigation */
+    *:focus-visible {
+        @apply outline-2 outline-offset-2 outline-brand-blue rounded;
+    }
+
+    /* Remove focus outline for mouse users */
+    *:focus:not(:focus-visible) {
+        outline: none;
+    }
 }
