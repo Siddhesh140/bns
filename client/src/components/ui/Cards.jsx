@@ -13,7 +13,7 @@ export const ProblemCard = ({
     description,
     className = ''
 }) => (
-    <div className={`relative flex flex-col justify-end items-start w-full h-[500px] md:h-[630px] ${className}`}>
+    <div className={`relative flex flex-col justify-end items-start w-full h-[600px] md:h-[730px] ${className}`}>
         <img
             src={image}
             alt={title}

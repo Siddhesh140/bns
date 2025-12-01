@@ -113,13 +113,13 @@ export default function What() {
                         <div className="md:hidden flex flex-col items-start gap-7 w-full">
                             <ProblemCard
 
-                                image="/images/problem-01.jpg"
+                                image="/images/problem-04.jpg"
                                 title="Exhibitions?"
                                 description="₹2 lakhs spent. 500 handshakes. 3 serious buyers. Maybe."
                             />
                             <ProblemCard
 
-                                image="/images/problem-04.jpg"
+                                image="/images/problem-01.jpg"
                                 title="Your website?"
                                 description='Last inquiry: 6 weeks ago. Subject: "Can you make plastic toys?" (You manufacture industrial pumps.)'
                             />
@@ -142,14 +142,14 @@ export default function What() {
                         <div className="hidden md:flex flex-row items-center gap-7 w-full">
                             <ProblemCard
 
-                                image="/images/problem-01.jpg"
+                                image="/images/problem-04.jpg"
                                 title="Exhibitions?"
                                 description="₹2 lakhs spent. 500 handshakes. 3 serious buyers. Maybe."
                                 className="flex-1"
                             />
                             <ProblemCard
 
-                                image="/images/problem-04.jpg"
+                                image="/images/problem-01.jpg"
                                 title="Your website?"
                                 description='Last inquiry: 6 weeks ago. Subject: "Can you make plastic toys?" (You manufacture industrial pumps.)'
                                 className="flex-1"
