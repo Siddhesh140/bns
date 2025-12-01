@@ -2,7 +2,6 @@
 export { default as Button } from './Button';
 export { default as Card } from './Card';
 export { default as SolutionCard } from './SolutionCard';
-export { default as CheckIcon } from './CheckIcon';
 
 // Export all icons
 export {

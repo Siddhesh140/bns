@@ -1,5 +1,5 @@
 import Button from '../ui/Button';
-import CheckIcon from '../ui/CheckIcon';
+import { CheckCircleIcon } from '../ui/Icons';
 
 export default function Who() {
     return (
@@ -58,7 +58,9 @@ export default function Who() {
                     <div className="flex flex-col items-start p-5 md:p-10 gap-4 md:gap-4 w-full md:w-auto bg-dark-secondary">
                         {/* Item 1 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <CheckIcon size="md" color="#0F0F0F" bgColor="#FFFFFF" />
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                <CheckCircleIcon size={20} color="#0F0F0F" />
+                            </div>
                             <p className="text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
                                 20 qualified leads monthly
                             </p>
