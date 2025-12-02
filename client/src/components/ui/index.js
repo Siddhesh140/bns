@@ -4,7 +4,7 @@ export { default as Card, ProblemCard, SolutionCard, DefaultCard } from './Cards
 
 // Export all icons
 export {
-    CheckIcon as Check,
+    CheckIcon,
     CheckCircleIcon,
     CrossIcon,
     QuestionIcon,

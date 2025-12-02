@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import Button from '../ui/Button';
-import { MenuIcon } from '../ui/Icons';
+import { Button, MenuIcon } from '../ui';
 import { scrollToSection } from '../../utils/scroll';
 
 // Navigation links configuration - single source of truth

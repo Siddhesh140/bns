@@ -172,7 +172,11 @@ export const DefaultCard = ({
  * Automatically selects the right card type based on variant prop
  */
 export default function Card({ variant = 'default', ...props }) {
-    switch (variant) {
+    // ES7 Feature: Array.includes() for validation
+    const validVariants = ['problem', 'solution', 'default'];
+    const safeVariant = validVariants.includes(variant) ? variant : 'default';
+
+    switch (safeVariant) {
         case 'problem':
             return <ProblemCard {...props} />;
         case 'solution':

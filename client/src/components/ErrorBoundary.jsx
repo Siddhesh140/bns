@@ -1,4 +1,4 @@
-import { AlertIcon } from './ui/Icons';
+import { AlertIcon } from './ui';
 import { Component } from 'react';
 
 /**

@@ -13,6 +13,10 @@ export default function Button({
     disabled = false,
     loading = false
 }) {
+    // ES7 Feature: Array.includes() for validation
+    const validVariants = ['primary', 'secondary'];
+    const safeVariant = validVariants.includes(variant) ? variant : 'primary';
+
     const baseStyles = 'flex justify-center items-center uppercase transition-all duration-300';
 
     const fontStyles = {
@@ -32,7 +36,7 @@ export default function Button({
         <button
             onClick={onClick}
             disabled={disabled || loading}
-            className={`${baseStyles} ${variantStyles[variant]} ${loading ? 'cursor-wait' : 'cursor-pointer'} ${className}`}
+            className={`${baseStyles} ${variantStyles[safeVariant]} ${loading ? 'cursor-wait' : 'cursor-pointer'} ${className}`}
             style={fontStyles}
         >
             {loading ? 'Loading...' : children}

@@ -1,4 +1,4 @@
-import { InstagramIcon, LinkedInIcon, TwitterIcon, FacebookIcon, EmailIcon, PhoneIcon } from '../ui/Icons';
+import { InstagramIcon, LinkedInIcon, TwitterIcon, FacebookIcon, EmailIcon, PhoneIcon } from '../ui';
 
 export default function Footer() {
     const handleLogoClick = () => {
