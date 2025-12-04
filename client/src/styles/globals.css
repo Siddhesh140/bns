@@ -30,3 +30,151 @@
         outline: none;
     }
 }
+
+@layer components {
+
+    /* Hero Section Typography */
+    .hero-heading {
+        @apply text-white text-center uppercase;
+        font-family: var(--font-bebas-neue);
+        font-size: 4rem;
+        line-height: 84%;
+        font-weight: 400;
+    }
+
+    @media (min-width: 768px) {
+        .hero-heading {
+            font-size: 8.5rem;
+        }
+    }
+
+    .hero-subheading {
+        @apply text-white text-center;
+        font-family: var(--font-inter);
+        font-size: 1rem;
+        line-height: 1.1875rem;
+        font-weight: 400;
+    }
+
+    @media (min-width: 768px) {
+        .hero-subheading {
+            font-size: 1.5rem;
+            line-height: 1.8125rem;
+        }
+    }
+
+    /* Section Headings */
+    .section-heading {
+        font-family: var(--font-bebas-neue);
+        font-weight: 400;
+    }
+
+    /* Body Text */
+    .body-text {
+        font-family: var(--font-inter);
+        font-weight: 400;
+    }
+
+    /* Step Number Circle */
+    .step-number {
+        @apply w-9 h-9;
+        font-family: var(--font-inter);
+        font-weight: 700;
+        font-size: 0.9rem;
+    }
+
+    /* Step Text */
+    .step-text {
+        font-family: var(--font-inter);
+        font-weight: 600;
+    }
+
+    /* Check Icon Container */
+    .check-icon-container {
+        @apply w-8 h-8 flex-shrink-0 flex items-center justify-center bg-dark rounded-full;
+    }
+
+    /* FAQ Question Text */
+    .faq-question {
+        font-family: var(--font-inter);
+        font-weight: 500;
+        @apply transition-colors duration-300;
+    }
+
+    /* FAQ Answer Text */
+    .faq-answer {
+        font-family: var(--font-inter);
+        font-weight: 400;
+        @apply text-[#C3C3C3];
+    }
+
+    /* FAQ Icon Container */
+    .faq-icon-container {
+        @apply w-8 h-8 flex-shrink-0 flex items-center justify-center;
+    }
+
+    /* FAQ Plus Icon with Rotation */
+    .faq-plus-icon {
+        @apply transition-transform duration-300;
+    }
+
+    .faq-plus-icon-rotated {
+        @apply rotate-45;
+    }
+
+    /* Who Section Blur Overlays - Desktop Only */
+    .who-section-blur-1 {
+        width: 1262.77px;
+        height: 653.58px;
+        left: -710.53px;
+        top: 212.36px;
+        background: #0F0F0F;
+        filter: blur(388.996px);
+        transform: matrix(0.99, 0.12, -0.29, 0.96, 0, 0);
+        opacity: 0.6;
+    }
+
+    .who-section-blur-2 {
+        width: 904.82px;
+        height: 760.07px;
+        left: -1129.55px;
+        top: 3.91px;
+        background: #0F0F0F;
+        filter: blur(333.426px);
+        transform: matrix(0.98, -0.22, 0.14, 0.99, 0, 0);
+        opacity: 0.6;
+    }
+
+    .who-section-blur-3 {
+        width: 2779.49px;
+        height: 835.54px;
+        left: -747.27px;
+        top: 402.92px;
+        background: #0F0F0F;
+        filter: blur(277.855px);
+        transform: matrix(0.97, 0.23, -0.41, 0.91, 0, 0);
+        opacity: 0.3;
+    }
+
+    .who-section-blur-4 {
+        width: 4269.13px;
+        height: 1076.38px;
+        left: -2447.41px;
+        top: 486.16px;
+        background: #0F0F0F;
+        filter: blur(388.996px);
+        transform: matrix(0.99, 0.13, -0.31, 0.95, 0, 0);
+        opacity: 0.3;
+    }
+
+    .who-section-blur-5 {
+        width: 1576.76px;
+        height: 327.76px;
+        left: -161.9px;
+        top: 798.73px;
+        background: #0F0F0F;
+        filter: blur(222.284px);
+        transform: matrix(0.98, -0.22, 0.14, 0.99, 0, 0);
+        opacity: 0.5;
+    }
+}

@@ -1,44 +1,44 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Navbar, Footer } from '../components/layout';
-import { Button, ProblemCard, SolutionCard, CheckIcon, CrossIcon, CheckCircleIcon, QuestionIcon, PlusIcon } from '../components/ui';
+import { Button, ProblemCard, SolutionCard, ContactForm } from '../components/ui';
+import { faqs } from '../data/faqData';
+// Heroicons imports
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { CheckCircleIcon, QuestionMarkCircleIcon, PlusCircleIcon } from '@heroicons/react/24/solid';
 
 export default function Home() {
     // State for FAQ accordion
     const [openIndex, setOpenIndex] = useState(null);
 
+    // State for contact form modal
+    const [isFormOpen, setIsFormOpen] = useState(false);
+    const [formType, setFormType] = useState('join'); // 'join' or 'call'
+
     const handleToggle = (index) => {
         setOpenIndex(openIndex === index ? null : index);
     };
 
-    const faqs = [
-        {
-            question: "What kind of leads will I get?",
-            answer: "Real buyers, distributors, OEM partners, project inquiries—filtered for quality."
-        },
-        {
-            question: "Will I compete with other members?",
-            answer: "We limit membership to avoid overcrowding in specific categories, ensuring you get a fair share of relevant leads."
-        },
-        {
-            question: "Can you guarantee sales?",
-            answer: "We guarantee qualified leads that match your profile. Closing the deal is up to your sales team, but we provide the opportunities."
-        },
-        {
-            question: "What if I don't like it?",
-            answer: "You can cancel your subscription at any time. There are no long-term contracts or lock-in periods."
-        },
-        {
-            question: "What if someone spams?",
-            answer: "We have a zero-tolerance policy for spam. Any member found spamming the group will be removed immediately to maintain quality."
-        }
-    ];
+    const handleJoinClick = () => {
+        setFormType('join');
+        setIsFormOpen(true);
+    };
+
+    const handleBookCallClick = () => {
+        setFormType('call');
+        setIsFormOpen(true);
+    };
 
     return (
         <main className="min-h-screen bg-dark flex flex-col gap-0">
             {/* ========== HERO SECTION ========== */}
-            <section id="hero" className="relative w-full h-[600px] md:h-[800px] overflow-hidden flex items-center justify-center">
+            <section
+                id="hero"
+                className="relative w-full h-[600px] md:h-[800px] overflow-hidden flex items-center justify-center"
+                aria-label="Hero section"
+            >
                 {/* Navbar */}
-                <Navbar />
+                <Navbar onJoinClick={handleJoinClick} />
 
                 {/* Background Image - Primary */}
                 <div
@@ -48,54 +48,24 @@ export default function Home() {
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}
+                    aria-hidden="true"
                 />
 
                 {/* Subtle dark overlay for text readability */}
-                <div className="absolute inset-0 w-full h-full bg-black/20" />
+                <div className="absolute inset-0 w-full h-full bg-black/20" aria-hidden="true" />
 
                 {/* Bottom Gradient for Seamless Transition */}
-                <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-b from-transparent to-[#0F0F0F] z-10" />
+                <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-b from-transparent to-[#0F0F0F] z-10" aria-hidden="true" />
 
                 {/* Content Container */}
                 <div className="relative z-10 flex flex-col items-center gap-5 md:gap-8 px-4">
                     {/* Main Heading */}
-                    <h1
-                        className="text-white text-center uppercase max-w-[372px] md:max-w-[1046.34px]"
-                        style={{
-                            fontFamily: 'var(--font-bebas-neue)',
-                            fontSize: '4rem',
-                            lineHeight: '84%',
-                            fontWeight: 400,
-                        }}
-                    >
-                        <style>{`
-                            @media (min-width: 768px) {
-                                h1 {
-                                    font-size: 8.5rem !important;
-                                }
-                            }
-                        `}</style>
+                    <h1 className="hero-heading max-w-[372px] md:max-w-[1046.34px]">
                         Stop Chasing Leads. Let Them Come to You.
                     </h1>
 
                     {/* Subheading */}
-                    <p
-                        className="text-white text-center max-w-[294px] md:max-w-[708.44px]"
-                        style={{
-                            fontFamily: 'var(--font-inter)',
-                            fontSize: '1rem',
-                            lineHeight: '1.1875rem',
-                            fontWeight: 400,
-                        }}
-                    >
-                        <style>{`
-                            @media (min-width: 768px) {
-                                p {
-                                    font-size: 1.5rem !important;
-                                    line-height: 1.8125rem !important;
-                                }
-                            }
-                        `}</style>
+                    <p className="hero-subheading max-w-[294px] md:max-w-[708.44px]">
                         Join India&apos;s first WhatsApp community built exclusively for manufacturers who are tired of cold calls that go nowhere.
                     </p>
                 </div>
@@ -104,7 +74,10 @@ export default function Home() {
             {/* ========== WHAT SECTION ========== */}
             <div id="what">
                 {/* Features Section */}
-                <section className="w-full flex flex-col md:flex-row md:justify-between md:items-center px-5 py-10 md:px-20 md:py-20 gap-5 md:gap-5 max-w-[400px] md:max-w-[1440px] mx-auto min-h-[962px] md:min-h-[720px]">
+                <section
+                    className="w-full flex flex-col md:flex-row md:justify-between md:items-center px-5 py-10 md:px-20 md:py-20 gap-5 md:gap-5 max-w-[400px] md:max-w-[1440px] mx-auto min-h-[962px] md:min-h-[720px]"
+                    aria-label="Features section"
+                >
                     {/* Mobile: Image First, Desktop: Content First */}
                     <div className="md:hidden relative w-full max-w-[360px] h-[300px] border border-white/20">
                         <img
@@ -117,7 +90,7 @@ export default function Home() {
                     {/* Content */}
                     <div className="flex flex-col items-start gap-[30px] w-full max-w-[360px] md:max-w-[687px]">
                         {/* Description */}
-                        <p className="text-white w-full text-base md:text-2xl leading-[1.1875rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                        <p className="body-text text-white w-full text-base md:text-2xl leading-[1.1875rem] md:leading-[1.8125rem]">
                             India&apos;s first WhatsApp community built exclusively for manufacturers. Get 20 qualified leads delivered monthly—plus live market intel, competitor insights, and daily industry updates.
                         </p>
 
@@ -125,44 +98,32 @@ export default function Home() {
                         <div className="flex flex-col items-start w-full">
                             {/* Benefit 1 */}
                             <div className="flex flex-row items-start py-8 gap-4 md:gap-4 w-full border-b border-white/20">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                                    <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2" />
-                                    <path d="M8 12L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span className="text-white text-base md:text-2xl leading-[1.1875rem] md:leading-[1.8125rem] flex-1" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                                <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
+                                <span className="body-text text-white text-base md:text-2xl leading-[1.1875rem] md:leading-[1.8125rem] flex-1">
                                     20 qualified leads land in your WhatsApp every month
                                 </span>
                             </div>
 
                             {/* Benefit 2 */}
                             <div className="flex flex-row items-start py-8 gap-2 md:gap-2 w-full border-b border-white/20">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                                    <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2" />
-                                    <path d="M8 12L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span className="text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                                <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
+                                <span className="body-text text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1">
                                     See what your competitors are doing (legally, of course)
                                 </span>
                             </div>
 
                             {/* Benefit 3 */}
                             <div className="flex flex-row items-start py-8 gap-2 md:gap-2 w-full border-b border-white/20">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                                    <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2" />
-                                    <path d="M8 12L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span className="text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                                <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
+                                <span className="body-text text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1">
                                     Know which products are hot before your rivals do
                                 </span>
                             </div>
 
                             {/* Benefit 4 */}
                             <div className="flex flex-row items-start py-8 gap-2 md:gap-2 w-full border-b border-white/20">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                                    <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2" />
-                                    <path d="M8 12L11 15L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                <span className="text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                                <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
+                                <span className="body-text text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1">
                                     Daily news that matters—no fluff, just fact
                                 </span>
                             </div>
@@ -172,6 +133,8 @@ export default function Home() {
                         <Button
                             variant="primary"
                             className="px-7 py-4 h-11"
+                            aria-label="Join the WhatsApp community now"
+                            onClick={handleJoinClick}
                         >
                             Join Now
                         </Button>
@@ -188,17 +151,20 @@ export default function Home() {
                 </section>
 
                 {/* Problems Section */}
-                <section className="w-full flex flex-col items-start p-5 md:p-20 gap-20 md:gap-20 max-w-[400px] md:max-w-[1440px] mx-auto">
+                <section
+                    className="w-full flex flex-col items-start p-5 md:p-20 gap-20 md:gap-20 max-w-[400px] md:max-w-[1440px] mx-auto"
+                    aria-label="Common problems section"
+                >
                     <div className="flex flex-col items-start gap-14 md:gap-14 w-full max-w-[360px] md:max-w-[1280px]">
                         {/* Section Header */}
                         <div className="flex flex-col items-start gap-16 md:gap-16 w-full">
                             <div className="flex flex-col items-start gap-5 md:gap-5 w-full">
-                                <h2 className="text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
+                                <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                                     Your Factory Runs Like Clockwork. Your Lead Pipeline? Not So Much.
                                 </h2>
                             </div>
 
-                            <p className="text-white w-full text-xl md:text-2xl leading-6 md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                            <p className="body-text text-white w-full text-xl md:text-2xl leading-6 md:leading-[29px]">
                                 Let&apos;s be honest:
                             </p>
                         </div>
@@ -265,10 +231,10 @@ export default function Home() {
 
                         {/* Closing Text */}
                         <div className="flex flex-col items-start gap-10 w-full">
-                            <p className="text-white text-xl md:text-2xl leading-6 md:leading-[1.8125rem] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                            <p className="body-text text-white text-xl md:text-2xl leading-6 md:leading-[1.8125rem] w-full">
                                 You don&apos;t have a production problem. You have a consistent lead-flow problem.
                             </p>
-                            <p className="text-white text-xl md:text-2xl leading-6 md:leading-[29px] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                            <p className="body-text text-white text-xl md:text-2xl leading-6 md:leading-[29px] w-full">
                                 We built something simple: A WhatsApp community where qualified leads land in your phone every month— no exhibitions, no cold calls, no wasted time.
                             </p>
                         </div>
@@ -276,10 +242,13 @@ export default function Home() {
                 </section>
 
                 {/* Solutions Section */}
-                <section className="w-full flex flex-col items-start p-5 md:p-20 gap-12 md:gap-20 max-w-[400px] md:max-w-[1440px] mx-auto">
+                <section
+                    className="w-full flex flex-col items-start p-5 md:p-20 gap-12 md:gap-20 max-w-[400px] md:max-w-[1440px] mx-auto"
+                    aria-label="Solutions section"
+                >
                     {/* Section Header */}
                     <div className="flex flex-col items-start w-full">
-                        <h2 className="text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
+                        <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                             What You Actually Get
                         </h2>
                     </div>
@@ -357,8 +326,11 @@ export default function Home() {
             {/* ========== HOW SECTION ========== */}
             <div id="how">
                 {/* HowItWorks Section */}
-                <section className="w-full flex flex-col items-center p-5 md:p-20 gap-12 md:gap-12 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark">
-                    <h2 className="text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
+                <section
+                    className="w-full flex flex-col items-center p-5 md:p-20 gap-12 md:gap-12 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
+                    aria-label="How it works section"
+                >
+                    <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                         How this works
                     </h2>
 
@@ -366,50 +338,50 @@ export default function Home() {
                         <div className="flex flex-col items-start gap-6 md:gap-8 w-full">
                             {/* Step 1 */}
                             <div className="flex flex-row items-start gap-[15px] w-full">
-                                <div className="flex justify-center items-center bg-white rounded-full flex-shrink-0" style={{ width: '36px', height: '36px' }}>
-                                    <span className="text-dark" style={{ fontFamily: 'var(--font-inter)', fontWeight: 700, fontSize: '0.9rem' }}>1</span>
+                                <div className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0">
+                                    <span className="text-dark">1</span>
                                 </div>
-                                <p className="text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}>
+                                <p className="step-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]">
                                     Join – Costs less than a team dinner or a client lunch.
                                 </p>
                             </div>
 
                             {/* Step 2 */}
                             <div className="flex flex-row items-start gap-[15px] w-full">
-                                <div className="flex justify-center items-center bg-white rounded-full flex-shrink-0" style={{ width: '36px', height: '36px' }}>
-                                    <span className="text-[#0F0F0F]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 700, fontSize: '14.4px' }}>2</span>
+                                <div className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0">
+                                    <span className="text-[#0F0F0F]">2</span>
                                 </div>
-                                <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}>
+                                <p className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
                                     Get Added – Within 24 hours after verification.
                                 </p>
                             </div>
 
                             {/* Step 3 */}
                             <div className="flex flex-row items-start gap-[15px] w-full">
-                                <div className="flex justify-center items-center bg-white rounded-full flex-shrink-0" style={{ width: '36px', height: '36px' }}>
-                                    <span className="text-[#0F0F0F]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 700, fontSize: '14.4px' }}>3</span>
+                                <div className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0">
+                                    <span className="text-[#0F0F0F]">3</span>
                                 </div>
-                                <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}>
+                                <p className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
                                     Leads Start Flowing – First leads arrive within a week.
                                 </p>
                             </div>
 
                             {/* Step 4 */}
                             <div className="flex flex-row items-start gap-[15px] w-full">
-                                <div className="flex justify-center items-center bg-white rounded-full flex-shrink-0" style={{ width: '36px', height: '36px' }}>
-                                    <span className="text-[#0F0F0F]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 700, fontSize: '14.4px' }}>4</span>
+                                <div className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0">
+                                    <span className="text-[#0F0F0F]">4</span>
                                 </div>
-                                <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}>
+                                <p className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
                                     Track What&apos;s Hot – Monthly data shows industry trends.
                                 </p>
                             </div>
 
                             {/* Step 5 */}
                             <div className="flex flex-row items-start gap-[15px] w-full">
-                                <div className="flex justify-center items-center bg-white rounded-full flex-shrink-0" style={{ width: '36px', height: '36px' }}>
-                                    <span className="text-[#0F0F0F]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 700, fontSize: '14.4px' }}>5</span>
+                                <div className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0">
+                                    <span className="text-[#0F0F0F]">5</span>
                                 </div>
-                                <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}>
+                                <p className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
                                     Grow Smarter – Network, learn, spot opportunities early.
                                 </p>
                             </div>
@@ -418,15 +390,18 @@ export default function Home() {
                 </section>
 
                 {/* IsThisForYou Section */}
-                <section className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark">
-                    <h2 className="text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
+                <section
+                    className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
+                    aria-label="Is this for you section"
+                >
+                    <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                         Is This For You?
                     </h2>
 
                     <div className="flex flex-col md:flex-row items-stretch gap-10 md:gap-16 w-full">
                         {/* Perfect If You - Light Card */}
                         <div className="flex flex-col items-start p-5 md:p-10 gap-10 md:gap-14 w-full md:w-1/2 bg-[#F5F5F5]">
-                            <h3 className="text-2xl md:text-[40px] leading-[100%]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600, color: '#151515' }}>
+                            <h3 className="step-text text-2xl md:text-[40px] leading-[100%] text-[#151515]">
                                 Perfect If You
                             </h3>
 
@@ -434,9 +409,9 @@ export default function Home() {
                                 {/* Item 1 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <div className="w-8 h-8 flex items-center justify-center bg-dark rounded-full flex-shrink-0">
-                                        <CheckIcon size={20} color="white" />
+                                        <CheckIcon className="w-5 h-5 text-white" />
                                     </div>
-                                    <p className="text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#0F0F0F' }}>
+                                    <p className="body-text text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem] text-[#0F0F0F]">
                                         Manufacture industrial products (machines, components, OEM parts, tools)
                                     </p>
                                 </div>
@@ -444,33 +419,29 @@ export default function Home() {
                                 {/* Item 2 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <div className="w-8 h-8 flex items-center justify-center bg-dark rounded-full flex-shrink-0">
-                                        <CheckIcon size={20} color="white" />
+                                        <CheckIcon className="w-5 h-5 text-white" />
                                     </div>
-                                    <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#0F0F0F' }}>
+                                    <p className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-[#0F0F0F]">
                                         Want leads you can actually call, not just website traffic
                                     </p>
                                 </div>
 
                                 {/* Item 3 */}
                                 <div className="flex flex-row items-start gap-[15px]">
-                                    <div style={{ width: '32px', height: '32px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0F0F0F', borderRadius: '50%' }}>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M20 6L9 17L4 12" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
+                                    <div className="check-icon-container">
+                                        <CheckIcon className="w-5 h-5 text-white" />
                                     </div>
-                                    <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#0F0F0F' }}>
+                                    <p className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-[#0F0F0F]">
                                         Will follow up and close deals yourself
                                     </p>
                                 </div>
 
                                 {/* Item 4 */}
                                 <div className="flex flex-row items-start gap-[15px]">
-                                    <div style={{ width: '32px', height: '32px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0F0F0F', borderRadius: '50%' }}>
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M20 6L9 17L4 12" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
+                                    <div className="check-icon-container">
+                                        <CheckIcon className="w-5 h-5 text-white" />
                                     </div>
-                                    <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#0F0F0F' }}>
+                                    <p className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-[#0F0F0F]">
                                         Want market insights before everyone else
                                     </p>
                                 </div>
@@ -479,7 +450,7 @@ export default function Home() {
 
                         {/* Not For You If You - Dark Card */}
                         <div className="flex flex-col items-start p-5 md:p-10 gap-10 md:gap-14 w-full md:w-1/2 bg-dark-secondary">
-                            <h3 className="text-2xl md:text-[40px] leading-[100%]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 600, color: '#FFFFFF' }}>
+                            <h3 className="step-text text-2xl md:text-[40px] leading-[100%] text-white">
                                 Not For You If You
                             </h3>
 
@@ -487,9 +458,9 @@ export default function Home() {
                                 {/* Item 1 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
-                                        <CrossIcon size={20} color="#0F0F0F" />
+                                        <XMarkIcon className="w-5 h-5 text-[#0F0F0F]" />
                                     </div>
-                                    <p className="text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#FFFFFF' }}>
+                                    <p className="body-text text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem] text-white">
                                         Expect automated sales while you sleep
                                     </p>
                                 </div>
@@ -497,9 +468,9 @@ export default function Home() {
                                 {/* Item 2 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
-                                        <CrossIcon size={20} color="#0F0F0F" />
+                                        <XMarkIcon className="w-5 h-5 text-[#0F0F0F]" />
                                     </div>
-                                    <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#FFFFFF' }}>
+                                    <p className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-white">
                                         Won&apos;t talk to buyers because you&apos;re &quot;too busy&quot;
                                     </p>
                                 </div>
@@ -507,9 +478,9 @@ export default function Home() {
                                 {/* Item 3 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
-                                        <CrossIcon size={20} color="#0F0F0F" />
+                                        <XMarkIcon className="w-5 h-5 text-[#0F0F0F]" />
                                     </div>
-                                    <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#FFFFFF' }}>
+                                    <p className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-white">
                                         Think our subscription is &quot;too expensive&quot; for 20 qualified leads
                                     </p>
                                 </div>
@@ -517,9 +488,9 @@ export default function Home() {
                                 {/* Item 4 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
-                                        <CrossIcon size={20} color="#0F0F0F" />
+                                        <XMarkIcon className="w-5 h-5 text-[#0F0F0F]" />
                                     </div>
-                                    <p className="text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, color: '#FFFFFF' }}>
+                                    <p className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-white">
                                         Plan to spam the group (we&apos;ll kick you out)
                                     </p>
                                 </div>
@@ -529,12 +500,15 @@ export default function Home() {
                 </section>
 
                 {/* WhyBigVision Section */}
-                <section className="w-full flex flex-col items-start p-5 md:p-20 gap-10 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark">
+                <section
+                    className="w-full flex flex-col items-start p-5 md:p-20 gap-10 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
+                    aria-label="Future platform access section"
+                >
                     <div className="flex flex-col items-start gap-7 md:gap-7 w-full">
-                        <h2 className="text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
+                        <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                             Plus: Early Access to Something Bigger
                         </h2>
-                        <p className="text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                        <p className="body-text text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full">
                             WhatsApp community members get first access to our upcoming platform where you can:
                         </p>
                     </div>
@@ -544,9 +518,9 @@ export default function Home() {
                             {/* Benefit 1 */}
                             <div className="flex flex-row items-start gap-[15px]">
                                 <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
-                                    <CheckIcon size={20} color="#0F0F0F" />
+                                    <CheckIcon className="w-5 h-5 text-[#0F0F0F]" />
                                 </div>
-                                <p className="text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                                <p className="body-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]">
                                     List and sell products to thousands of verified buyers
                                 </p>
                             </div>
@@ -554,9 +528,9 @@ export default function Home() {
                             {/* Benefit 2 */}
                             <div className="flex flex-row items-start gap-[15px]">
                                 <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
-                                    <CheckIcon size={20} color="#0F0F0F" />
+                                    <CheckIcon className="w-5 h-5 text-[#0F0F0F]" />
                                 </div>
-                                <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                                <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
                                     See live demand dashboards for your category
                                 </p>
                             </div>
@@ -564,25 +538,27 @@ export default function Home() {
                             {/* Benefit 3 */}
                             <div className="flex flex-row items-start gap-[15px]">
                                 <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
-                                    <CheckIcon size={20} color="#0F0F0F" />
+                                    <CheckIcon className="w-5 h-5 text-[#0F0F0F]" />
                                 </div>
-                                <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                                <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
                                     Connect with suppliers and partners at scale
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <p className="text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                    <p className="body-text text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full">
                         You&apos;re not just joining a group. You&apos;re getting ground-floor access.
                     </p>
                 </section>
             </div>
 
             {/* ========== WHO SECTION ========== */}
-            <section id="who"
+            <section
+                id="who"
                 className="relative flex flex-col justify-end items-start overflow-hidden w-full min-h-[800px] md:min-h-[954px] p-5 md:p-20 max-w-[400px] md:max-w-[1440px] mx-auto"
                 style={{ isolation: 'isolate' }}
+                aria-label="Join now section"
             >
                 {/* Background Image */}
                 <div
@@ -592,6 +568,7 @@ export default function Home() {
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}
+                    aria-hidden="true"
                 />
 
                 {/* Saturation Overlay */}
@@ -601,31 +578,37 @@ export default function Home() {
                         background: '#D9D9D9',
                         mixBlendMode: 'saturation',
                     }}
+                    aria-hidden="true"
                 />
 
                 {/* Dark Gradient / Blur Ellipses - Keep desktop positioning */}
-                <div className="hidden md:block absolute z-0" style={{ width: '1262.77px', height: '653.58px', left: '-710.53px', top: '212.36px', background: '#0F0F0F', filter: 'blur(388.996px)', transform: 'matrix(0.99, 0.12, -0.29, 0.96, 0, 0)', opacity: 0.6 }} />
-                <div className="hidden md:block absolute z-0" style={{ width: '904.82px', height: '760.07px', left: '-1129.55px', top: '3.91px', background: '#0F0F0F', filter: 'blur(333.426px)', transform: 'matrix(0.98, -0.22, 0.14, 0.99, 0, 0)', opacity: 0.6 }} />
-                <div className="hidden md:block absolute z-0" style={{ width: '2779.49px', height: '835.54px', left: '-747.27px', top: '402.92px', background: '#0F0F0F', filter: 'blur(277.855px)', transform: 'matrix(0.97, 0.23, -0.41, 0.91, 0, 0)', opacity: 0.3 }} />
-                <div className="hidden md:block absolute z-0" style={{ width: '4269.13px', height: '1076.38px', left: '-2447.41px', top: '486.16px', background: '#0F0F0F', filter: 'blur(388.996px)', transform: 'matrix(0.99, 0.13, -0.31, 0.95, 0, 0)', opacity: 0.3 }} />
-                <div className="hidden md:block absolute z-0" style={{ width: '1576.76px', height: '327.76px', left: '-161.9px', top: '798.73px', background: '#0F0F0F', filter: 'blur(222.284px)', transform: 'matrix(0.98, -0.22, 0.14, 0.99, 0, 0)', opacity: 0.5 }} />
+                <div className="hidden md:block absolute z-0 who-section-blur-1" aria-hidden="true" />
+                <div className="hidden md:block absolute z-0 who-section-blur-2" aria-hidden="true" />
+                <div className="hidden md:block absolute z-0 who-section-blur-3" aria-hidden="true" />
+                <div className="hidden md:block absolute z-0 who-section-blur-4" aria-hidden="true" />
+                <div className="hidden md:block absolute z-0 who-section-blur-5" aria-hidden="true" />
 
                 {/* Mobile Blur Overlays */}
-                <div className="md:hidden absolute inset-0 w-full h-full z-0" style={{ background: 'linear-gradient(180deg, rgba(15, 15, 15, 0.3) 0%, rgba(15, 15, 15, 0.8) 100%)' }} />
+                <div className="md:hidden absolute inset-0 w-full h-full z-0 bg-gradient-to-b from-[rgba(15,15,15,0.3)] to-[rgba(15,15,15,0.8)]" aria-hidden="true" />
 
                 {/* Content Container */}
                 <div className="relative z-[2] flex flex-col md:flex-row justify-between items-start gap-10 md:gap-16 w-full">
                     {/* Top Content */}
                     <div className="flex flex-col items-start gap-7 md:gap-7 w-full md:w-auto">
-                        <h2 className="text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
+                        <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                             Join Now. Start Growing.
                         </h2>
-                        <p className="text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem] w-full md:w-[402px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                        <p className="body-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem] w-full md:w-[402px]">
                             No annual lock-in. No contracts. Stay as long as it&apos;s valuable.
                         </p>
 
                         {/* Join Button */}
-                        <Button variant="primary" className="px-7 md:px-7 py-4 md:py-4 text-sm md:text-base">
+                        <Button
+                            variant="primary"
+                            className="px-7 md:px-7 py-4 md:py-4 text-sm md:text-base"
+                            aria-label="Join the community now"
+                            onClick={handleJoinClick}
+                        >
                             Join Now
                         </Button>
                     </div>
@@ -635,49 +618,59 @@ export default function Home() {
                         {/* Item 1 */}
                         <div className="flex flex-row items-start gap-[15px]">
                             <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
-                                <CheckCircleIcon size={20} color="#0F0F0F" />
+                                <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
                             </div>
-                            <p className="text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                            <p className="body-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]">
                                 20 qualified leads monthly
                             </p>
                         </div>
 
                         {/* Item 2 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"><CheckCircleIcon size={20} color="#0F0F0F" /></div>
-                            <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
+                            </div>
+                            <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
                                 Manufacturing-only WhatsApp group
                             </p>
                         </div>
 
                         {/* Item 3 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"><CheckCircleIcon size={20} color="#0F0F0F" /></div>
-                            <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
+                            </div>
+                            <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
                                 Competitor & market data
                             </p>
                         </div>
 
                         {/* Item 4 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"><CheckCircleIcon size={20} color="#0F0F0F" /></div>
-                            <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
+                            </div>
+                            <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
                                 Daily opportunity alerts
                             </p>
                         </div>
 
                         {/* Item 5 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"><CheckCircleIcon size={20} color="#0F0F0F" /></div>
-                            <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
+                            </div>
+                            <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
                                 Webinars for your team
                             </p>
                         </div>
 
                         {/* Item 6 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"><CheckCircleIcon size={20} color="#0F0F0F" /></div>
-                            <p className="text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
+                            </div>
+                            <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
                                 Priority platform access
                             </p>
                         </div>
@@ -686,42 +679,46 @@ export default function Home() {
             </section>
 
             {/* Still Thinking Section */}
-            <section className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark">
+            <section
+                className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
+                aria-label="Book a call section"
+            >
                 <div className="flex flex-col md:flex-row justify-between items-start gap-7 md:gap-7 w-full">
                     {/* Left Content */}
                     <div className="flex flex-col items-start gap-7 md:gap-7 w-full md:w-auto">
-                        <h2 className="text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]" style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}>
+                        <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                             Still thinking?
                         </h2>
-                        <p className="text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}>
+                        <p className="body-text text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full">
                             Book a 10-Minute Call
                         </p>
                     </div>
 
                     {/* Right Content - Button */}
-                    <Button variant="primary" className="px-7 py-4 w-full md:w-auto text-sm md:text-base">
+                    <Button
+                        variant="primary"
+                        className="px-7 py-4 w-full md:w-auto text-sm md:text-base"
+                        aria-label="Book a 10-minute call"
+                        onClick={handleBookCallClick}
+                    >
                         Book Now
                     </Button>
                 </div>
             </section>
 
             {/* ========== WHY SECTION (FAQ) ========== */}
-            <section id="why"
+            <section
+                id="why"
                 className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
+                aria-label="Frequently asked questions"
             >
                 <div className="flex flex-col items-start gap-7 md:gap-7 w-full">
-                    <h2
-                        className="text-white uppercase text-left w-full text-[52px] md:text-[88px] leading-[88%]"
-                        style={{
-                            fontFamily: 'var(--font-bebas-neue)',
-                            fontWeight: 400,
-                        }}
-                    >
+                    <h2 className="section-heading text-white uppercase text-left w-full text-[52px] md:text-[88px] leading-[88%]">
                         Quick Questions
                     </h2>
                 </div>
 
-                <div className="flex flex-col items-start gap-6 md:gap-6 w-full">
+                <div className="flex flex-col items-start gap-6 md:gap-6 w-full" role="list">
                     {faqs.map((faq, index) => (
                         <div
                             key={index}
@@ -730,58 +727,43 @@ export default function Home() {
                                 boxShadow: openIndex === index ? '0 0 30px rgba(255, 255, 255, 0.15)' : 'none',
                                 border: openIndex === index ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid transparent',
                             }}
+                            role="listitem"
                         >
-                            <div
+                            <button
                                 className="flex flex-row justify-between items-center w-full cursor-pointer"
                                 onClick={() => handleToggle(index)}
                                 style={{ gap: '20px' }}
+                                aria-expanded={openIndex === index}
+                                aria-controls={`faq-answer-${index}`}
+                                type="button"
                             >
                                 <div className="flex flex-row items-center" style={{ gap: '12px' }}>
                                     {/* Question Mark Icon */}
-                                    <div style={{ width: '32px', height: '32px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <QuestionIcon size={24} color="white" />
+                                    <div className="faq-icon-container">
+                                        <QuestionMarkCircleIcon className="w-6 h-6 text-white" />
                                     </div>
-                                    <h3 className="text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem]"
-                                        style={{
-                                            fontFamily: 'var(--font-inter)',
-                                            fontWeight: 500,
-                                            color: openIndex === index ? '#FFFFFF' : '#C3C3C3',
-                                            transition: 'color 0.3s ease',
-                                        }}
+                                    <h3
+                                        className={`faq-question text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] ${openIndex === index ? 'text-white' : 'text-[#C3C3C3]'}`}
                                     >
                                         {faq.question}
                                     </h3>
                                 </div>
 
                                 {/* Plus/Close Icon */}
-                                <div
-                                    style={{
-                                        width: '32px',
-                                        height: '32px',
-                                        flexShrink: 0,
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        transform: openIndex === index ? 'rotate(45deg)' : 'rotate(0deg)',
-                                        transition: 'transform 0.3s ease'
-                                    }}
-                                >
-                                    <PlusIcon size={32} color="black" bgColor="white" />
+                                <div className={`faq-icon-container faq-plus-icon ${openIndex === index ? 'faq-plus-icon-rotated' : ''}`}>
+                                    <PlusCircleIcon className="w-8 h-8 text-white" />
                                 </div>
-                            </div>
+                            </button>
 
                             <div
+                                id={`faq-answer-${index}`}
                                 className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === index ? 'max-h-[200px] opacity-100' : 'max-h-0 opacity-0'}`}
                                 style={{ width: '100%' }}
+                                role="region"
+                                aria-hidden={openIndex !== index}
                             >
                                 <div className="flex flex-row items-start pl-0 md:pl-11">
-                                    <p className="text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]"
-                                        style={{
-                                            fontFamily: 'var(--font-inter)',
-                                            fontWeight: 400,
-                                            color: '#C3C3C3',
-                                        }}
-                                    >
+                                    <p className="faq-answer text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]">
                                         {faq.answer}
                                     </p>
                                 </div>
@@ -793,6 +775,15 @@ export default function Home() {
 
             {/* ========== FOOTER ========== */}
             <Footer />
+
+            {/* Contact Form Modal */}
+            <ContactForm
+                isOpen={isFormOpen}
+                onClose={() => setIsFormOpen(false)}
+                formType={formType}
+            />
         </main>
     );
 }
+
+Home.propTypes = {};

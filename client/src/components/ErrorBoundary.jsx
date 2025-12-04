@@ -1,4 +1,3 @@
-import { AlertIcon } from './ui';
 import { Component } from 'react';
 
 /**

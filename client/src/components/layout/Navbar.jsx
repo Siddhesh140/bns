@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Button, MenuIcon } from '../ui';
+import PropTypes from 'prop-types';
+import { Button } from '../ui';
+import { Bars3Icon } from '@heroicons/react/24/outline';
 import { scrollToSection } from '../../utils/scroll';
 
 // Navigation links configuration - single source of truth
@@ -19,7 +21,7 @@ const navLinkStyles = {
     letterSpacing: '0.08em',
 };
 
-export default function Navbar() {
+export default function Navbar({ onJoinClick }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const handleLogoClick = () => {
@@ -69,7 +71,7 @@ export default function Navbar() {
                         ))}
 
                         {/* Join Button */}
-                        <Button variant="primary" className="px-7 py-4 h-11">
+                        <Button variant="primary" className="px-7 py-4 h-11" onClick={onJoinClick}>
                             Join
                         </Button>
                     </div>
@@ -80,7 +82,7 @@ export default function Navbar() {
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         aria-label="Toggle menu"
                     >
-                        <MenuIcon size={24} color="white" />
+                        <Bars3Icon className="w-6 h-6 text-white" />
                     </button>
                 </div>
             </nav>
@@ -101,7 +103,7 @@ export default function Navbar() {
                         ))}
 
                         {/* Mobile Join Button */}
-                        <Button variant="primary" className="px-7 py-4 h-11">
+                        <Button variant="primary" className="px-7 py-4 h-11" onClick={onJoinClick}>
                             Join
                         </Button>
                     </div>
@@ -110,3 +112,7 @@ export default function Navbar() {
         </>
     );
 }
+
+Navbar.propTypes = {
+    onJoinClick: PropTypes.func
+};

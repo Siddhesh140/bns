@@ -1,4 +1,5 @@
-import { InstagramIcon, LinkedInIcon, TwitterIcon, FacebookIcon, EmailIcon, PhoneIcon } from '../ui';
+import { InstagramIcon, LinkedInIcon, TwitterIcon, FacebookIcon } from '../ui';
+import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
 
 export default function Footer() {
     const handleLogoClick = () => {
@@ -108,7 +109,7 @@ export default function Footer() {
                         {/* Email */}
                         <div className="flex flex-row items-center gap-2">
                             <div className="w-6 h-6 flex items-center justify-center">
-                                <EmailIcon size={20} color="#ADADAD" />
+                                <EnvelopeIcon className="w-5 h-5 text-[#ADADAD]" />
                             </div>
                             <span className="text-light-gray text-base leading-[1.1875rem] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>contact@BnS.com</span>
                         </div>
@@ -116,7 +117,7 @@ export default function Footer() {
                         {/* Phone */}
                         <div className="flex flex-row items-center gap-2">
                             <div className="w-6 h-6 flex items-center justify-center">
-                                <PhoneIcon size={20} color="#ADADAD" />
+                                <PhoneIcon className="w-5 h-5 text-[#ADADAD]" />
                             </div>
                             <span className="text-[#ADADAD] text-base leading-[19px] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>+919579662005</span>
                         </div>
