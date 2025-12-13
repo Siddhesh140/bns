@@ -1,7 +1,13 @@
-// Barrel exports for UI components
-// This allows cleaner imports: import { Button, Card } from '../components/ui'
-
+// Export all UI components from a single file for easy imports
 export { default as Button } from './Button';
-export { default as Card } from './Card';
-export { default as SolutionCard } from './SolutionCard';
-export { default as CheckIcon } from './CheckIcon';
+export { default as Card, ProblemCard, SolutionCard, DefaultCard } from './Cards';
+export { default as ContactForm } from './ContactForm';
+
+// Export custom social media icons (brand-specific icons not in Heroicons)
+// Note: Utility icons (Menu, Email, Phone, Alert) have been migrated to Heroicons
+export {
+    InstagramIcon,
+    LinkedInIcon,
+    TwitterIcon,
+    FacebookIcon
+} from './Icons';

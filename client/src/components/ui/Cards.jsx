@@ -1,24 +1,65 @@
 /**
- * Reusable SolutionCard component for solution/feature blocks
- * @param {string} image - Image URL
- * @param {string} title - Card title
- * @param {string} subtitle - Subtitle text
- * @param {string|React.ReactNode} content - Main content (can be text or JSX)
- * @param {string} footer - Footer text
- * @param {string} imagePosition - 'left' | 'right' (desktop only, mobile always shows image on top)
+ * Comprehensive Card Component Library
+ * All card variants in one reusable component
  */
-export default function SolutionCard({
+
+/**
+ * Problem Card - Used in "Problems Section"
+ * Displays an image with grayscale filter and content overlay at bottom
+ */
+export const ProblemCard = ({
+    image,
+    title,
+    description,
+    className = ''
+}) => (
+    <div className={`relative flex flex-col justify-end items-start w-full h-[600px] md:h-[730px] ${className}`}>
+        <img
+            src={image}
+            alt={title}
+            style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                filter: 'grayscale(100%)'
+            }}
+        />
+        <div className="relative z-10 flex flex-col items-start justify-start p-5 md:p-9 gap-6 w-full bg-dark-gray min-h-[210px] md:min-h-[220px]">
+            <h3
+                className="text-white uppercase text-xl md:text-2xl leading-6 md:leading-[29px] tracking-[0.08em]"
+                style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}
+            >
+                {title}
+            </h3>
+            <p
+                className="text-white text-xl md:text-2xl leading-6 md:leading-[29px]"
+                style={{ fontFamily: 'var(--font-inter)', fontWeight: 400 }}
+            >
+                {description}
+            </p>
+        </div>
+    </div>
+);
+
+/**
+ * Solution Card - Feature block with alternating image/text layout
+ * Used in "What You Actually Get" section
+ */
+export const SolutionCard = ({
     image,
     title,
     subtitle,
     content,
     footer,
     imagePosition = 'left'
-}) {
+}) => {
     const isImageLeft = imagePosition === 'left';
 
     return (
-        <div className="flex flex-col md:flex-row items-center p-5 md:p-6 gap-10 md:gap-[60px] w-full bg-[#1A1A1A]">
+        <div className="flex flex-col md:flex-row items-center p-5 md:p-6 gap-10 md:gap-[60px] w-full bg-dark-gray">
             {/* Image Container - Mobile First (always on top) */}
             <div className={`md:hidden relative flex justify-center items-center w-full h-[312px] bg-[#242424]`}>
                 <div className="relative w-[80%] h-[80%]">
@@ -43,7 +84,7 @@ export default function SolutionCard({
                 </div>
             )}
 
-            {/* Text Content */}
+            {/* Content */}
             <div className={`flex flex-col justify-center items-start flex-1 gap-10 md:gap-12 py-0 md:py-10 px-0 md:px-10 ${isImageLeft ? 'order-2' : 'order-1'}`}>
                 <div className="flex flex-col items-start gap-8 w-full">
                     <h3
@@ -93,4 +134,54 @@ export default function SolutionCard({
             )}
         </div>
     );
+};
+
+/**
+ * Default Card - Generic card component
+ * Fallback for simple card layouts
+ */
+export const DefaultCard = ({
+    image,
+    title,
+    description,
+    className = ''
+}) => (
+    <div className={`flex flex-col items-start p-5 gap-5 w-full bg-dark-secondary ${className}`}>
+        {image && (
+            <div className="relative w-full h-[200px]">
+                <img src={image} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
+        )}
+        <div className="flex flex-col gap-4">
+            {title && (
+                <h3 className="text-white text-xl font-semibold" style={{ fontFamily: 'var(--font-inter)' }}>
+                    {title}
+                </h3>
+            )}
+            {description && (
+                <p className="text-white text-base" style={{ fontFamily: 'var(--font-inter)' }}>
+                    {description}
+                </p>
+            )}
+        </div>
+    </div>
+);
+
+/**
+ * Unified Card Component - Main export with variant support
+ * Automatically selects the right card type based on variant prop
+ */
+export default function Card({ variant = 'default', ...props }) {
+    // ES7 Feature: Array.includes() for validation
+    const validVariants = ['problem', 'solution', 'default'];
+    const safeVariant = validVariants.includes(variant) ? variant : 'default';
+
+    switch (safeVariant) {
+        case 'problem':
+            return <ProblemCard {...props} />;
+        case 'solution':
+            return <SolutionCard {...props} />;
+        default:
+            return <DefaultCard {...props} />;
+    }
 }

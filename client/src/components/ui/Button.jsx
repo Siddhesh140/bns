@@ -9,14 +9,15 @@ export default function Button({
     variant = 'primary',
     onClick,
     children,
-    className = ''
+    className = '',
+    disabled = false,
+    loading = false
 }) {
-    const baseStyles = 'flex justify-center items-center uppercase cursor-pointer transition-all duration-300';
+    // ES7 Feature: Array.includes() for validation
+    const validVariants = ['primary', 'secondary'];
+    const safeVariant = validVariants.includes(variant) ? variant : 'primary';
 
-    const variantStyles = {
-        primary: 'bg-white text-[#0F0F0F] hover:shadow-[0_0_20px_rgba(255,255,255,0.6)] hover:scale-105',
-        secondary: 'bg-transparent text-white border border-white hover:bg-white hover:text-[#0F0F0F]'
-    };
+    const baseStyles = 'flex justify-center items-center uppercase transition-all duration-300';
 
     const fontStyles = {
         fontFamily: 'var(--font-inter)',
@@ -26,13 +27,19 @@ export default function Button({
         letterSpacing: '0.08em',
     };
 
+    const variantStyles = {
+        primary: 'bg-white text-dark hover:shadow-[0_0_20px_rgba(255,255,255,0.6)] hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100',
+        secondary: 'bg-transparent text-white border border-white hover:bg-white hover:text-dark disabled:opacity-50 disabled:cursor-not-allowed'
+    };
+
     return (
         <button
             onClick={onClick}
-            className={`${baseStyles} ${variantStyles[variant]} ${className}`}
+            disabled={disabled || loading}
+            className={`${baseStyles} ${variantStyles[safeVariant]} ${loading ? 'cursor-wait' : 'cursor-pointer'} ${className}`}
             style={fontStyles}
         >
-            {children}
+            {loading ? 'Loading...' : children}
         </button>
     );
 }
