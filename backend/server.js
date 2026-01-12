@@ -1,3 +1,6 @@
+import helmet from "helmet";
+import { errorHandler } from "./middleware/errorHandler.js";
+import rateLimit from "express-rate-limit";
 import "dotenv/config";
 import paymentRoutes from "./routes/payment.routes.js";
 import express from "express";
@@ -6,9 +9,20 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/user.routes.js";
 
 const app = express();
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // max 100 requests per IP
+    message: "Too many requests. Please try again later."
+});
 
 // middleware
-app.use(cors());
+app.use(helmet());
+
+app.use(cors({
+    origin: ["http://localhost:5173"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
 app.use(express.json());
 
 // connect db
@@ -24,6 +38,7 @@ const connectDB = async () => {
 };
 
 connectDB();
+app.use(limiter);
 
 // routes
 app.use("/api/users", userRoutes);
@@ -36,6 +51,19 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
+app.use(errorHandler);
+
 app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
 });
+
+import jwt from "jsonwebtoken";
+
+app.get("/api/test-token", (req, res) => {
+    const token = jwt.sign({ id: "test-user" }, process.env.JWT_SECRET, {
+        expiresIn: "1d"
+    });
+
+    res.json({ token });
+});
+
