@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 import { Navbar, Footer } from '../components/layout';
-import { Button, ProblemCard, SolutionCard, ContactForm } from '../components/ui';
+import { Button, ProblemCard, SolutionCard, ContactForm, PricingCard } from '../components/ui';
 import { faqs } from '../data/faqData';
 // Heroicons imports
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -10,6 +11,9 @@ import { CheckCircleIcon, QuestionMarkCircleIcon, PlusCircleIcon } from '@heroic
 export default function Home() {
     // State for FAQ accordion
     const [openIndex, setOpenIndex] = useState(null);
+
+    // State for pricing card modal
+    const [isPricingOpen, setIsPricingOpen] = useState(false);
 
     // State for contact form modal
     const [isFormOpen, setIsFormOpen] = useState(false);
@@ -20,8 +24,12 @@ export default function Home() {
     };
 
     const handleJoinClick = () => {
-        setFormType('join');
-        setIsFormOpen(true);
+        setIsPricingOpen(true);
+    };
+
+    const handlePricingJoinClick = () => {
+        // Just close the pricing modal (no contact form)
+        setIsPricingOpen(false);
     };
 
     const handleBookCallClick = () => {
@@ -40,14 +48,17 @@ export default function Home() {
                 {/* Navbar */}
                 <Navbar onJoinClick={handleJoinClick} />
 
-                {/* Background Image - Primary */}
-                <div
+                {/* Background Image - Slow zoom out animation */}
+                <motion.div
                     className="absolute inset-0 w-full h-full"
                     style={{
                         backgroundImage: 'url(/images/hero-bg.png)',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}
+                    initial={{ scale: 1.1 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
                     aria-hidden="true"
                 />
 
@@ -59,15 +70,25 @@ export default function Home() {
 
                 {/* Content Container */}
                 <div className="relative z-10 flex flex-col items-center gap-5 md:gap-8 px-4">
-                    {/* Main Heading */}
-                    <h1 className="hero-heading max-w-[372px] md:max-w-[1046.34px]">
+                    {/* Main Heading - Simple fade in */}
+                    <motion.h1
+                        className="hero-heading max-w-[372px] md:max-w-[1046.34px]"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+                    >
                         Stop Chasing Leads. Let Them Come to You.
-                    </h1>
+                    </motion.h1>
 
-                    {/* Subheading */}
-                    <p className="hero-subheading max-w-[294px] md:max-w-[708.44px]">
+                    {/* Subheading - Fade in */}
+                    <motion.p
+                        className="hero-subheading max-w-[294px] md:max-w-[708.44px]"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
+                    >
                         Join India&apos;s first WhatsApp community built exclusively for manufacturers who are tired of cold calls that go nowhere.
-                    </p>
+                    </motion.p>
                 </div>
             </section>
 
@@ -79,55 +100,152 @@ export default function Home() {
                     aria-label="Features section"
                 >
                     {/* Mobile: Image First, Desktop: Content First */}
-                    <div className="md:hidden relative w-full max-w-[360px] h-[300px] border border-white/20">
+                    <motion.div
+                        className="md:hidden relative w-full max-w-[360px] h-[300px] border border-white/20"
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
                         <img
                             src="/images/features-image.jpg"
                             alt="Manufacturing professional"
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         />
-                    </div>
+                    </motion.div>
 
                     {/* Content */}
-                    <div className="flex flex-col items-start gap-[30px] w-full max-w-[360px] md:max-w-[687px]">
+                    <motion.div
+                        className="flex flex-col items-start gap-[30px] w-full max-w-[360px] md:max-w-[687px]"
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
                         {/* Description */}
                         <p className="body-text text-white w-full text-base md:text-2xl leading-[1.1875rem] md:leading-[1.8125rem]">
                             India&apos;s first WhatsApp community built exclusively for manufacturers. Get 20 qualified leads delivered monthly—plus live market intel, competitor insights, and daily industry updates.
                         </p>
 
-                        {/* Benefits List */}
-                        <div className="flex flex-col items-start w-full">
+                        {/* Benefits List - Staggered */}
+                        <motion.div
+                            className="flex flex-col items-start w-full"
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-100px" }}
+                            variants={{
+                                hidden: {},
+                                visible: { transition: { staggerChildren: 0.15 } }
+                            }}
+                        >
                             {/* Benefit 1 */}
-                            <div className="flex flex-row items-start py-8 gap-4 md:gap-4 w-full border-b border-white/20">
-                                <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
-                                <span className="body-text text-white text-base md:text-2xl leading-[1.1875rem] md:leading-[1.8125rem] flex-1">
+                            <motion.div
+                                className="flex flex-row items-start py-8 gap-4 md:gap-4 w-full border-b border-white/20"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    visible: { opacity: 1, transition: { duration: 0.3 } }
+                                }}
+                            >
+                                <motion.div
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.3, duration: 0.3, ease: "backOut" }}
+                                >
+                                    <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
+                                </motion.div>
+                                <motion.span
+                                    className="body-text text-white text-base md:text-2xl leading-[1.1875rem] md:leading-[1.8125rem] flex-1"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.45, duration: 0.4 }}
+                                >
                                     20 qualified leads land in your WhatsApp every month
-                                </span>
-                            </div>
+                                </motion.span>
+                            </motion.div>
 
                             {/* Benefit 2 */}
-                            <div className="flex flex-row items-start py-8 gap-2 md:gap-2 w-full border-b border-white/20">
-                                <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
-                                <span className="body-text text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1">
+                            <motion.div
+                                className="flex flex-row items-start py-8 gap-2 md:gap-2 w-full border-b border-white/20"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    visible: { opacity: 1, transition: { duration: 0.3 } }
+                                }}
+                            >
+                                <motion.div
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.45, duration: 0.3, ease: "backOut" }}
+                                >
+                                    <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
+                                </motion.div>
+                                <motion.span
+                                    className="body-text text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.6, duration: 0.4 }}
+                                >
                                     See what your competitors are doing (legally, of course)
-                                </span>
-                            </div>
+                                </motion.span>
+                            </motion.div>
 
                             {/* Benefit 3 */}
-                            <div className="flex flex-row items-start py-8 gap-2 md:gap-2 w-full border-b border-white/20">
-                                <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
-                                <span className="body-text text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1">
+                            <motion.div
+                                className="flex flex-row items-start py-8 gap-2 md:gap-2 w-full border-b border-white/20"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    visible: { opacity: 1, transition: { duration: 0.3 } }
+                                }}
+                            >
+                                <motion.div
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.6, duration: 0.3, ease: "backOut" }}
+                                >
+                                    <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
+                                </motion.div>
+                                <motion.span
+                                    className="body-text text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.75, duration: 0.4 }}
+                                >
                                     Know which products are hot before your rivals do
-                                </span>
-                            </div>
+                                </motion.span>
+                            </motion.div>
 
                             {/* Benefit 4 */}
-                            <div className="flex flex-row items-start py-8 gap-2 md:gap-2 w-full border-b border-white/20">
-                                <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
-                                <span className="body-text text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1">
+                            <motion.div
+                                className="flex flex-row items-start py-8 gap-2 md:gap-2 w-full border-b border-white/20"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    visible: { opacity: 1, transition: { duration: 0.3 } }
+                                }}
+                            >
+                                <motion.div
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    whileInView={{ scale: 1, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.75, duration: 0.3, ease: "backOut" }}
+                                >
+                                    <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
+                                </motion.div>
+                                <motion.span
+                                    className="body-text text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.9, duration: 0.4 }}
+                                >
                                     Daily news that matters—no fluff, just fact
-                                </span>
-                            </div>
-                        </div>
+                                </motion.span>
+                            </motion.div>
+                        </motion.div>
 
                         {/* Join Now Button */}
                         <Button
@@ -138,16 +256,22 @@ export default function Home() {
                         >
                             Join Now
                         </Button>
-                    </div>
+                    </motion.div>
 
                     {/* Desktop: Image on Right */}
-                    <div className="hidden md:block relative w-full max-w-[522px] h-[560px] border border-white/20">
+                    <motion.div
+                        className="hidden md:block relative w-full max-w-[522px] h-[560px] border border-white/20"
+                        initial={{ opacity: 0, x: 40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                    >
                         <img
                             src="/images/features-image.jpg"
                             alt="Manufacturing professional"
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         />
-                    </div>
+                    </motion.div>
                 </section>
 
                 {/* Problems Section */}
@@ -157,7 +281,13 @@ export default function Home() {
                 >
                     <div className="flex flex-col items-start gap-14 md:gap-14 w-full max-w-[360px] md:max-w-[1280px]">
                         {/* Section Header */}
-                        <div className="flex flex-col items-start gap-16 md:gap-16 w-full">
+                        <motion.div
+                            className="flex flex-col items-start gap-16 md:gap-16 w-full"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
+                        >
                             <div className="flex flex-col items-start gap-5 md:gap-5 w-full">
                                 <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                                     Your Factory Runs Like Clockwork. Your Lead Pipeline? Not So Much.
@@ -167,37 +297,60 @@ export default function Home() {
                             <p className="body-text text-white w-full text-xl md:text-2xl leading-6 md:leading-[29px]">
                                 Let&apos;s be honest:
                             </p>
-                        </div>
+                        </motion.div>
 
                         {/* Problem Cards - Mobile: Stacked, Desktop: 2x2 Grid */}
                         <div className="flex flex-col items-start gap-7 w-full">
-                            {/* Mobile Only: All 4 cards stacked */}
-                            <div className="md:hidden flex flex-col items-start gap-7 w-full">
-                                <ProblemCard
-                                    image="/images/problem-04.jpg"
-                                    title="Exhibitions?"
-                                    description="₹2 lakhs spent. 500 handshakes. 3 serious buyers. Maybe."
-                                />
-                                <ProblemCard
-                                    image="/images/problem-01.jpg"
-                                    title="Your website?"
-                                    description='Last inquiry: 6 weeks ago. Subject: "Can you make plastic toys?" (You manufacture industrial pumps.)'
-                                />
-                                <ProblemCard
-                                    image="/images/problem-03.jpg"
-                                    title="Cold calling?"
-                                    description="100 calls. 80 don't answer. 15 ghost you. 5 waste your time."
-                                />
-                                <ProblemCard
-                                    image="/images/problem-02.jpg"
-                                    title="Online leads?"
-                                    description='Half spam. Half "students doing project work."'
-                                    className="[&_img]:object-right"
-                                />
-                            </div>
+                            {/* Mobile Only: All 4 cards stacked - Staggered */}
+                            <motion.div
+                                className="md:hidden flex flex-col items-start gap-7 w-full"
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-100px" }}
+                                variants={{
+                                    hidden: {},
+                                    visible: { transition: { staggerChildren: 0.15 } }
+                                }}
+                            >
+                                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}>
+                                    <ProblemCard
+                                        image="/images/problem-04.jpg"
+                                        title="Exhibitions?"
+                                        description="₹2 lakhs spent. 500 handshakes. 3 serious buyers. Maybe."
+                                    />
+                                </motion.div>
+                                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}>
+                                    <ProblemCard
+                                        image="/images/problem-01.jpg"
+                                        title="Your website?"
+                                        description='Last inquiry: 6 weeks ago. Subject: "Can you make plastic toys?" (You manufacture industrial pumps.)'
+                                    />
+                                </motion.div>
+                                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}>
+                                    <ProblemCard
+                                        image="/images/problem-03.jpg"
+                                        title="Cold calling?"
+                                        description="100 calls. 80 don't answer. 15 ghost you. 5 waste your time."
+                                    />
+                                </motion.div>
+                                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}>
+                                    <ProblemCard
+                                        image="/images/problem-02.jpg"
+                                        title="Online leads?"
+                                        description='Half spam. Half "students doing project work."'
+                                        className="[&_img]:object-right"
+                                    />
+                                </motion.div>
+                            </motion.div>
 
                             {/* Desktop: Row 1 with 2 cards side by side */}
-                            <div className="hidden md:flex flex-row items-center gap-7 w-full">
+                            <motion.div
+                                className="hidden md:flex flex-row items-center gap-7 w-full"
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.6, ease: "easeOut" }}
+                            >
                                 <ProblemCard
                                     image="/images/problem-04.jpg"
                                     title="Exhibitions?"
@@ -210,10 +363,16 @@ export default function Home() {
                                     description='Last inquiry: 6 weeks ago. Subject: "Can you make plastic toys?" (You manufacture industrial pumps.)'
                                     className="flex-1"
                                 />
-                            </div>
+                            </motion.div>
 
                             {/* Desktop: Row 2 with 2 cards side by side */}
-                            <div className="hidden md:flex flex-row items-center gap-7 w-full">
+                            <motion.div
+                                className="hidden md:flex flex-row items-center gap-7 w-full"
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                            >
                                 <ProblemCard
                                     image="/images/problem-03.jpg"
                                     title="Cold calling?"
@@ -226,18 +385,24 @@ export default function Home() {
                                     description='Half spam. Half "students doing project work."'
                                     className="flex-1 [&_img]:object-right"
                                 />
-                            </div>
+                            </motion.div>
                         </div>
 
                         {/* Closing Text */}
-                        <div className="flex flex-col items-start gap-10 w-full">
+                        <motion.div
+                            className="flex flex-col items-start gap-10 w-full"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
+                        >
                             <p className="body-text text-white text-xl md:text-2xl leading-6 md:leading-[1.8125rem] w-full">
                                 You don&apos;t have a production problem. You have a consistent lead-flow problem.
                             </p>
                             <p className="body-text text-white text-xl md:text-2xl leading-6 md:leading-[29px] w-full">
                                 We built something simple: A WhatsApp community where qualified leads land in your phone every month— no exhibitions, no cold calls, no wasted time.
                             </p>
-                        </div>
+                        </motion.div>
                     </div>
                 </section>
 
@@ -247,79 +412,113 @@ export default function Home() {
                     aria-label="Solutions section"
                 >
                     {/* Section Header */}
-                    <div className="flex flex-col items-start w-full">
+                    <motion.div
+                        className="flex flex-col items-start w-full"
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
                         <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                             What You Actually Get
                         </h2>
-                    </div>
+                    </motion.div>
 
                     {/* Feature Block 01 - Image Left */}
-                    <SolutionCard
-                        image="/images/solution-01.png"
-                        title="20 Qualified Leads Every Month - Guaranteed"
-                        subtitle="Real decision-makers who need what you make:"
-                        content={
-                            <>
-                                • Buyers actively searching for suppliers<br />
-                                • Companies seeking OEM partners<br />
-                                • Distributors scouting products<br />
-                                • Projects with actual budgets
-                            </>
-                        }
-                        footer="Convert just ONE lead, you've made all of your money back which you invested. Everything after? Pure profit."
-                        imagePosition="left"
-                    />
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                        <SolutionCard
+                            image="/images/solution-01.png"
+                            title="20 Qualified Leads Every Month - Guaranteed"
+                            subtitle="Real decision-makers who need what you make:"
+                            content={
+                                <>
+                                    • Buyers actively searching for suppliers<br />
+                                    • Companies seeking OEM partners<br />
+                                    • Distributors scouting products<br />
+                                    • Projects with actual budgets
+                                </>
+                            }
+                            footer="Convert just ONE lead, you've made all of your money back which you invested. Everything after? Pure profit."
+                            imagePosition="left"
+                        />
+                    </motion.div>
 
                     {/* Feature Block 02 - Image Right */}
-                    <SolutionCard
-                        image="/images/solution-02.png"
-                        title="Know What Your Competitors Are Doing"
-                        subtitle="We track performance across manufacturing categories:"
-                        content={
-                            <>
-                                • Which products are getting bombarded with inquiries<br />
-                                • Which regions are buying like crazy<br />
-                                • What's trending up vs. dying down<br />
-                                • Where demand is exploding
-                            </>
-                        }
-                        footer='Example: "This month, automotive component suppliers got 40% more inquiries, mostly from Pune and Coimbatore."'
-                        imagePosition="right"
-                    />
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                        <SolutionCard
+                            image="/images/solution-02.png"
+                            title="Know What Your Competitors Are Doing"
+                            subtitle="We track performance across manufacturing categories:"
+                            content={
+                                <>
+                                    • Which products are getting bombarded with inquiries<br />
+                                    • Which regions are buying like crazy<br />
+                                    • What's trending up vs. dying down<br />
+                                    • Where demand is exploding
+                                </>
+                            }
+                            footer='Example: "This month, automotive component suppliers got 40% more inquiries, mostly from Pune and Coimbatore."'
+                            imagePosition="right"
+                        />
+                    </motion.div>
 
                     {/* Feature Block 03 - Image Left */}
-                    <SolutionCard
-                        image="/images/solution-03.png"
-                        title="Daily Industry Updates (That Actually Matter)"
-                        subtitle="Every morning, get:"
-                        content={
-                            <>
-                                • Policy changes that affect your bottom line<br />
-                                • New export opportunities<br />
-                                • Raw material price alerts<br />
-                                • Industry shifts you need to know
-                            </>
-                        }
-                        footer="No fluff. No generic news. Just the intel that helps you make better decisions."
-                        imagePosition="left"
-                    />
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                        <SolutionCard
+                            image="/images/solution-03.png"
+                            title="Daily Industry Updates (That Actually Matter)"
+                            subtitle="Every morning, get:"
+                            content={
+                                <>
+                                    • Policy changes that affect your bottom line<br />
+                                    • New export opportunities<br />
+                                    • Raw material price alerts<br />
+                                    • Industry shifts you need to know
+                                </>
+                            }
+                            footer="No fluff. No generic news. Just the intel that helps you make better decisions."
+                            imagePosition="left"
+                        />
+                    </motion.div>
 
                     {/* Feature Block 04 - Image Right */}
-                    <SolutionCard
-                        image="/images/solution-04.png"
-                        title="A Network That Actually Works"
-                        subtitle="Verified community of:"
-                        content={
-                            <>
-                                • Manufacturing company owners<br />
-                                • Production managers<br />
-                                • Serious buyers and distributors<br />
-                                • Industry veterans
-                            </>
-                        }
-                        footer='No spam. No "Good morning" GIFs. Just real business connections.'
-                        imagePosition="right"
-                    />
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                        <SolutionCard
+                            image="/images/solution-04.png"
+                            title="A Network That Actually Works"
+                            subtitle="Verified community of:"
+                            content={
+                                <>
+                                    • Manufacturing company owners<br />
+                                    • Production managers<br />
+                                    • Serious buyers and distributors<br />
+                                    • Industry veterans
+                                </>
+                            }
+                            footer='No spam. No "Good morning" GIFs. Just real business connections.'
+                            imagePosition="right"
+                        />
+                    </motion.div>
                 </section>
             </div>
 
@@ -330,63 +529,174 @@ export default function Home() {
                     className="w-full flex flex-col items-center p-5 md:p-20 gap-12 md:gap-12 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
                     aria-label="How it works section"
                 >
-                    <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
+                    <motion.h2
+                        className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]"
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
                         How this works
-                    </h2>
+                    </motion.h2>
 
-                    <div className="flex flex-col items-start p-5 md:p-10 gap-8 md:gap-14 w-full bg-dark-secondary">
-                        <div className="flex flex-col items-start gap-6 md:gap-8 w-full">
+                    <motion.div
+                        className="flex flex-col items-start p-5 md:p-10 gap-8 md:gap-14 w-full bg-dark-secondary"
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                        <motion.div
+                            className="flex flex-col items-start gap-6 md:gap-8 w-full"
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-100px" }}
+                            variants={{
+                                hidden: {},
+                                visible: { transition: { staggerChildren: 0.1 } }
+                            }}
+                        >
                             {/* Step 1 */}
-                            <div className="flex flex-row items-start gap-[15px] w-full">
-                                <div className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0">
+                            <motion.div
+                                className="flex flex-row items-start gap-[15px] w-full"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    visible: { opacity: 1, transition: { duration: 0.3 } }
+                                }}
+                            >
+                                <motion.div
+                                    className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0"
+                                    initial={{ scale: 0, rotate: -180 }}
+                                    whileInView={{ scale: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.2, duration: 0.5, ease: "backOut" }}
+                                >
                                     <span className="text-dark">1</span>
-                                </div>
-                                <p className="step-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]">
+                                </motion.div>
+                                <motion.p
+                                    className="step-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.35, duration: 0.4 }}
+                                >
                                     Join – Costs less than a team dinner or a client lunch.
-                                </p>
-                            </div>
+                                </motion.p>
+                            </motion.div>
 
                             {/* Step 2 */}
-                            <div className="flex flex-row items-start gap-[15px] w-full">
-                                <div className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0">
+                            <motion.div
+                                className="flex flex-row items-start gap-[15px] w-full"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    visible: { opacity: 1, transition: { duration: 0.3 } }
+                                }}
+                            >
+                                <motion.div
+                                    className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0"
+                                    initial={{ scale: 0, rotate: -180 }}
+                                    whileInView={{ scale: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.3, duration: 0.5, ease: "backOut" }}
+                                >
                                     <span className="text-[#0F0F0F]">2</span>
-                                </div>
-                                <p className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
+                                </motion.div>
+                                <motion.p
+                                    className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.45, duration: 0.4 }}
+                                >
                                     Get Added – Within 24 hours after verification.
-                                </p>
-                            </div>
+                                </motion.p>
+                            </motion.div>
 
                             {/* Step 3 */}
-                            <div className="flex flex-row items-start gap-[15px] w-full">
-                                <div className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0">
+                            <motion.div
+                                className="flex flex-row items-start gap-[15px] w-full"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    visible: { opacity: 1, transition: { duration: 0.3 } }
+                                }}
+                            >
+                                <motion.div
+                                    className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0"
+                                    initial={{ scale: 0, rotate: -180 }}
+                                    whileInView={{ scale: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.4, duration: 0.5, ease: "backOut" }}
+                                >
                                     <span className="text-[#0F0F0F]">3</span>
-                                </div>
-                                <p className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
+                                </motion.div>
+                                <motion.p
+                                    className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.55, duration: 0.4 }}
+                                >
                                     Leads Start Flowing – First leads arrive within a week.
-                                </p>
-                            </div>
+                                </motion.p>
+                            </motion.div>
 
                             {/* Step 4 */}
-                            <div className="flex flex-row items-start gap-[15px] w-full">
-                                <div className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0">
+                            <motion.div
+                                className="flex flex-row items-start gap-[15px] w-full"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    visible: { opacity: 1, transition: { duration: 0.3 } }
+                                }}
+                            >
+                                <motion.div
+                                    className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0"
+                                    initial={{ scale: 0, rotate: -180 }}
+                                    whileInView={{ scale: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.5, duration: 0.5, ease: "backOut" }}
+                                >
                                     <span className="text-[#0F0F0F]">4</span>
-                                </div>
-                                <p className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
+                                </motion.div>
+                                <motion.p
+                                    className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.65, duration: 0.4 }}
+                                >
                                     Track What&apos;s Hot – Monthly data shows industry trends.
-                                </p>
-                            </div>
+                                </motion.p>
+                            </motion.div>
 
                             {/* Step 5 */}
-                            <div className="flex flex-row items-start gap-[15px] w-full">
-                                <div className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0">
+                            <motion.div
+                                className="flex flex-row items-start gap-[15px] w-full"
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    visible: { opacity: 1, transition: { duration: 0.3 } }
+                                }}
+                            >
+                                <motion.div
+                                    className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0"
+                                    initial={{ scale: 0, rotate: -180 }}
+                                    whileInView={{ scale: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.6, duration: 0.5, ease: "backOut" }}
+                                >
                                     <span className="text-[#0F0F0F]">5</span>
-                                </div>
-                                <p className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
+                                </motion.div>
+                                <motion.p
+                                    className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.75, duration: 0.4 }}
+                                >
                                     Grow Smarter – Network, learn, spot opportunities early.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                                </motion.p>
+                            </motion.div>
+                        </motion.div>
+                    </motion.div>
                 </section>
 
                 {/* IsThisForYou Section */}
@@ -394,13 +704,25 @@ export default function Home() {
                     className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
                     aria-label="Is this for you section"
                 >
-                    <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
+                    <motion.h2
+                        className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]"
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
                         Is This For You?
-                    </h2>
+                    </motion.h2>
 
                     <div className="flex flex-col md:flex-row items-stretch gap-10 md:gap-16 w-full">
                         {/* Perfect If You - Light Card */}
-                        <div className="flex flex-col items-start p-5 md:p-10 gap-10 md:gap-14 w-full md:w-1/2 bg-[#F5F5F5]">
+                        <motion.div
+                            className="flex flex-col items-start p-5 md:p-10 gap-10 md:gap-14 w-full md:w-1/2 bg-[#F5F5F5]"
+                            initial={{ opacity: 0, x: -40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
+                        >
                             <h3 className="step-text text-2xl md:text-[40px] leading-[100%] text-[#151515]">
                                 Perfect If You
                             </h3>
@@ -408,48 +730,102 @@ export default function Home() {
                             <div className="flex flex-col items-start gap-6 md:gap-8 w-full">
                                 {/* Item 1 */}
                                 <div className="flex flex-row items-start gap-[15px]">
-                                    <div className="w-8 h-8 flex items-center justify-center bg-dark rounded-full flex-shrink-0">
+                                    <motion.div
+                                        className="w-8 h-8 flex items-center justify-center bg-dark rounded-full flex-shrink-0"
+                                        initial={{ scale: 0, rotate: 180 }}
+                                        whileInView={{ scale: 1, rotate: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.2, duration: 0.4, ease: "backOut" }}
+                                    >
                                         <CheckIcon className="w-5 h-5 text-white" />
-                                    </div>
-                                    <p className="body-text text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem] text-[#0F0F0F]">
+                                    </motion.div>
+                                    <motion.p
+                                        className="body-text text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem] text-[#0F0F0F]"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.35, duration: 0.4 }}
+                                    >
                                         Manufacture industrial products (machines, components, OEM parts, tools)
-                                    </p>
+                                    </motion.p>
                                 </div>
 
                                 {/* Item 2 */}
                                 <div className="flex flex-row items-start gap-[15px]">
-                                    <div className="w-8 h-8 flex items-center justify-center bg-dark rounded-full flex-shrink-0">
+                                    <motion.div
+                                        className="w-8 h-8 flex items-center justify-center bg-dark rounded-full flex-shrink-0"
+                                        initial={{ scale: 0, rotate: 180 }}
+                                        whileInView={{ scale: 1, rotate: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.35, duration: 0.4, ease: "backOut" }}
+                                    >
                                         <CheckIcon className="w-5 h-5 text-white" />
-                                    </div>
-                                    <p className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-[#0F0F0F]">
+                                    </motion.div>
+                                    <motion.p
+                                        className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-[#0F0F0F]"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.5, duration: 0.4 }}
+                                    >
                                         Want leads you can actually call, not just website traffic
-                                    </p>
+                                    </motion.p>
                                 </div>
 
                                 {/* Item 3 */}
                                 <div className="flex flex-row items-start gap-[15px]">
-                                    <div className="check-icon-container">
+                                    <motion.div
+                                        className="check-icon-container"
+                                        initial={{ scale: 0, rotate: 180 }}
+                                        whileInView={{ scale: 1, rotate: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.5, duration: 0.4, ease: "backOut" }}
+                                    >
                                         <CheckIcon className="w-5 h-5 text-white" />
-                                    </div>
-                                    <p className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-[#0F0F0F]">
+                                    </motion.div>
+                                    <motion.p
+                                        className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-[#0F0F0F]"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.65, duration: 0.4 }}
+                                    >
                                         Will follow up and close deals yourself
-                                    </p>
+                                    </motion.p>
                                 </div>
 
                                 {/* Item 4 */}
                                 <div className="flex flex-row items-start gap-[15px]">
-                                    <div className="check-icon-container">
+                                    <motion.div
+                                        className="check-icon-container"
+                                        initial={{ scale: 0, rotate: 180 }}
+                                        whileInView={{ scale: 1, rotate: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.65, duration: 0.4, ease: "backOut" }}
+                                    >
                                         <CheckIcon className="w-5 h-5 text-white" />
-                                    </div>
-                                    <p className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-[#0F0F0F]">
+                                    </motion.div>
+                                    <motion.p
+                                        className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-[#0F0F0F]"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.8, duration: 0.4 }}
+                                    >
                                         Want market insights before everyone else
-                                    </p>
+                                    </motion.p>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Not For You If You - Dark Card */}
-                        <div className="flex flex-col items-start p-5 md:p-10 gap-10 md:gap-14 w-full md:w-1/2 bg-dark-secondary">
+                        <motion.div
+                            className="flex flex-col items-start p-5 md:p-10 gap-10 md:gap-14 w-full md:w-1/2 bg-dark-secondary"
+                            initial={{ opacity: 0, x: 40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                        >
                             <h3 className="step-text text-2xl md:text-[40px] leading-[100%] text-white">
                                 Not For You If You
                             </h3>
@@ -457,45 +833,93 @@ export default function Home() {
                             <div className="flex flex-col items-start gap-6 md:gap-8 w-full">
                                 {/* Item 1 */}
                                 <div className="flex flex-row items-start gap-[15px]">
-                                    <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                    <motion.div
+                                        className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
+                                        initial={{ scale: 0, rotate: -180 }}
+                                        whileInView={{ scale: 1, rotate: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.3, duration: 0.4, ease: "backOut" }}
+                                    >
                                         <XMarkIcon className="w-5 h-5 text-[#0F0F0F]" />
-                                    </div>
-                                    <p className="body-text text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem] text-white">
+                                    </motion.div>
+                                    <motion.p
+                                        className="body-text text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem] text-white"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.45, duration: 0.4 }}
+                                    >
                                         Expect automated sales while you sleep
-                                    </p>
+                                    </motion.p>
                                 </div>
 
                                 {/* Item 2 */}
                                 <div className="flex flex-row items-start gap-[15px]">
-                                    <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                    <motion.div
+                                        className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
+                                        initial={{ scale: 0, rotate: -180 }}
+                                        whileInView={{ scale: 1, rotate: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.45, duration: 0.4, ease: "backOut" }}
+                                    >
                                         <XMarkIcon className="w-5 h-5 text-[#0F0F0F]" />
-                                    </div>
-                                    <p className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-white">
+                                    </motion.div>
+                                    <motion.p
+                                        className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-white"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.6, duration: 0.4 }}
+                                    >
                                         Won&apos;t talk to buyers because you&apos;re &quot;too busy&quot;
-                                    </p>
+                                    </motion.p>
                                 </div>
 
                                 {/* Item 3 */}
                                 <div className="flex flex-row items-start gap-[15px]">
-                                    <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                    <motion.div
+                                        className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
+                                        initial={{ scale: 0, rotate: -180 }}
+                                        whileInView={{ scale: 1, rotate: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.6, duration: 0.4, ease: "backOut" }}
+                                    >
                                         <XMarkIcon className="w-5 h-5 text-[#0F0F0F]" />
-                                    </div>
-                                    <p className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-white">
+                                    </motion.div>
+                                    <motion.p
+                                        className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-white"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.75, duration: 0.4 }}
+                                    >
                                         Think our subscription is &quot;too expensive&quot; for 20 qualified leads
-                                    </p>
+                                    </motion.p>
                                 </div>
 
                                 {/* Item 4 */}
                                 <div className="flex flex-row items-start gap-[15px]">
-                                    <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                    <motion.div
+                                        className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
+                                        initial={{ scale: 0, rotate: -180 }}
+                                        whileInView={{ scale: 1, rotate: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.75, duration: 0.4, ease: "backOut" }}
+                                    >
                                         <XMarkIcon className="w-5 h-5 text-[#0F0F0F]" />
-                                    </div>
-                                    <p className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-white">
+                                    </motion.div>
+                                    <motion.p
+                                        className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-white"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.9, duration: 0.4 }}
+                                    >
                                         Plan to spam the group (we&apos;ll kick you out)
-                                    </p>
+                                    </motion.p>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </section>
 
@@ -504,52 +928,106 @@ export default function Home() {
                     className="w-full flex flex-col items-start p-5 md:p-20 gap-10 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
                     aria-label="Future platform access section"
                 >
-                    <div className="flex flex-col items-start gap-7 md:gap-7 w-full">
+                    <motion.div
+                        className="flex flex-col items-start gap-7 md:gap-7 w-full"
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
                         <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                             Plus: Early Access to Something Bigger
                         </h2>
                         <p className="body-text text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full">
                             WhatsApp community members get first access to our upcoming platform where you can:
                         </p>
-                    </div>
+                    </motion.div>
 
-                    <div className="flex flex-col items-start p-5 md:p-10 gap-8 md:gap-14 w-full bg-dark-secondary">
+                    <motion.div
+                        className="flex flex-col items-start p-5 md:p-10 gap-8 md:gap-14 w-full bg-dark-secondary"
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
                         <div className="flex flex-col items-start gap-6 md:gap-8 w-full">
                             {/* Benefit 1 */}
                             <div className="flex flex-row items-start gap-[15px]">
-                                <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                <motion.div
+                                    className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
+                                    initial={{ scale: 0, rotate: 180 }}
+                                    whileInView={{ scale: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.2, duration: 0.4, ease: "backOut" }}
+                                >
                                     <CheckIcon className="w-5 h-5 text-[#0F0F0F]" />
-                                </div>
-                                <p className="body-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]">
+                                </motion.div>
+                                <motion.p
+                                    className="body-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.35, duration: 0.4 }}
+                                >
                                     List and sell products to thousands of verified buyers
-                                </p>
+                                </motion.p>
                             </div>
 
                             {/* Benefit 2 */}
                             <div className="flex flex-row items-start gap-[15px]">
-                                <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                <motion.div
+                                    className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
+                                    initial={{ scale: 0, rotate: 180 }}
+                                    whileInView={{ scale: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.35, duration: 0.4, ease: "backOut" }}
+                                >
                                     <CheckIcon className="w-5 h-5 text-[#0F0F0F]" />
-                                </div>
-                                <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
+                                </motion.div>
+                                <motion.p
+                                    className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.5, duration: 0.4 }}
+                                >
                                     See live demand dashboards for your category
-                                </p>
+                                </motion.p>
                             </div>
 
                             {/* Benefit 3 */}
                             <div className="flex flex-row items-start gap-[15px]">
-                                <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                                <motion.div
+                                    className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
+                                    initial={{ scale: 0, rotate: 180 }}
+                                    whileInView={{ scale: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.5, duration: 0.4, ease: "backOut" }}
+                                >
                                     <CheckIcon className="w-5 h-5 text-[#0F0F0F]" />
-                                </div>
-                                <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
+                                </motion.div>
+                                <motion.p
+                                    className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.65, duration: 0.4 }}
+                                >
                                     Connect with suppliers and partners at scale
-                                </p>
+                                </motion.p>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <p className="body-text text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full">
+                    <motion.p
+                        className="body-text text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                    >
                         You&apos;re not just joining a group. You&apos;re getting ground-floor access.
-                    </p>
+                    </motion.p>
                 </section>
             </div>
 
@@ -594,7 +1072,13 @@ export default function Home() {
                 {/* Content Container */}
                 <div className="relative z-[2] flex flex-col md:flex-row justify-between items-start gap-10 md:gap-16 w-full">
                     {/* Top Content */}
-                    <div className="flex flex-col items-start gap-7 md:gap-7 w-full md:w-auto">
+                    <motion.div
+                        className="flex flex-col items-start gap-7 md:gap-7 w-full md:w-auto"
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
                         <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                             Join Now. Start Growing.
                         </h2>
@@ -611,70 +1095,148 @@ export default function Home() {
                         >
                             Join Now
                         </Button>
-                    </div>
+                    </motion.div>
 
                     {/* Benefits List - With dark background box */}
-                    <div className="flex flex-col items-start p-5 md:p-10 gap-4 md:gap-4 w-full md:w-auto bg-dark-secondary">
+                    <motion.div
+                        className="flex flex-col items-start p-5 md:p-10 gap-4 md:gap-4 w-full md:w-auto bg-dark-secondary"
+                        initial={{ opacity: 0, x: 40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                    >
                         {/* Item 1 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                            <motion.div
+                                className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
+                                initial={{ scale: 0, rotate: 180 }}
+                                whileInView={{ scale: 1, rotate: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3, duration: 0.4, ease: "backOut" }}
+                            >
                                 <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
-                            </div>
-                            <p className="body-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]">
+                            </motion.div>
+                            <motion.p
+                                className="body-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]"
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.45, duration: 0.4 }}
+                            >
                                 20 qualified leads monthly
-                            </p>
+                            </motion.p>
                         </div>
 
                         {/* Item 2 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                            <motion.div
+                                className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
+                                initial={{ scale: 0, rotate: 180 }}
+                                whileInView={{ scale: 1, rotate: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.45, duration: 0.4, ease: "backOut" }}
+                            >
                                 <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
-                            </div>
-                            <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
+                            </motion.div>
+                            <motion.p
+                                className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.6, duration: 0.4 }}
+                            >
                                 Manufacturing-only WhatsApp group
-                            </p>
+                            </motion.p>
                         </div>
 
                         {/* Item 3 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                            <motion.div
+                                className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
+                                initial={{ scale: 0, rotate: 180 }}
+                                whileInView={{ scale: 1, rotate: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.6, duration: 0.4, ease: "backOut" }}
+                            >
                                 <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
-                            </div>
-                            <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
+                            </motion.div>
+                            <motion.p
+                                className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.75, duration: 0.4 }}
+                            >
                                 Competitor & market data
-                            </p>
+                            </motion.p>
                         </div>
 
                         {/* Item 4 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                            <motion.div
+                                className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
+                                initial={{ scale: 0, rotate: 180 }}
+                                whileInView={{ scale: 1, rotate: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.75, duration: 0.4, ease: "backOut" }}
+                            >
                                 <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
-                            </div>
-                            <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
+                            </motion.div>
+                            <motion.p
+                                className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.9, duration: 0.4 }}
+                            >
                                 Daily opportunity alerts
-                            </p>
+                            </motion.p>
                         </div>
 
                         {/* Item 5 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                            <motion.div
+                                className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
+                                initial={{ scale: 0, rotate: 180 }}
+                                whileInView={{ scale: 1, rotate: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.9, duration: 0.4, ease: "backOut" }}
+                            >
                                 <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
-                            </div>
-                            <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
+                            </motion.div>
+                            <motion.p
+                                className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 1.05, duration: 0.4 }}
+                            >
                                 Webinars for your team
-                            </p>
+                            </motion.p>
                         </div>
 
                         {/* Item 6 */}
                         <div className="flex flex-row items-start gap-[15px]">
-                            <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0">
+                            <motion.div
+                                className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
+                                initial={{ scale: 0, rotate: 180 }}
+                                whileInView={{ scale: 1, rotate: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 1.05, duration: 0.4, ease: "backOut" }}
+                            >
                                 <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
-                            </div>
-                            <p className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]">
+                            </motion.div>
+                            <motion.p
+                                className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 1.2, duration: 0.4 }}
+                            >
                                 Priority platform access
-                            </p>
+                            </motion.p>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
@@ -683,7 +1245,13 @@ export default function Home() {
                 className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
                 aria-label="Book a call section"
             >
-                <div className="flex flex-col md:flex-row justify-between items-start gap-7 md:gap-7 w-full">
+                <motion.div
+                    className="flex flex-col md:flex-row justify-between items-start gap-7 md:gap-7 w-full"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                >
                     {/* Left Content */}
                     <div className="flex flex-col items-start gap-7 md:gap-7 w-full md:w-auto">
                         <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
@@ -703,7 +1271,7 @@ export default function Home() {
                     >
                         Book Now
                     </Button>
-                </div>
+                </motion.div>
             </section>
 
             {/* ========== WHY SECTION (FAQ) ========== */}
@@ -712,15 +1280,31 @@ export default function Home() {
                 className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
                 aria-label="Frequently asked questions"
             >
-                <div className="flex flex-col items-start gap-7 md:gap-7 w-full">
+                <motion.div
+                    className="flex flex-col items-start gap-7 md:gap-7 w-full"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                >
                     <h2 className="section-heading text-white uppercase text-left w-full text-[52px] md:text-[88px] leading-[88%]">
                         Quick Questions
                     </h2>
-                </div>
+                </motion.div>
 
-                <div className="flex flex-col items-start gap-6 md:gap-6 w-full" role="list">
+                <motion.div
+                    className="flex flex-col items-start gap-6 md:gap-6 w-full"
+                    role="list"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={{
+                        hidden: {},
+                        visible: { transition: { staggerChildren: 0.1 } }
+                    }}
+                >
                     {faqs.map((faq, index) => (
-                        <div
+                        <motion.div
                             key={index}
                             className="flex flex-col items-start w-full bg-dark-secondary transition-all duration-300 p-5 md:p-9 gap-7 md:gap-7"
                             style={{
@@ -728,6 +1312,10 @@ export default function Home() {
                                 border: openIndex === index ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid transparent',
                             }}
                             role="listitem"
+                            variants={{
+                                hidden: { opacity: 0, y: 30 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+                            }}
                         >
                             <button
                                 className="flex flex-row justify-between items-center w-full cursor-pointer"
@@ -768,13 +1356,20 @@ export default function Home() {
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </section>
 
             {/* ========== FOOTER ========== */}
             <Footer />
+
+            {/* Pricing Card Modal */}
+            <PricingCard
+                isOpen={isPricingOpen}
+                onClose={() => setIsPricingOpen(false)}
+                onJoinClick={handlePricingJoinClick}
+            />
 
             {/* Contact Form Modal */}
             <ContactForm
