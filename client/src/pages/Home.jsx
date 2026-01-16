@@ -2,7 +2,34 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { Navbar, Footer } from '../components/layout';
-import { Button, ProblemCard, SolutionCard, ContactForm, PricingCard } from '../components/ui';
+import {
+    Button,
+    ProblemCard,
+    SolutionCard,
+    ContactForm,
+    PricingCard,
+    // Animation utilities
+    fadeInUp,
+    fadeInUpSmall,
+    fadeInUpTiny,
+    fadeInUpViewport,
+    slideInLeft,
+    slideInRightDelayed,
+    slideInRightImage,
+    heroBackgroundZoom,
+    staggerContainer,
+    staggerContainerFast,
+    staggerChild,
+    staggerChildFadeUp,
+    faqItemVariant,
+    createIconPop,
+    createXIconPop,
+    createTextSlide,
+    createCheckIconPop,
+    createStepNumberPop,
+    createStepTextSlide,
+    delaySequences,
+} from '../components/ui';
 import { faqs } from '../data/faqData';
 // Heroicons imports
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -56,9 +83,7 @@ export default function Home() {
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                     }}
-                    initial={{ scale: 1.1 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    {...heroBackgroundZoom}
                     aria-hidden="true"
                 />
 
@@ -73,9 +98,7 @@ export default function Home() {
                     {/* Main Heading - Simple fade in */}
                     <motion.h1
                         className="hero-heading max-w-[372px] md:max-w-[1046.34px]"
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+                        {...fadeInUpSmall}
                     >
                         Stop Chasing Leads. Let Them Come to You.
                     </motion.h1>
@@ -83,9 +106,7 @@ export default function Home() {
                     {/* Subheading - Fade in */}
                     <motion.p
                         className="hero-subheading max-w-[294px] md:max-w-[708.44px]"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
+                        {...fadeInUpTiny}
                     >
                         Join India&apos;s first WhatsApp community built exclusively for manufacturers who are tired of cold calls that go nowhere.
                     </motion.p>
@@ -102,10 +123,7 @@ export default function Home() {
                     {/* Mobile: Image First, Desktop: Content First */}
                     <motion.div
                         className="md:hidden relative w-full max-w-[360px] h-[300px] border border-white/20"
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        {...fadeInUp}
                     >
                         <img
                             src="/images/features-image.jpg"
@@ -117,10 +135,7 @@ export default function Home() {
                     {/* Content */}
                     <motion.div
                         className="flex flex-col items-start gap-[30px] w-full max-w-[360px] md:max-w-[687px]"
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        {...fadeInUp}
                     >
                         {/* Description */}
                         <p className="body-text text-white w-full text-base md:text-2xl leading-[1.1875rem] md:leading-[1.8125rem]">
@@ -133,114 +148,63 @@ export default function Home() {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-100px" }}
-                            variants={{
-                                hidden: {},
-                                visible: { transition: { staggerChildren: 0.15 } }
-                            }}
+                            variants={staggerContainer}
                         >
-                            {/* Benefit 1 */}
                             <motion.div
                                 className="flex flex-row items-start py-8 gap-4 md:gap-4 w-full border-b border-white/20"
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    visible: { opacity: 1, transition: { duration: 0.3 } }
-                                }}
+                                variants={staggerChild}
                             >
-                                <motion.div
-                                    initial={{ scale: 0, opacity: 0 }}
-                                    whileInView={{ scale: 1, opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.3, duration: 0.3, ease: "backOut" }}
-                                >
+                                <motion.div {...createCheckIconPop(delaySequences.benefits.icon[0])}>
                                     <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
                                 </motion.div>
                                 <motion.span
                                     className="body-text text-white text-base md:text-2xl leading-[1.1875rem] md:leading-[1.8125rem] flex-1"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.45, duration: 0.4 }}
+                                    {...createTextSlide(delaySequences.benefits.text[0])}
                                 >
                                     20 qualified leads land in your WhatsApp every month
                                 </motion.span>
                             </motion.div>
 
-                            {/* Benefit 2 */}
                             <motion.div
                                 className="flex flex-row items-start py-8 gap-2 md:gap-2 w-full border-b border-white/20"
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    visible: { opacity: 1, transition: { duration: 0.3 } }
-                                }}
+                                variants={staggerChild}
                             >
-                                <motion.div
-                                    initial={{ scale: 0, opacity: 0 }}
-                                    whileInView={{ scale: 1, opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.45, duration: 0.3, ease: "backOut" }}
-                                >
+                                <motion.div {...createCheckIconPop(delaySequences.benefits.icon[1])}>
                                     <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
                                 </motion.div>
                                 <motion.span
                                     className="body-text text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.6, duration: 0.4 }}
+                                    {...createTextSlide(delaySequences.benefits.text[1])}
                                 >
                                     See what your competitors are doing (legally, of course)
                                 </motion.span>
                             </motion.div>
 
-                            {/* Benefit 3 */}
                             <motion.div
                                 className="flex flex-row items-start py-8 gap-2 md:gap-2 w-full border-b border-white/20"
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    visible: { opacity: 1, transition: { duration: 0.3 } }
-                                }}
+                                variants={staggerChild}
                             >
-                                <motion.div
-                                    initial={{ scale: 0, opacity: 0 }}
-                                    whileInView={{ scale: 1, opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.6, duration: 0.3, ease: "backOut" }}
-                                >
+                                <motion.div {...createCheckIconPop(delaySequences.benefits.icon[2])}>
                                     <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
                                 </motion.div>
                                 <motion.span
                                     className="body-text text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.75, duration: 0.4 }}
+                                    {...createTextSlide(delaySequences.benefits.text[2])}
                                 >
                                     Know which products are hot before your rivals do
                                 </motion.span>
                             </motion.div>
 
-                            {/* Benefit 4 */}
                             <motion.div
                                 className="flex flex-row items-start py-8 gap-2 md:gap-2 w-full border-b border-white/20"
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    visible: { opacity: 1, transition: { duration: 0.3 } }
-                                }}
+                                variants={staggerChild}
                             >
-                                <motion.div
-                                    initial={{ scale: 0, opacity: 0 }}
-                                    whileInView={{ scale: 1, opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.75, duration: 0.3, ease: "backOut" }}
-                                >
+                                <motion.div {...createCheckIconPop(delaySequences.benefits.icon[3])}>
                                     <CheckCircleIcon className="w-6 h-6 text-white flex-shrink-0" />
                                 </motion.div>
                                 <motion.span
                                     className="body-text text-white text-base md:text-2xl leading-[19px] md:leading-[29px] flex-1"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.9, duration: 0.4 }}
+                                    {...createTextSlide(delaySequences.benefits.text[3])}
                                 >
                                     Daily news that matters—no fluff, just fact
                                 </motion.span>
@@ -261,10 +225,7 @@ export default function Home() {
                     {/* Desktop: Image on Right */}
                     <motion.div
                         className="hidden md:block relative w-full max-w-[522px] h-[560px] border border-white/20"
-                        initial={{ opacity: 0, x: 40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                        {...slideInRightImage}
                     >
                         <img
                             src="/images/features-image.jpg"
@@ -283,10 +244,7 @@ export default function Home() {
                         {/* Section Header */}
                         <motion.div
                             className="flex flex-col items-start gap-16 md:gap-16 w-full"
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
+                            {...fadeInUp}
                         >
                             <div className="flex flex-col items-start gap-5 md:gap-5 w-full">
                                 <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
@@ -307,33 +265,30 @@ export default function Home() {
                                 initial="hidden"
                                 whileInView="visible"
                                 viewport={{ once: true, margin: "-100px" }}
-                                variants={{
-                                    hidden: {},
-                                    visible: { transition: { staggerChildren: 0.15 } }
-                                }}
+                                variants={staggerContainer}
                             >
-                                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}>
+                                <motion.div variants={staggerChildFadeUp}>
                                     <ProblemCard
                                         image="/images/problem-04.jpg"
                                         title="Exhibitions?"
                                         description="₹2 lakhs spent. 500 handshakes. 3 serious buyers. Maybe."
                                     />
                                 </motion.div>
-                                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}>
+                                <motion.div variants={staggerChildFadeUp}>
                                     <ProblemCard
                                         image="/images/problem-01.jpg"
                                         title="Your website?"
                                         description='Last inquiry: 6 weeks ago. Subject: "Can you make plastic toys?" (You manufacture industrial pumps.)'
                                     />
                                 </motion.div>
-                                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}>
+                                <motion.div variants={staggerChildFadeUp}>
                                     <ProblemCard
                                         image="/images/problem-03.jpg"
                                         title="Cold calling?"
                                         description="100 calls. 80 don't answer. 15 ghost you. 5 waste your time."
                                     />
                                 </motion.div>
-                                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}>
+                                <motion.div variants={staggerChildFadeUp}>
                                     <ProblemCard
                                         image="/images/problem-02.jpg"
                                         title="Online leads?"
@@ -346,10 +301,7 @@ export default function Home() {
                             {/* Desktop: Row 1 with 2 cards side by side */}
                             <motion.div
                                 className="hidden md:flex flex-row items-center gap-7 w-full"
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{ duration: 0.6, ease: "easeOut" }}
+                                {...fadeInUp}
                             >
                                 <ProblemCard
                                     image="/images/problem-04.jpg"
@@ -368,10 +320,7 @@ export default function Home() {
                             {/* Desktop: Row 2 with 2 cards side by side */}
                             <motion.div
                                 className="hidden md:flex flex-row items-center gap-7 w-full"
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                                {...slideInRightDelayed}
                             >
                                 <ProblemCard
                                     image="/images/problem-03.jpg"
@@ -391,10 +340,7 @@ export default function Home() {
                         {/* Closing Text */}
                         <motion.div
                             className="flex flex-col items-start gap-10 w-full"
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
+                            {...fadeInUp}
                         >
                             <p className="body-text text-white text-xl md:text-2xl leading-6 md:leading-[1.8125rem] w-full">
                                 You don&apos;t have a production problem. You have a consistent lead-flow problem.
@@ -414,10 +360,7 @@ export default function Home() {
                     {/* Section Header */}
                     <motion.div
                         className="flex flex-col items-start w-full"
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        {...fadeInUp}
                     >
                         <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                             What You Actually Get
@@ -425,12 +368,7 @@ export default function Home() {
                     </motion.div>
 
                     {/* Feature Block 01 - Image Left */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                    >
+                    <motion.div {...fadeInUp}>
                         <SolutionCard
                             image="/images/solution-01.png"
                             title="20 Qualified Leads Every Month - Guaranteed"
@@ -449,12 +387,7 @@ export default function Home() {
                     </motion.div>
 
                     {/* Feature Block 02 - Image Right */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                    >
+                    <motion.div {...fadeInUp}>
                         <SolutionCard
                             image="/images/solution-02.png"
                             title="Know What Your Competitors Are Doing"
@@ -473,12 +406,7 @@ export default function Home() {
                     </motion.div>
 
                     {/* Feature Block 03 - Image Left */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                    >
+                    <motion.div {...fadeInUp}>
                         <SolutionCard
                             image="/images/solution-03.png"
                             title="Daily Industry Updates (That Actually Matter)"
@@ -497,12 +425,7 @@ export default function Home() {
                     </motion.div>
 
                     {/* Feature Block 04 - Image Right */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                    >
+                    <motion.div {...fadeInUp}>
                         <SolutionCard
                             image="/images/solution-04.png"
                             title="A Network That Actually Works"
@@ -531,166 +454,107 @@ export default function Home() {
                 >
                     <motion.h2
                         className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]"
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        {...fadeInUp}
                     >
                         How this works
                     </motion.h2>
 
                     <motion.div
                         className="flex flex-col items-start p-5 md:p-10 gap-8 md:gap-14 w-full bg-dark-secondary"
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        {...fadeInUp}
                     >
                         <motion.div
                             className="flex flex-col items-start gap-6 md:gap-8 w-full"
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-100px" }}
-                            variants={{
-                                hidden: {},
-                                visible: { transition: { staggerChildren: 0.1 } }
-                            }}
+                            variants={staggerContainerFast}
                         >
-                            {/* Step 1 */}
                             <motion.div
                                 className="flex flex-row items-start gap-[15px] w-full"
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    visible: { opacity: 1, transition: { duration: 0.3 } }
-                                }}
+                                variants={staggerChild}
                             >
                                 <motion.div
                                     className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0"
-                                    initial={{ scale: 0, rotate: -180 }}
-                                    whileInView={{ scale: 1, rotate: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.2, duration: 0.5, ease: "backOut" }}
+                                    {...createStepNumberPop(delaySequences.steps.number[0])}
                                 >
                                     <span className="text-dark">1</span>
                                 </motion.div>
                                 <motion.p
                                     className="step-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.35, duration: 0.4 }}
+                                    {...createStepTextSlide(delaySequences.steps.text[0])}
                                 >
                                     Join – Costs less than a team dinner or a client lunch.
                                 </motion.p>
                             </motion.div>
 
-                            {/* Step 2 */}
                             <motion.div
                                 className="flex flex-row items-start gap-[15px] w-full"
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    visible: { opacity: 1, transition: { duration: 0.3 } }
-                                }}
+                                variants={staggerChild}
                             >
                                 <motion.div
                                     className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0"
-                                    initial={{ scale: 0, rotate: -180 }}
-                                    whileInView={{ scale: 1, rotate: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.3, duration: 0.5, ease: "backOut" }}
+                                    {...createStepNumberPop(delaySequences.steps.number[1])}
                                 >
                                     <span className="text-[#0F0F0F]">2</span>
                                 </motion.div>
                                 <motion.p
                                     className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.45, duration: 0.4 }}
+                                    {...createStepTextSlide(delaySequences.steps.text[1])}
                                 >
                                     Get Added – Within 24 hours after verification.
                                 </motion.p>
                             </motion.div>
 
-                            {/* Step 3 */}
                             <motion.div
                                 className="flex flex-row items-start gap-[15px] w-full"
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    visible: { opacity: 1, transition: { duration: 0.3 } }
-                                }}
+                                variants={staggerChild}
                             >
                                 <motion.div
                                     className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0"
-                                    initial={{ scale: 0, rotate: -180 }}
-                                    whileInView={{ scale: 1, rotate: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.4, duration: 0.5, ease: "backOut" }}
+                                    {...createStepNumberPop(delaySequences.steps.number[2])}
                                 >
                                     <span className="text-[#0F0F0F]">3</span>
                                 </motion.div>
                                 <motion.p
                                     className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.55, duration: 0.4 }}
+                                    {...createStepTextSlide(delaySequences.steps.text[2])}
                                 >
                                     Leads Start Flowing – First leads arrive within a week.
                                 </motion.p>
                             </motion.div>
 
-                            {/* Step 4 */}
                             <motion.div
                                 className="flex flex-row items-start gap-[15px] w-full"
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    visible: { opacity: 1, transition: { duration: 0.3 } }
-                                }}
+                                variants={staggerChild}
                             >
                                 <motion.div
                                     className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0"
-                                    initial={{ scale: 0, rotate: -180 }}
-                                    whileInView={{ scale: 1, rotate: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.5, duration: 0.5, ease: "backOut" }}
+                                    {...createStepNumberPop(delaySequences.steps.number[3])}
                                 >
                                     <span className="text-[#0F0F0F]">4</span>
                                 </motion.div>
                                 <motion.p
                                     className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.65, duration: 0.4 }}
+                                    {...createStepTextSlide(delaySequences.steps.text[3])}
                                 >
                                     Track What&apos;s Hot – Monthly data shows industry trends.
                                 </motion.p>
                             </motion.div>
 
-                            {/* Step 5 */}
                             <motion.div
                                 className="flex flex-row items-start gap-[15px] w-full"
-                                variants={{
-                                    hidden: { opacity: 0 },
-                                    visible: { opacity: 1, transition: { duration: 0.3 } }
-                                }}
+                                variants={staggerChild}
                             >
                                 <motion.div
                                     className="step-number flex justify-center items-center bg-white rounded-full flex-shrink-0"
-                                    initial={{ scale: 0, rotate: -180 }}
-                                    whileInView={{ scale: 1, rotate: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.6, duration: 0.5, ease: "backOut" }}
+                                    {...createStepNumberPop(delaySequences.steps.number[4])}
                                 >
                                     <span className="text-[#0F0F0F]">5</span>
                                 </motion.div>
                                 <motion.p
                                     className="step-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.75, duration: 0.4 }}
+                                    {...createStepTextSlide(delaySequences.steps.text[4])}
                                 >
                                     Grow Smarter – Network, learn, spot opportunities early.
                                 </motion.p>
@@ -706,10 +570,7 @@ export default function Home() {
                 >
                     <motion.h2
                         className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]"
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        {...fadeInUp}
                     >
                         Is This For You?
                     </motion.h2>
@@ -718,99 +579,68 @@ export default function Home() {
                         {/* Perfect If You - Light Card */}
                         <motion.div
                             className="flex flex-col items-start p-5 md:p-10 gap-10 md:gap-14 w-full md:w-1/2 bg-[#F5F5F5]"
-                            initial={{ opacity: 0, x: -40 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
+                            {...slideInLeft}
                         >
                             <h3 className="step-text text-2xl md:text-[40px] leading-[100%] text-[#151515]">
                                 Perfect If You
                             </h3>
 
                             <div className="flex flex-col items-start gap-6 md:gap-8 w-full">
-                                {/* Item 1 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <motion.div
                                         className="w-8 h-8 flex items-center justify-center bg-dark rounded-full flex-shrink-0"
-                                        initial={{ scale: 0, rotate: 180 }}
-                                        whileInView={{ scale: 1, rotate: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.2, duration: 0.4, ease: "backOut" }}
+                                        {...createIconPop(delaySequences.isThisForYou.light.icon[0])}
                                     >
                                         <CheckIcon className="w-5 h-5 text-white" />
                                     </motion.div>
                                     <motion.p
                                         className="body-text text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem] text-[#0F0F0F]"
-                                        initial={{ opacity: 0, x: -10 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.35, duration: 0.4 }}
+                                        {...createTextSlide(delaySequences.isThisForYou.light.text[0])}
                                     >
                                         Manufacture industrial products (machines, components, OEM parts, tools)
                                     </motion.p>
                                 </div>
 
-                                {/* Item 2 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <motion.div
                                         className="w-8 h-8 flex items-center justify-center bg-dark rounded-full flex-shrink-0"
-                                        initial={{ scale: 0, rotate: 180 }}
-                                        whileInView={{ scale: 1, rotate: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.35, duration: 0.4, ease: "backOut" }}
+                                        {...createIconPop(delaySequences.isThisForYou.light.icon[1])}
                                     >
                                         <CheckIcon className="w-5 h-5 text-white" />
                                     </motion.div>
                                     <motion.p
                                         className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-[#0F0F0F]"
-                                        initial={{ opacity: 0, x: -10 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.5, duration: 0.4 }}
+                                        {...createTextSlide(delaySequences.isThisForYou.light.text[1])}
                                     >
                                         Want leads you can actually call, not just website traffic
                                     </motion.p>
                                 </div>
 
-                                {/* Item 3 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <motion.div
                                         className="check-icon-container"
-                                        initial={{ scale: 0, rotate: 180 }}
-                                        whileInView={{ scale: 1, rotate: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.5, duration: 0.4, ease: "backOut" }}
+                                        {...createIconPop(delaySequences.isThisForYou.light.icon[2])}
                                     >
                                         <CheckIcon className="w-5 h-5 text-white" />
                                     </motion.div>
                                     <motion.p
                                         className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-[#0F0F0F]"
-                                        initial={{ opacity: 0, x: -10 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.65, duration: 0.4 }}
+                                        {...createTextSlide(delaySequences.isThisForYou.light.text[2])}
                                     >
                                         Will follow up and close deals yourself
                                     </motion.p>
                                 </div>
 
-                                {/* Item 4 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <motion.div
                                         className="check-icon-container"
-                                        initial={{ scale: 0, rotate: 180 }}
-                                        whileInView={{ scale: 1, rotate: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.65, duration: 0.4, ease: "backOut" }}
+                                        {...createIconPop(delaySequences.isThisForYou.light.icon[3])}
                                     >
                                         <CheckIcon className="w-5 h-5 text-white" />
                                     </motion.div>
                                     <motion.p
                                         className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-[#0F0F0F]"
-                                        initial={{ opacity: 0, x: -10 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.8, duration: 0.4 }}
+                                        {...createTextSlide(delaySequences.isThisForYou.light.text[3])}
                                     >
                                         Want market insights before everyone else
                                     </motion.p>
@@ -821,99 +651,68 @@ export default function Home() {
                         {/* Not For You If You - Dark Card */}
                         <motion.div
                             className="flex flex-col items-start p-5 md:p-10 gap-10 md:gap-14 w-full md:w-1/2 bg-dark-secondary"
-                            initial={{ opacity: 0, x: 40 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                            {...slideInRightDelayed}
                         >
                             <h3 className="step-text text-2xl md:text-[40px] leading-[100%] text-white">
                                 Not For You If You
                             </h3>
 
                             <div className="flex flex-col items-start gap-6 md:gap-8 w-full">
-                                {/* Item 1 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <motion.div
                                         className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
-                                        initial={{ scale: 0, rotate: -180 }}
-                                        whileInView={{ scale: 1, rotate: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.3, duration: 0.4, ease: "backOut" }}
+                                        {...createXIconPop(delaySequences.isThisForYou.dark.icon[0])}
                                     >
                                         <XMarkIcon className="w-5 h-5 text-[#0F0F0F]" />
                                     </motion.div>
                                     <motion.p
                                         className="body-text text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem] text-white"
-                                        initial={{ opacity: 0, x: -10 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.45, duration: 0.4 }}
+                                        {...createTextSlide(delaySequences.isThisForYou.dark.text[0])}
                                     >
                                         Expect automated sales while you sleep
                                     </motion.p>
                                 </div>
 
-                                {/* Item 2 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <motion.div
                                         className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
-                                        initial={{ scale: 0, rotate: -180 }}
-                                        whileInView={{ scale: 1, rotate: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.45, duration: 0.4, ease: "backOut" }}
+                                        {...createXIconPop(delaySequences.isThisForYou.dark.icon[1])}
                                     >
                                         <XMarkIcon className="w-5 h-5 text-[#0F0F0F]" />
                                     </motion.div>
                                     <motion.p
                                         className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-white"
-                                        initial={{ opacity: 0, x: -10 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.6, duration: 0.4 }}
+                                        {...createTextSlide(delaySequences.isThisForYou.dark.text[1])}
                                     >
                                         Won&apos;t talk to buyers because you&apos;re &quot;too busy&quot;
                                     </motion.p>
                                 </div>
 
-                                {/* Item 3 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <motion.div
                                         className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
-                                        initial={{ scale: 0, rotate: -180 }}
-                                        whileInView={{ scale: 1, rotate: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.6, duration: 0.4, ease: "backOut" }}
+                                        {...createXIconPop(delaySequences.isThisForYou.dark.icon[2])}
                                     >
                                         <XMarkIcon className="w-5 h-5 text-[#0F0F0F]" />
                                     </motion.div>
                                     <motion.p
                                         className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-white"
-                                        initial={{ opacity: 0, x: -10 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.75, duration: 0.4 }}
+                                        {...createTextSlide(delaySequences.isThisForYou.dark.text[2])}
                                     >
                                         Think our subscription is &quot;too expensive&quot; for 20 qualified leads
                                     </motion.p>
                                 </div>
 
-                                {/* Item 4 */}
                                 <div className="flex flex-row items-start gap-[15px]">
                                     <motion.div
                                         className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
-                                        initial={{ scale: 0, rotate: -180 }}
-                                        whileInView={{ scale: 1, rotate: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.75, duration: 0.4, ease: "backOut" }}
+                                        {...createXIconPop(delaySequences.isThisForYou.dark.icon[3])}
                                     >
                                         <XMarkIcon className="w-5 h-5 text-[#0F0F0F]" />
                                     </motion.div>
                                     <motion.p
                                         className="body-text text-lg md:text-2xl leading-[22px] md:leading-[29px] text-white"
-                                        initial={{ opacity: 0, x: -10 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.9, duration: 0.4 }}
+                                        {...createTextSlide(delaySequences.isThisForYou.dark.text[3])}
                                     >
                                         Plan to spam the group (we&apos;ll kick you out)
                                     </motion.p>
@@ -930,10 +729,7 @@ export default function Home() {
                 >
                     <motion.div
                         className="flex flex-col items-start gap-7 md:gap-7 w-full"
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        {...fadeInUp}
                     >
                         <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                             Plus: Early Access to Something Bigger
@@ -945,73 +741,49 @@ export default function Home() {
 
                     <motion.div
                         className="flex flex-col items-start p-5 md:p-10 gap-8 md:gap-14 w-full bg-dark-secondary"
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        {...fadeInUp}
                     >
                         <div className="flex flex-col items-start gap-6 md:gap-8 w-full">
-                            {/* Benefit 1 */}
                             <div className="flex flex-row items-start gap-[15px]">
                                 <motion.div
                                     className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
-                                    initial={{ scale: 0, rotate: 180 }}
-                                    whileInView={{ scale: 1, rotate: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.2, duration: 0.4, ease: "backOut" }}
+                                    {...createIconPop(delaySequences.platformAccess.icon[0])}
                                 >
                                     <CheckIcon className="w-5 h-5 text-[#0F0F0F]" />
                                 </motion.div>
                                 <motion.p
                                     className="body-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.35, duration: 0.4 }}
+                                    {...createTextSlide(delaySequences.platformAccess.text[0])}
                                 >
                                     List and sell products to thousands of verified buyers
                                 </motion.p>
                             </div>
 
-                            {/* Benefit 2 */}
                             <div className="flex flex-row items-start gap-[15px]">
                                 <motion.div
                                     className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
-                                    initial={{ scale: 0, rotate: 180 }}
-                                    whileInView={{ scale: 1, rotate: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.35, duration: 0.4, ease: "backOut" }}
+                                    {...createIconPop(delaySequences.platformAccess.icon[1])}
                                 >
                                     <CheckIcon className="w-5 h-5 text-[#0F0F0F]" />
                                 </motion.div>
                                 <motion.p
                                     className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.5, duration: 0.4 }}
+                                    {...createTextSlide(delaySequences.platformAccess.text[1])}
                                 >
                                     See live demand dashboards for your category
                                 </motion.p>
                             </div>
 
-                            {/* Benefit 3 */}
                             <div className="flex flex-row items-start gap-[15px]">
                                 <motion.div
                                     className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
-                                    initial={{ scale: 0, rotate: 180 }}
-                                    whileInView={{ scale: 1, rotate: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.5, duration: 0.4, ease: "backOut" }}
+                                    {...createIconPop(delaySequences.platformAccess.icon[2])}
                                 >
                                     <CheckIcon className="w-5 h-5 text-[#0F0F0F]" />
                                 </motion.div>
                                 <motion.p
                                     className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.65, duration: 0.4 }}
+                                    {...createTextSlide(delaySequences.platformAccess.text[2])}
                                 >
                                     Connect with suppliers and partners at scale
                                 </motion.p>
@@ -1021,10 +793,7 @@ export default function Home() {
 
                     <motion.p
                         className="body-text text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        {...fadeInUpViewport}
                     >
                         You&apos;re not just joining a group. You&apos;re getting ground-floor access.
                     </motion.p>
@@ -1074,10 +843,7 @@ export default function Home() {
                     {/* Top Content */}
                     <motion.div
                         className="flex flex-col items-start gap-7 md:gap-7 w-full md:w-auto"
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        {...fadeInUp}
                     >
                         <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
                             Join Now. Start Growing.
@@ -1100,138 +866,93 @@ export default function Home() {
                     {/* Benefits List - With dark background box */}
                     <motion.div
                         className="flex flex-col items-start p-5 md:p-10 gap-4 md:gap-4 w-full md:w-auto bg-dark-secondary"
-                        initial={{ opacity: 0, x: 40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                        {...slideInRightDelayed}
                     >
-                        {/* Item 1 */}
                         <div className="flex flex-row items-start gap-[15px]">
                             <motion.div
                                 className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
-                                initial={{ scale: 0, rotate: 180 }}
-                                whileInView={{ scale: 1, rotate: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.3, duration: 0.4, ease: "backOut" }}
+                                {...createIconPop(delaySequences.joinNow.icon[0])}
                             >
                                 <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
                             </motion.div>
                             <motion.p
                                 className="body-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem]"
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.45, duration: 0.4 }}
+                                {...createTextSlide(delaySequences.joinNow.text[0])}
                             >
                                 20 qualified leads monthly
                             </motion.p>
                         </div>
 
-                        {/* Item 2 */}
                         <div className="flex flex-row items-start gap-[15px]">
                             <motion.div
                                 className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
-                                initial={{ scale: 0, rotate: 180 }}
-                                whileInView={{ scale: 1, rotate: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.45, duration: 0.4, ease: "backOut" }}
+                                {...createIconPop(delaySequences.joinNow.icon[1])}
                             >
                                 <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
                             </motion.div>
                             <motion.p
                                 className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.6, duration: 0.4 }}
+                                {...createTextSlide(delaySequences.joinNow.text[1])}
                             >
                                 Manufacturing-only WhatsApp group
                             </motion.p>
                         </div>
 
-                        {/* Item 3 */}
                         <div className="flex flex-row items-start gap-[15px]">
                             <motion.div
                                 className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
-                                initial={{ scale: 0, rotate: 180 }}
-                                whileInView={{ scale: 1, rotate: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.6, duration: 0.4, ease: "backOut" }}
+                                {...createIconPop(delaySequences.joinNow.icon[2])}
                             >
                                 <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
                             </motion.div>
                             <motion.p
                                 className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.75, duration: 0.4 }}
+                                {...createTextSlide(delaySequences.joinNow.text[2])}
                             >
                                 Competitor & market data
                             </motion.p>
                         </div>
 
-                        {/* Item 4 */}
                         <div className="flex flex-row items-start gap-[15px]">
                             <motion.div
                                 className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
-                                initial={{ scale: 0, rotate: 180 }}
-                                whileInView={{ scale: 1, rotate: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.75, duration: 0.4, ease: "backOut" }}
+                                {...createIconPop(delaySequences.joinNow.icon[3])}
                             >
                                 <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
                             </motion.div>
                             <motion.p
                                 className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.9, duration: 0.4 }}
+                                {...createTextSlide(delaySequences.joinNow.text[3])}
                             >
                                 Daily opportunity alerts
                             </motion.p>
                         </div>
 
-                        {/* Item 5 */}
                         <div className="flex flex-row items-start gap-[15px]">
                             <motion.div
                                 className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
-                                initial={{ scale: 0, rotate: 180 }}
-                                whileInView={{ scale: 1, rotate: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.9, duration: 0.4, ease: "backOut" }}
+                                {...createIconPop(delaySequences.joinNow.icon[4])}
                             >
                                 <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
                             </motion.div>
                             <motion.p
                                 className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 1.05, duration: 0.4 }}
+                                {...createTextSlide(delaySequences.joinNow.text[4])}
                             >
                                 Webinars for your team
                             </motion.p>
                         </div>
 
-                        {/* Item 6 */}
                         <div className="flex flex-row items-start gap-[15px]">
                             <motion.div
                                 className="w-8 h-8 flex items-center justify-center bg-white rounded-full flex-shrink-0"
-                                initial={{ scale: 0, rotate: 180 }}
-                                whileInView={{ scale: 1, rotate: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 1.05, duration: 0.4, ease: "backOut" }}
+                                {...createIconPop(delaySequences.joinNow.icon[5])}
                             >
                                 <CheckCircleIcon className="w-5 h-5 text-[#0F0F0F]" />
                             </motion.div>
                             <motion.p
                                 className="body-text text-white text-lg md:text-2xl leading-[22px] md:leading-[29px]"
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 1.2, duration: 0.4 }}
+                                {...createTextSlide(delaySequences.joinNow.text[5])}
                             >
                                 Priority platform access
                             </motion.p>
@@ -1247,10 +968,7 @@ export default function Home() {
             >
                 <motion.div
                     className="flex flex-col md:flex-row justify-between items-start gap-7 md:gap-7 w-full"
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    {...fadeInUp}
                 >
                     {/* Left Content */}
                     <div className="flex flex-col items-start gap-7 md:gap-7 w-full md:w-auto">
@@ -1282,10 +1000,7 @@ export default function Home() {
             >
                 <motion.div
                     className="flex flex-col items-start gap-7 md:gap-7 w-full"
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    {...fadeInUp}
                 >
                     <h2 className="section-heading text-white uppercase text-left w-full text-[52px] md:text-[88px] leading-[88%]">
                         Quick Questions
@@ -1298,10 +1013,7 @@ export default function Home() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
-                    variants={{
-                        hidden: {},
-                        visible: { transition: { staggerChildren: 0.1 } }
-                    }}
+                    variants={staggerContainerFast}
                 >
                     {faqs.map((faq, index) => (
                         <motion.div
@@ -1312,10 +1024,7 @@ export default function Home() {
                                 border: openIndex === index ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid transparent',
                             }}
                             role="listitem"
-                            variants={{
-                                hidden: { opacity: 0, y: 30 },
-                                visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
-                            }}
+                            variants={faqItemVariant}
                         >
                             <button
                                 className="flex flex-row justify-between items-center w-full cursor-pointer"

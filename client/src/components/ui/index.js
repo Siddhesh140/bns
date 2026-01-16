@@ -12,3 +12,6 @@ export {
     TwitterIcon,
     FacebookIcon
 } from './Icons';
+
+// Export animation variants and utilities
+export * from './animations';
