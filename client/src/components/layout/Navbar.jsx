@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button } from '../ui';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -75,6 +76,7 @@ const mobileItemVariants = {
 
 export default function Navbar({ onJoinClick }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     const handleLogoClick = () => {
         window.location.reload();
@@ -116,7 +118,7 @@ export default function Navbar({ onJoinClick }) {
                     </motion.div>
 
                     {/* Desktop Navigation Links */}
-                    <div className="hidden md:flex flex-row items-center gap-[60px] h-11">
+                    <div className="hidden md:flex flex-row items-center gap-nav h-11">
                         {NAV_LINKS.map((link) => (
                             <motion.span
                                 key={link.id}

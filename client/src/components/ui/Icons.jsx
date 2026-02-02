@@ -1,12 +1,22 @@
 /**
- * Custom Social Media Icon Library
- * Brand-specific icons not available in Heroicons
+ * @fileoverview Custom Social Media Icon Library
+ * @description Brand-specific SVG icons not available in Heroicons
  * 
- * Note: Utility icons (Menu, Email, Phone, Alert) have been migrated to Heroicons
- * See: @heroicons/react for those icons
+ * @note Utility icons (Menu, Email, Phone, Alert) have been migrated to Heroicons
+ * @see {@link https://heroicons.com/} for utility icons
  */
 
-// Instagram Icon
+import PropTypes from 'prop-types';
+
+/**
+ * Instagram Icon Component
+ * 
+ * @param {Object} props - Component props
+ * @param {number} [props.size=20] - Icon size in pixels
+ * @param {string} [props.color='#ADADAD'] - Icon stroke color
+ * @param {string} [props.className=''] - Additional CSS classes
+ * @returns {JSX.Element} Instagram SVG icon
+ */
 export const InstagramIcon = ({ size = 20, color = '#ADADAD', className = '' }) => (
     <svg
         width={size}
@@ -34,7 +44,21 @@ export const InstagramIcon = ({ size = 20, color = '#ADADAD', className = '' }) 
     </svg>
 );
 
-// LinkedIn Icon
+InstagramIcon.propTypes = {
+    size: PropTypes.number,
+    color: PropTypes.string,
+    className: PropTypes.string
+};
+
+/**
+ * LinkedIn Icon Component
+ * 
+ * @param {Object} props - Component props
+ * @param {number} [props.size=20] - Icon size in pixels
+ * @param {string} [props.color='#ADADAD'] - Icon stroke color
+ * @param {string} [props.className=''] - Additional CSS classes
+ * @returns {JSX.Element} LinkedIn SVG icon
+ */
 export const LinkedInIcon = ({ size = 20, color = '#ADADAD', className = '' }) => (
     <svg
         width={size}
@@ -68,7 +92,21 @@ export const LinkedInIcon = ({ size = 20, color = '#ADADAD', className = '' }) =
     </svg>
 );
 
-// Twitter/X Icon
+LinkedInIcon.propTypes = {
+    size: PropTypes.number,
+    color: PropTypes.string,
+    className: PropTypes.string
+};
+
+/**
+ * Twitter/X Icon Component
+ * 
+ * @param {Object} props - Component props
+ * @param {number} [props.size=20] - Icon size in pixels
+ * @param {string} [props.color='#ADADAD'] - Icon stroke color
+ * @param {string} [props.className=''] - Additional CSS classes
+ * @returns {JSX.Element} Twitter SVG icon
+ */
 export const TwitterIcon = ({ size = 20, color = '#ADADAD', className = '' }) => (
     <svg
         width={size}
@@ -88,7 +126,21 @@ export const TwitterIcon = ({ size = 20, color = '#ADADAD', className = '' }) =>
     </svg>
 );
 
-// Facebook Icon
+TwitterIcon.propTypes = {
+    size: PropTypes.number,
+    color: PropTypes.string,
+    className: PropTypes.string
+};
+
+/**
+ * Facebook Icon Component
+ * 
+ * @param {Object} props - Component props
+ * @param {number} [props.size=20] - Icon size in pixels
+ * @param {string} [props.color='#ADADAD'] - Icon stroke color
+ * @param {string} [props.className=''] - Additional CSS classes
+ * @returns {JSX.Element} Facebook SVG icon
+ */
 export const FacebookIcon = ({ size = 20, color = '#ADADAD', className = '' }) => (
     <svg
         width={size}
@@ -107,3 +159,9 @@ export const FacebookIcon = ({ size = 20, color = '#ADADAD', className = '' }) =
         />
     </svg>
 );
+
+FacebookIcon.propTypes = {
+    size: PropTypes.number,
+    color: PropTypes.string,
+    className: PropTypes.string
+};

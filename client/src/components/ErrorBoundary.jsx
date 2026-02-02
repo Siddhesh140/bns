@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import * as Sentry from "@sentry/react";
 
 /**
  * ErrorBoundary Component
@@ -36,8 +37,14 @@ class ErrorBoundary extends Component {
             errorInfo: errorInfo
         });
 
-        // TODO: Send error to error tracking service (e.g., Sentry, LogRocket)
-        // logErrorToService(error, errorInfo);
+        // Send error to Sentry
+        Sentry.captureException(error, {
+            contexts: {
+                react: {
+                    componentStack: errorInfo.componentStack
+                }
+            }
+        });
     }
 
     handleReload = () => {
@@ -93,7 +100,7 @@ class ErrorBoundary extends Component {
                         </button>
 
                         {/* Error Details (only in development) */}
-                        {process.env.NODE_ENV === 'development' && this.state.error && (
+                        {import.meta.env.MODE === 'development' && this.state.error && (
                             <details className="mt-8 text-left">
                                 <summary className="text-light-gray cursor-pointer hover:text-white transition-colors">
                                     Error Details (Development Only)

@@ -3,10 +3,12 @@
  * Premium pricing card modal with professional animations
  */
 
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { motion, AnimatePresence } from 'framer-motion';
+import { PRICING } from '../../config/pricing';
 
 const PricingCard = ({
     isOpen,
@@ -14,6 +16,18 @@ const PricingCard = ({
     onJoinClick,
     image = "/images/pricingcard.webp"
 }) => {
+    // Lock body scroll when modal is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        // Cleanup on unmount
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
     // Features list from Figma specs
     const features = [
         "Access to most lucrative communities of founders.",
@@ -73,7 +87,7 @@ const PricingCard = ({
 
                                     {/* Title - Slide from left */}
                                     <motion.h2
-                                        className="w-full text-white uppercase text-[40px] md:text-[56px] leading-[88%]"
+                                        className="w-full text-white uppercase text-heading-lg-mobile md:text-heading-lg"
                                         style={{ fontFamily: 'var(--font-bebas-neue)', fontWeight: 400 }}
                                         initial={{ opacity: 0, x: -30 }}
                                         animate={{ opacity: 1, x: 0 }}
@@ -131,7 +145,7 @@ const PricingCard = ({
                                             className="text-[#0F0F0F] text-sm uppercase tracking-[0.08em]"
                                             style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}
                                         >
-                                            Join for only ₹4,999
+                                            Join for only {PRICING.displayPrice}
                                         </span>
                                     </motion.button>
                                 </div>

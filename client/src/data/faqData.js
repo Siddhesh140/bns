@@ -1,7 +1,18 @@
 /**
- * FAQ Data for Home Page
+ * @fileoverview FAQ Data for Home Page
+ * @description Static FAQ content displayed in the FAQ section
  */
 
+/**
+ * @typedef {Object} FAQItem
+ * @property {string} question - The FAQ question text
+ * @property {string} answer - The FAQ answer text
+ */
+
+/**
+ * Array of FAQ items for the landing page
+ * @constant {FAQItem[]}
+ */
 export const faqs = [
     {
         question: "What kind of leads will I get?",

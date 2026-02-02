@@ -6,6 +6,7 @@
  * @param {string} className - Additional CSS classes
  */
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 export default function Button({
     variant = 'primary',
@@ -61,3 +62,13 @@ export default function Button({
         </motion.button>
     );
 }
+
+Button.propTypes = {
+    variant: PropTypes.oneOf(['primary', 'secondary']),
+    onClick: PropTypes.func,
+    children: PropTypes.node.isRequired,
+    className: PropTypes.string,
+    disabled: PropTypes.bool,
+    loading: PropTypes.bool
+};
+

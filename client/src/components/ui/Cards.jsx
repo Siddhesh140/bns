@@ -3,6 +3,8 @@
  * All card variants in one reusable component
  */
 
+import PropTypes from 'prop-types';
+
 /**
  * Problem Card - Used in "Problems Section"
  * Displays an image with grayscale filter and content overlay at bottom
@@ -27,7 +29,7 @@ export const ProblemCard = ({
                 filter: 'grayscale(100%)'
             }}
         />
-        <div className="relative z-10 flex flex-col items-start justify-start p-5 md:p-9 gap-6 w-full bg-dark-gray min-h-[210px] md:min-h-[220px]">
+        <div className="relative z-10 flex flex-col items-start justify-start p-5 md:p-9 gap-6 w-full bg-dark-gray min-h-card-content-mobile md:min-h-card-content">
             <h3
                 className="text-white uppercase text-xl md:text-2xl leading-6 md:leading-[29px] tracking-[0.08em]"
                 style={{ fontFamily: 'var(--font-inter)', fontWeight: 600 }}
@@ -44,6 +46,13 @@ export const ProblemCard = ({
     </div>
 );
 
+ProblemCard.propTypes = {
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    className: PropTypes.string
+};
+
 /**
  * Solution Card - Feature block with alternating image/text layout
  * Used in "What You Actually Get" section
@@ -59,7 +68,7 @@ export const SolutionCard = ({
     const isImageLeft = imagePosition === 'left';
 
     return (
-        <div className="flex flex-col md:flex-row items-center p-5 md:p-6 gap-10 md:gap-[60px] w-full bg-dark-gray">
+        <div className="flex flex-col md:flex-row items-center p-5 md:p-6 gap-10 md:gap-nav w-full bg-dark-gray">
             {/* Image Container - Mobile First (always on top) */}
             <div className={`md:hidden relative flex justify-center items-center w-full h-[312px] bg-[#242424]`}>
                 <div className="relative w-[80%] h-[80%]">
@@ -136,6 +145,15 @@ export const SolutionCard = ({
     );
 };
 
+SolutionCard.propTypes = {
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string,
+    content: PropTypes.node,
+    footer: PropTypes.string,
+    imagePosition: PropTypes.oneOf(['left', 'right'])
+};
+
 /**
  * Default Card - Generic card component
  * Fallback for simple card layouts
@@ -167,6 +185,13 @@ export const DefaultCard = ({
     </div>
 );
 
+DefaultCard.propTypes = {
+    image: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    className: PropTypes.string
+};
+
 /**
  * Unified Card Component - Main export with variant support
  * Automatically selects the right card type based on variant prop
@@ -185,3 +210,8 @@ export default function Card({ variant = 'default', ...props }) {
             return <DefaultCard {...props} />;
     }
 }
+
+Card.propTypes = {
+    variant: PropTypes.oneOf(['problem', 'solution', 'default'])
+};
+

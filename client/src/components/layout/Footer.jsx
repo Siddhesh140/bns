@@ -1,27 +1,40 @@
+/**
+ * @fileoverview Footer component for the landing page
+ * @description Displays company branding, social media links, and contact information
+ */
+
+import { useNavigate } from 'react-router-dom';
 import { InstagramIcon, LinkedInIcon, TwitterIcon, FacebookIcon } from '../ui';
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline';
 
+/**
+ * Footer Component
+ * 
+ * Renders the site footer with:
+ * - Company logo and tagline
+ * - Social media links (Instagram, LinkedIn)
+ * - Contact information (email, phone)
+ * 
+ * @returns {JSX.Element} The rendered footer component
+ * 
+ * @example
+ * <Footer />
+ */
 export default function Footer() {
+    const navigate = useNavigate();
+
+    /**
+     * Handles logo click - navigates to home and scrolls to top
+     */
     const handleLogoClick = () => {
-        window.location.reload();
+        navigate('/');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     return (
-
         <footer
-            className="flex flex-col md:flex-row justify-between items-start w-full max-w-[400px] md:max-w-[1440px] mx-auto bg-dark-secondary relative z-10"
-            style={{
-                padding: '80px 20px', // Mobile padding
-            }}
+            className="flex flex-col md:flex-row justify-between items-start w-full max-w-[400px] md:max-w-[1440px] mx-auto bg-dark-secondary relative z-10 p-5 md:p-20"
         >
-            {/* Desktop Padding Override */}
-            <style>{`
-                @media (min-width: 768px) {
-                    footer {
-                        padding: 80px !important;
-                    }
-                }
-            `}</style>
 
             {/* Left Column (Frame 75) */}
             <div className="flex flex-col items-start gap-10 md:gap-10 w-full md:w-auto mb-16 md:mb-0">
@@ -80,21 +93,26 @@ export default function Footer() {
                             <span className="text-[#ADADAD] group-hover:text-[#3B82F6] transition-colors duration-300 text-base leading-[19px] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>@BnS</span>
                         </a>
 
-                        {/* Twitter (X) */}
+
+                        {/* Twitter (X) - Hidden until link is available */}
+                        {/* 
                         <a href="#" className="flex flex-row items-center gap-1 group transition-colors duration-300">
                             <div className="w-5 h-5 flex items-center justify-center">
                                 <TwitterIcon size={20} className="stroke-light-gray group-hover:stroke-brand-blue transition-colors duration-300" />
                             </div>
                             <span className="text-[#ADADAD] group-hover:text-[#3B82F6] transition-colors duration-300 text-base leading-[19px] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>@BnS</span>
                         </a>
+                        */}
 
-                        {/* Facebook */}
+                        {/* Facebook - Hidden until link is available */}
+                        {/* 
                         <a href="#" className="flex flex-row items-center gap-1 group transition-colors duration-300">
                             <div className="w-5 h-5 flex items-center justify-center">
                                 <FacebookIcon size={20} className="stroke-light-gray group-hover:stroke-brand-blue transition-colors duration-300" />
                             </div>
                             <span className="text-[#ADADAD] group-hover:text-[#3B82F6] transition-colors duration-300 text-base leading-[19px] font-normal" style={{ fontFamily: 'var(--font-inter)' }}>@BnS</span>
                         </a>
+                        */}
                     </div>
                 </div>
 

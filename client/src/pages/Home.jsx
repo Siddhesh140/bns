@@ -2,11 +2,11 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { Navbar, Footer } from '../components/layout';
+import { ContactForm } from '../features/contact';
 import {
     Button,
     ProblemCard,
     SolutionCard,
-    ContactForm,
     PricingCard,
     // Animation utilities
     fadeInUp,
@@ -69,7 +69,7 @@ export default function Home() {
             {/* ========== HERO SECTION ========== */}
             <section
                 id="hero"
-                className="relative w-full h-[600px] md:h-[800px] overflow-hidden flex items-center justify-center"
+                className="relative w-full min-h-hero-mobile md:min-h-hero overflow-hidden flex items-center justify-center"
                 aria-label="Hero section"
             >
                 {/* Navbar */}
@@ -97,7 +97,7 @@ export default function Home() {
                 <div className="relative z-10 flex flex-col items-center gap-5 md:gap-8 px-4">
                     {/* Main Heading - Simple fade in */}
                     <motion.h1
-                        className="hero-heading max-w-[372px] md:max-w-[1046.34px]"
+                        className="hero-heading max-w-[372px] md:max-w-[1046.34px] text-center"
                         {...fadeInUpSmall}
                     >
                         Stop Chasing Leads. Let Them Come to You.
@@ -105,11 +105,23 @@ export default function Home() {
 
                     {/* Subheading - Fade in */}
                     <motion.p
-                        className="hero-subheading max-w-[294px] md:max-w-[708.44px]"
+                        className="hero-subheading max-w-[294px] md:max-w-[708.44px] text-center"
                         {...fadeInUpTiny}
                     >
                         Join India&apos;s first WhatsApp community built exclusively for manufacturers who are tired of cold calls that go nowhere.
                     </motion.p>
+
+                    {/* Join Button - Fade in */}
+                    <motion.div {...fadeInUpSmall}>
+                        <Button
+                            variant="primary"
+                            className="px-8 py-4 h-14 text-lg font-medium"
+                            aria-label="Join the WhatsApp community now"
+                            onClick={handleJoinClick}
+                        >
+                            Join Now
+                        </Button>
+                    </motion.div>
                 </div>
             </section>
 
@@ -117,7 +129,7 @@ export default function Home() {
             <div id="what">
                 {/* Features Section */}
                 <section
-                    className="w-full flex flex-col md:flex-row md:justify-between md:items-center px-5 py-10 md:px-20 md:py-20 gap-5 md:gap-5 max-w-[400px] md:max-w-[1440px] mx-auto min-h-[962px] md:min-h-[720px]"
+                    className="w-full flex flex-col md:flex-row md:justify-between md:items-center px-5 py-10 md:px-20 md:py-20 gap-5 md:gap-5 max-w-container-sm md:max-w-container mx-auto min-h-section-mobile md:min-h-section"
                     aria-label="Features section"
                 >
                     {/* Mobile: Image First, Desktop: Content First */}
@@ -134,7 +146,7 @@ export default function Home() {
 
                     {/* Content */}
                     <motion.div
-                        className="flex flex-col items-start gap-[30px] w-full max-w-[360px] md:max-w-[687px]"
+                        className="flex flex-col items-start gap-section w-full max-w-content-sm md:max-w-content"
                         {...fadeInUp}
                     >
                         {/* Description */}
@@ -237,7 +249,7 @@ export default function Home() {
 
                 {/* Problems Section */}
                 <section
-                    className="w-full flex flex-col items-start p-5 md:p-20 gap-20 md:gap-20 max-w-[400px] md:max-w-[1440px] mx-auto"
+                    className="w-full flex flex-col items-start p-5 md:p-20 gap-20 md:gap-20 max-w-container-sm md:max-w-container mx-auto"
                     aria-label="Common problems section"
                 >
                     <div className="flex flex-col items-start gap-14 md:gap-14 w-full max-w-[360px] md:max-w-[1280px]">
@@ -247,7 +259,7 @@ export default function Home() {
                             {...fadeInUp}
                         >
                             <div className="flex flex-col items-start gap-5 md:gap-5 w-full">
-                                <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
+                                <h2 className="section-heading text-white uppercase w-full text-heading-xl-mobile md:text-heading-xl">
                                     Your Factory Runs Like Clockwork. Your Lead Pipeline? Not So Much.
                                 </h2>
                             </div>
@@ -354,7 +366,7 @@ export default function Home() {
 
                 {/* Solutions Section */}
                 <section
-                    className="w-full flex flex-col items-start p-5 md:p-20 gap-12 md:gap-20 max-w-[400px] md:max-w-[1440px] mx-auto"
+                    className="w-full flex flex-col items-start p-5 md:p-20 gap-12 md:gap-20 max-w-container-sm md:max-w-container mx-auto"
                     aria-label="Solutions section"
                 >
                     {/* Section Header */}
@@ -362,7 +374,7 @@ export default function Home() {
                         className="flex flex-col items-start w-full"
                         {...fadeInUp}
                     >
-                        <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
+                        <h2 className="section-heading text-white uppercase w-full text-heading-xl-mobile md:text-heading-xl">
                             What You Actually Get
                         </h2>
                     </motion.div>
@@ -449,11 +461,11 @@ export default function Home() {
             <div id="how">
                 {/* HowItWorks Section */}
                 <section
-                    className="w-full flex flex-col items-center p-5 md:p-20 gap-12 md:gap-12 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
+                    className="w-full flex flex-col items-center p-5 md:p-20 gap-12 md:gap-12 max-w-container-sm md:max-w-container mx-auto bg-dark"
                     aria-label="How it works section"
                 >
                     <motion.h2
-                        className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]"
+                        className="section-heading text-white uppercase w-full text-heading-xl-mobile md:text-heading-xl"
                         {...fadeInUp}
                     >
                         How this works
@@ -565,11 +577,11 @@ export default function Home() {
 
                 {/* IsThisForYou Section */}
                 <section
-                    className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
+                    className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-container-sm md:max-w-container mx-auto bg-dark"
                     aria-label="Is this for you section"
                 >
                     <motion.h2
-                        className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]"
+                        className="section-heading text-white uppercase w-full text-heading-xl-mobile md:text-heading-xl"
                         {...fadeInUp}
                     >
                         Is This For You?
@@ -581,7 +593,7 @@ export default function Home() {
                             className="flex flex-col items-start p-5 md:p-10 gap-10 md:gap-14 w-full md:w-1/2 bg-[#F5F5F5]"
                             {...slideInLeft}
                         >
-                            <h3 className="step-text text-2xl md:text-[40px] leading-[100%] text-[#151515]">
+                            <h3 className="step-text text-2xl md:text-heading-lg-mobile leading-none text-charcoal">
                                 Perfect If You
                             </h3>
 
@@ -653,7 +665,7 @@ export default function Home() {
                             className="flex flex-col items-start p-5 md:p-10 gap-10 md:gap-14 w-full md:w-1/2 bg-dark-secondary"
                             {...slideInRightDelayed}
                         >
-                            <h3 className="step-text text-2xl md:text-[40px] leading-[100%] text-white">
+                            <h3 className="step-text text-2xl md:text-heading-lg-mobile leading-none text-white">
                                 Not For You If You
                             </h3>
 
@@ -724,14 +736,14 @@ export default function Home() {
 
                 {/* WhyBigVision Section */}
                 <section
-                    className="w-full flex flex-col items-start p-5 md:p-20 gap-10 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
+                    className="w-full flex flex-col items-start p-5 md:p-20 gap-10 md:gap-16 max-w-container-sm md:max-w-container mx-auto bg-dark"
                     aria-label="Future platform access section"
                 >
                     <motion.div
                         className="flex flex-col items-start gap-7 md:gap-7 w-full"
                         {...fadeInUp}
                     >
-                        <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
+                        <h2 className="section-heading text-white uppercase w-full text-heading-xl-mobile md:text-heading-xl">
                             Plus: Early Access to Something Bigger
                         </h2>
                         <p className="body-text text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full">
@@ -803,7 +815,7 @@ export default function Home() {
             {/* ========== WHO SECTION ========== */}
             <section
                 id="who"
-                className="relative flex flex-col justify-end items-start overflow-hidden w-full min-h-[800px] md:min-h-[954px] p-5 md:p-20 max-w-[400px] md:max-w-[1440px] mx-auto"
+                className="relative flex flex-col justify-end items-start overflow-hidden w-full min-h-who-section-mobile md:min-h-who-section p-5 md:p-20 max-w-container-sm md:max-w-container mx-auto"
                 style={{ isolation: 'isolate' }}
                 aria-label="Join now section"
             >
@@ -845,7 +857,7 @@ export default function Home() {
                         className="flex flex-col items-start gap-7 md:gap-7 w-full md:w-auto"
                         {...fadeInUp}
                     >
-                        <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
+                        <h2 className="section-heading text-white uppercase w-full text-heading-xl-mobile md:text-heading-xl">
                             Join Now. Start Growing.
                         </h2>
                         <p className="body-text text-white text-lg md:text-2xl leading-[1.375rem] md:leading-[1.8125rem] w-full md:w-[402px]">
@@ -963,7 +975,7 @@ export default function Home() {
 
             {/* Still Thinking Section */}
             <section
-                className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
+                className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-container-sm md:max-w-container mx-auto bg-dark"
                 aria-label="Book a call section"
             >
                 <motion.div
@@ -972,7 +984,7 @@ export default function Home() {
                 >
                     {/* Left Content */}
                     <div className="flex flex-col items-start gap-7 md:gap-7 w-full md:w-auto">
-                        <h2 className="section-heading text-white uppercase w-full text-[52px] md:text-[88px] leading-[88%]">
+                        <h2 className="section-heading text-white uppercase w-full text-heading-xl-mobile md:text-heading-xl">
                             Still thinking?
                         </h2>
                         <p className="body-text text-white text-xl md:text-[1.75rem] leading-6 md:leading-[2.125rem] w-full">
@@ -995,14 +1007,14 @@ export default function Home() {
             {/* ========== WHY SECTION (FAQ) ========== */}
             <section
                 id="why"
-                className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-[400px] md:max-w-[1440px] mx-auto bg-dark"
+                className="w-full flex flex-col items-start p-5 md:p-20 gap-16 md:gap-16 max-w-container-sm md:max-w-container mx-auto bg-dark"
                 aria-label="Frequently asked questions"
             >
                 <motion.div
                     className="flex flex-col items-start gap-7 md:gap-7 w-full"
                     {...fadeInUp}
                 >
-                    <h2 className="section-heading text-white uppercase text-left w-full text-[52px] md:text-[88px] leading-[88%]">
+                    <h2 className="section-heading text-white uppercase text-left w-full text-heading-xl-mobile md:text-heading-xl">
                         Quick Questions
                     </h2>
                 </motion.div>
